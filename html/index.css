@@ -27,7 +27,6 @@ header{
     display: flex;
     justify-content: space-between;
     gap: 2px;
-    /* background-color:#EDE5BB; */
      
 }
 
@@ -129,7 +128,12 @@ footer{
 
 .f-content:nth-child(2){
     grid-row: 2/3;
-    grid-column: 6/10;
+    grid-column: 5/10;
+    justify-content: space-between;
+}
+.f-content:nth-child(2) img{
+    width: 30px;
+    height: auto;
 }
 .f-content:nth-child(3){
     grid-row: 3/4;
@@ -137,14 +141,8 @@ footer{
     color: #FFFFFF;
 }
 
-.f-soc-med{
-    /* display: flex; */
-}
 
-.f-soc-med img{
-    width: 30px;
-    height: auto;
-}
+
 
 /* ---MOBILE CHILLING--- */
 
