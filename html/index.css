@@ -6,7 +6,7 @@
 }
 
 body{
-    font-family: 'Courier New', Courier, monospace;
+    font-family:'inter';
     display: grid;
     gap: 30px;
     grid-template-rows: 81px 550px 150px;
@@ -88,8 +88,8 @@ header{
 }
 
 .active{
-     background-color: #004959;
-}
+     background-color:#107086;
+}   
 
 .main-bdy{
     grid-row: 2/3;
@@ -131,13 +131,12 @@ footer{
     grid-column: 5/10;
     justify-content: space-between;
 }
-.f-content:nth-child(2) a{
-    /* padding: auto; */
-}
+
 .f-content:nth-child(2) img{
     width: 30px;
     height: auto;
 }
+
 .f-content:nth-child(3){
     grid-row: 3/4;
     grid-column: 5/11;
@@ -204,7 +203,7 @@ footer{
     } 
 
     li.active{
-        background-color:#004959;
+        background-color:#107086;
     }
 }
 
