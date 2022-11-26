@@ -137,6 +137,10 @@ footer{
     color: #FFFFFF;
 }
 
+.f-soc-med{
+    /* display: flex; */
+}
+
 .f-soc-med img{
     width: 30px;
     height: auto;
