@@ -131,6 +131,9 @@ footer{
     grid-column: 5/10;
     justify-content: space-between;
 }
+.f-content:nth-child(2) a{
+    /* padding: auto; */
+}
 .f-content:nth-child(2) img{
     width: 30px;
     height: auto;
