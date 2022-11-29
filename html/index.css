@@ -27,7 +27,7 @@ header{
     display: flex;
     justify-content: space-between;
     gap: 2px;
-     
+    background-color: #000000;
 }
 
 .Lholder{
@@ -62,7 +62,7 @@ header{
 .nav-desktop li a{
     display: block;
     padding:31px;
-    color: #1E1E1E;
+    color: #E4EAFF;
     text-align: center;
     text-transform: uppercase;
     text-decoration: none;
@@ -70,7 +70,8 @@ header{
 }
 
 .nav-desktop li:hover{
-    background-color: #03A1C5;
+    transition: 0.5s all;
+    background-color: #3e5360;
 }
 
 #hamburger-btn{
@@ -88,59 +89,70 @@ header{
 }
 
 .active{
-     background-color:#107086;
+     background-color:#202b32;
+     
 }   
 
 .main-bdy{
     grid-row: 2/3;
     display: grid;  
     grid-template-columns: repeat(3,40px);
-    background-color: #EDE5BB;
+    /* background-color: #EDE5BB; */
 }
 
 
 /* Footer */
+.s-fix{
+    width: 30px;
+    height: auto;
+}
 
-footer{
+footer{                    /* footer*/
     grid-row: 3/4;
     width: 100%;
     display: grid;
     grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: repeat(12,1fr);
     gap: 20px;
     background-color: #000000;
 }
 
 .f-content:nth-child(1){
     grid-row: 1;
-    grid-column: 4/12;
     display: flex;
     align-items:flex-end;
-    width: 100%;
+    justify-self: center;
     color: #FFFFFF;
+    /* display: none; */
+}
+
+.f-content:nth-child(1) ul{
+    display: flex;
+    gap: 90px;
 }
 
 .f-content li{
-    display: inline-block;
+    display: inline-block;  
     /* Describe font in here */
 }
 
 
 .f-content:nth-child(2){
     grid-row: 2/3;
-    grid-column: 5/10;
-    justify-content: space-between;
+    display: flex;
+    gap: 90px;
+    justify-self: center;
 }
 
 .f-content:nth-child(2) img{
-    width: 30px;
+    width: 25px;
     height: auto;
 }
 
 .f-content:nth-child(3){
     grid-row: 3/4;
-    grid-column: 5/11;
     color: #FFFFFF;
+    display: flex;
+    justify-self: center;
 }
 
 
@@ -159,8 +171,8 @@ footer{
         width: 70px;
         height: 40px;
         align-self: center;
-        color: #EDE5BB;
-        background-color: #00657C;
+        color: #03A1C5;
+        background-color: #000000;
         border: 0;
         font-size: 35px;
     }
@@ -183,14 +195,14 @@ footer{
         line-height: 70px;
         align-items: center;
         text-align: center;
-        background-color: #00657C;
+        background-color: #000000;
         transition: all .5s;
         /* box-shadow: 0 0 100% 100% black; */
         /* color: #EDE5BB; */
     }
 
     .nav-list-mobile li a {
-        color: #EDE5BB;
+        color: #E4EAFF;
         font-size: 31px;
         text-transform: uppercase;
         text-decoration: none;
@@ -198,12 +210,17 @@ footer{
     }
 
     .nav-list-mobile li:hover{
-        background: #03A1C5;
         transition: 0.5s;
+        background-color: #3e5360;
     } 
 
     li.active{
-        background-color:#107086;
+        background-color:#202b32;
+    }
+
+    .f-content:nth-child(1) ul{ 
+        display: flex;
+        gap: 60px;
     }
 }
 
