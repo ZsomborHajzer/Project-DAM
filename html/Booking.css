@@ -39,9 +39,8 @@ header{
 
 .logo{
     width: 142px;
-    height: 81px;
+    height: 60px;
 }
-
 
 .nav-desktop{
     display: flex;
@@ -127,6 +126,7 @@ header{
     font-size: 25px;
     /* background-color: green; */
     display: flex;
+    justify-content: space-between;
 }
 .t-content:nth-child(2){
     background-color: white;
@@ -135,7 +135,7 @@ header{
 #s_talent{
     height: 25px;
     width: 240px;
-    float: right;
+    align-items: right;
 }
 
 /* Footer */
