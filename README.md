@@ -9,6 +9,7 @@ Project 2 Team A
 	- Zsombor: Frontend
 	- Rares: Backend
 	- Ayomide: Frontend
+	- Pull request done by: Paul and Bernardo
 
 ## Running
 To run our project, you will need either a XAMP-, WAMP- or Docker-type setup.
