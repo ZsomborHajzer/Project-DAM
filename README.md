@@ -41,7 +41,7 @@ components/ - | (this is not accessible from a browser)
 
 ## Built With
 Our page has been build with
-* [![JQuery][JQuery.com]][JQuery-url]
+* JQUERY
 * PHP
 * HTML
 * CSS
