@@ -47,9 +47,10 @@ Our page has been build with
 * HTML
 * CSS
 * NGINX
+* JavaScript
 
 ## Copyright
-Copyright to E3T and PEZARB
+Copyright to E3T and PECZARB
 
 
 
