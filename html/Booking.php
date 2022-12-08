@@ -66,7 +66,7 @@
                     // getting the different filter option to search talents
 
 
-                    $arrayFilter = ["Pricing", "Availability", "Contact details", "Group"];
+                    $arrayFilter = ["Pricing", "Active",];
 
                     foreach ($arrayFilter as $item) {
                         echo "<option value='$item'>$item</option>";
@@ -83,9 +83,9 @@
 
                 <?php
 
-                $dsn = "mysql:host=mysql;dbname=assigment4";
+                $dsn = "mysql:host=localhost;dbname=dbprojectterm2";
                 $user = "root";
-                $passwd = "qwerty";
+                $passwd = "";
 
                 //Connecting to a database
                 $dbHandler = new PDO($dsn, $user, $passwd);
@@ -93,39 +93,105 @@
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
-                    if ($_POST["dataTalents"] != "") {
-                        $input = filter_input(INPUT_POST, "dataTalents", FILTER_SANITIZE_SPECIAL_CHARS);
-                    }
 
 
                     if ($_POST["dataNameOrEmail"] != "") {
-                        $nameOrEmail = filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
+                            //if the email is correct then we will filter per Email
+                            if(filter_input(INPUT_POST, "dataNameOrEmail", FILTER_VALIDATE_EMAIL)) {
+
+                                $stmt = $dbHandler->prepare("SELECT * FROM tbluser  INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty WHERE dtEmail LIkE ? ");
+
+                                //$stmt->bind_param
+
+                                $mail= filter_input(INPUT_POST, "dataNameOrEmail", FILTER_VALIDATE_EMAIL);
+
+                                $stmt->execute(["%$mail%"]);
+                                while ($row = $stmt->fetch()) {
+
+                                    echo "<tr>";
+                                    echo "<td>" . $row['dtImage'] . "</td><td>" . $row['dtName'] . " " . $row['dtLastName'] . "</td>
+                            <td>" . $row['dtEmail'] . "</td>
+                            <td>" . $row['dtDescription'] . "</td>";
+                                    echo "</tr>";
+                                }
+                                //if that is not correct then we will filter per Name
+                            }else if (filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS)){
+
+                                $stmt = $dbHandler->prepare("SELECT * FROM tbluser INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty  WHERE dtName LIkE ? ");
+
+                                //$stmt->bind_param
+
+                                $name= filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
+
+                                $stmt->execute(["%$name%"]);
+                                while ($row = $stmt->fetch()) {
+
+                                    echo "<tr>";
+                                    echo "<td>" . $row['dtImage'] . "</td><td>" . $row['dtName'] . " " . $row['dtLastName'] . "</td>
+                            <td>" . $row['dtEmail'] . "</td>
+                            <td>" . $row['dtImage'] . "</td>";
+                                    echo "</tr>";
+                                }
+
+                            }else {
+
+                                echo "<h3>Please enter a valid name or Email</h3>";
+
+                            }
 
 
-                        $stmt = $dbHandler->query("SELECT * FROM tblUser");
+                    }else {
+                    //if none of the above is the case then a select option has been choosen
 
-/*
+                        $sanitzeOption =  filter_input(INPUT_POST,"dataTalents",FILTER_SANITIZE_SPECIAL_CHARS);
+
+                        // new test needs to be added. If the users wants to only see avaible ones then we only need to show those ones.
+
+                        if ($sanitzeOption == "Active") {
+
+                            $stmt = $dbHandler->prepare("SELECT * FROM tbluser INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty  WHERE dtActive = 1  ORDER BY  dtName ASC ");
+
+                            //$stmt->bind_param
+
+                            $name= filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
+
+                            $stmt->execute(["$sanitzeOption"]);
+                            while ($row = $stmt->fetch()) {
+
+                                echo "<tr>";
+                                echo "<td>" . $row['dtImage'] . "</td><td>" . $row['dtName'] . " " . $row['dtLastName'] . "</td>
+                            <td>" . $row['dtEmail'] . "</td>
+                            <td> Book me</td>";
+                                echo "</tr>";
+                            }
+                        }else{
+
+                        $stmt = $dbHandler->prepare("SELECT * FROM tbluser  INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty ORDER BY ?  ASC");
+
+                        //$stmt->bind_param
+
+                        $name= filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
+
+                        $stmt->execute(["$sanitzeOption"]);
                         while ($row = $stmt->fetch()) {
-                            $id = $row['idBug'];
-                            echo "<tr>";
-                            echo "<td>" . $row['dtProductName'] . "</td><td>" . $row['dtVersion'] . "</td>
-                            <td>" . $row['dtHardwareType'] . "</td>
-                            <td>" . $row['dtOs'] . "</td>
-                            <td>" . $row['dtFrequancy'] . "</td>
-                            <td>" . $row['dtSolution'] . "</td><td><a href='edit.php?id=$id'>Edit Bug</a></td>
-                            <td><a href='edit.php?id=$id'>Delete</a></td>";
-                            echo "</tr>";
-                            $_SESSION['id'] = $row["idBug"];
-                        }*/
 
-                        $dbHandler = null;
+                            echo "<tr>";
+                            echo "<td>" . $row['dtImage'] . "</td><td>" . $row['dtName'] . " " . $row['dtLastName'] . "</td>
+                            <td>" . $row['dtEmail'] . "</td>
+                            <td> Book me</td>";
+                            echo "</tr>";
+
+                            $dbHandler = null;
+                        }
+                        }
+
 
                     }
 
 
                 }
 
-
+                $dbHandler = null;
                 ?>
 
             </div>
