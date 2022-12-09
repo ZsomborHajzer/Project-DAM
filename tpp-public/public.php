@@ -8,8 +8,8 @@ There are a lot of placeholders such as name and email and other info that will 
 
 //variables needed for later
 $arrayofImages = [];
-$pictureholder = "pictureholder/";
-$documentholder = "documentholder/";
+$pictureHolder = "pictureholder/";
+$documentHolder = "documentholder/";
 $files = [];
 ?>
 
@@ -46,18 +46,18 @@ $files = [];
             <p>Email address: <a href="mailto:testemail@adus.com">testemail@adus.com</a></p>
         </div>
 
-        <div class="phototitle">
+        <div class="photoTitle">
             <h1><b>Photos</b></h1>
         </div>
 
-        <div class="photoholder">
+        <div class="photoHolder">
             <?php
 
             // checks if there is a directory in that address or not
-            if (is_dir($pictureholder)) {
+            if (is_dir($pictureHolder)) {
 
                 // if there is a directory, scan the names of the files in that directory and put it in a array called $array of images
-                $arrayofImages = scandir($pictureholder);
+                $arrayofImages = scandir($pictureHolder);
 
 
                 //count the number of pictures in the array 
@@ -66,7 +66,7 @@ $files = [];
                 for ($i = 0; $i < count($arrayofImages); $i++) {
                     if ($arrayofImages[$i] != '.' && $arrayofImages[$i] != '..') {
 
-                        array_push($files, $pictureholder . $arrayofImages[$i]);
+                        array_push($files, $pictureHolder . $arrayofImages[$i]);
                     }
                 }
 
@@ -101,7 +101,7 @@ $files = [];
 
 
 
-        <div class="documentstitle">
+        <div class="documentsTitle">
             <h2>Documents</h2>
         </div>
 
@@ -110,11 +110,11 @@ $files = [];
             <?php
 
             // check if documentholder location exists
-            if (is_dir($documentholder)) {
+            if (is_dir($documentHolder)) {
 
 
                 // puts the name of the docs into the array $arrayofDocs
-                $arrayofDocs = scandir($documentholder);
+                $arrayofDocs = scandir($documentHolder);
 
                 //count the number of docs in the array (starts at two because of the invisible docs '.' and '..')
                 for ($i = 2; $i < count($arrayofDocs); $i++) {
@@ -122,7 +122,7 @@ $files = [];
 
 
                     //html gibberish
-                    echo '<div class="docpics">';
+                    echo '<div class="docPics">';
                     echo "<a href='documentholder/doc1.docx' download><img src='stockphotoholder/docxstockphoto.png'  height = 250  width = 200 /></a>";
                     echo '<figcaption>' . $arrayofDocs[$i] . '</figcaption>';
                     echo '</div>';
