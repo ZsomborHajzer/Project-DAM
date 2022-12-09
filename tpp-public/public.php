@@ -1,5 +1,13 @@
 <?php
-$arrayofImages=[];
+/* This is the public page for the talents which the general user will be able to see
+There are folders with  with pre uploaded image files so that the webpage is not empty
+There is a dynamic upload function which is ran through a sorting algorithm which makes sure that the newest image is always on top
+There are a lot of placeholders such as name and email and other info that will be accessable from database later on
+*/
+
+
+//variables needed for later
+$arrayofImages = [];
 $pictureholder = "pictureholder/";
 $documentholder = "documentholder/";
 $files = [];
