@@ -20,30 +20,42 @@
 					<p class="texts"> <input type="email" name="email"> </p>
 					<p class="labels"> <label for="comment"> Comment </label> </p>
 					<p class="texts"> <textarea name="comment"> </textarea> </p>
-					<p id="submit"> <input type="submit" value="send"> </p>
+					<p id="submit"> <input type="submit" value="send" id="submit2"> </p>
 				</form>
 			</div>
 			<div id="contactinfo">
 				<div class="contactbox">
-					<img src="pictures/contact1.jpg" height="130px" width="100px">
-					<h3> FirstName LastName </h3>
-					<p class="texts"> manager </p>
-					<p> name@mail.com </p>
-					<p> +12 345 6789 </p>
+					<div class="contactpicture">
+						<img src="pictures/contact1.jpg" height="130px" width="100px">
+					</div>
+					<div class="contacttext">
+						<h3> FirstName LastName </h3>
+						<p class="texts"> manager </p>
+						<p class="mail"> name@mail.com </p>
+						<p class="phone"> +12 345 6789 </p>
+					</div>
 				</div>
 				<div class="contactbox">
-					<img src="pictures/contact2.jpg" height="130px" width="100px">
-					<h3> FirstName LastName </h3>
-					<p class="texts"> manager </p>
-					<p> name@mail.com </p>
-					<p> +12 345 6789 </p>
+					<div class="contactpicture">
+						<img src="pictures/contact2.jpg" height="130px" width="100px">
+					</div>
+					<div class="contacttext">
+						<h3> FirstName LastName </h3>
+						<p class="texts"> manager </p>
+						<p class="mail"> name@mail.com </p>
+						<p class="phone"> +12 345 6789 </p>
+					</div>
 				</div>
 				<div class="contactbox">
-					<img src="pictures/contact3.jpg" height="130px" width="100px">
-					<h3> FirstName LastName </h3>
-					<p class="texts"> manager </p>
-					<p> name@mail.com </p>
-					<p> +12 345 6789 </p>
+					<div class="contactpicture">
+						<img src="pictures/contact3.jpg" height="130px" width="100px">
+					</div>
+					<div class="contacttext">
+						<h3> FirstName LastName </h3>
+						<p class="texts"> manager </p>
+						<p class="mail"> name@mail.com </p>
+						<p class="phone"> +12 345 6789 </p>
+					</div>
 				</div>
 			</div>
 			</main>

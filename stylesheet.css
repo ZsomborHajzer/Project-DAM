@@ -44,6 +44,19 @@ main{
 	justify-content: center;
 }
 
+#submit2{
+	background-color: #6FA8DC;
+}
+
+h2{
+	color:#1162AD;
+}
+
+h3{
+	color:#1162AD;
+	margin-bottom: 0px;
+}
+
 #contactinfo{
 	grid-column: 5/7;
 	display:flex;
@@ -52,10 +65,29 @@ main{
 
 .contactbox{
 	display: flex;
-	justify-content: center;
 	
 	background-color: white;
-	margin: 20px;
+	margin-top: 20px;
+}
+
+.contactpicture{
+	margin: 15px;
+}
+
+.contacttext{
+	text-align: center;
+	margin-right: 50px; 
+	margin-left: 50px; 
+}
+
+.mail{
+	margin-top: 25px;
+	margin-bottom:0px;
+}
+
+.phone{
+	margin-top: 0px;
+	margin-bottom:0px;
 }
 
 footer{
