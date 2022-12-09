@@ -129,9 +129,49 @@ header{
     justify-content: space-between;
 }
 .t-content:nth-child(2){
+    display: grid;
+    grid-template-columns: 15px 1fr 15px;
+    grid-template-rows: 15px 1fr 15px;
+    overflow-y:scroll;
     background-color: white;
 }
 
+.gen-content{
+    display: grid;
+    grid-column: 2/3;
+    grid-row: 2/3;
+    gap: 10px;
+    background-color: red;
+}
+
+.g-item{
+    display: flex;
+    gap: 20px;
+    justify-content: space-evenly;
+    background-color: orange;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.g-img{
+    height: 80px;
+    width: 120px;
+}
+
+.g-p{
+    width: 160px;
+    padding-top: 30px;
+    text-align: start;
+}
+
+.a-p{
+    padding-top: 30px;
+}
+.a-mg{
+    height: 30px;
+    width: 40px;
+    padding-left: 10px;
+}
 #s_talent{
     height: 25px;
     width: 240px;
