@@ -4,11 +4,13 @@
     margin: 0;
 }
 
+
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #E4EAFF;
 
 }
+
 
 .container {
     grid-template-columns: repeat(6, 1fr);
@@ -21,13 +23,13 @@ header {
     background-color: #E4EAFF;
     display: flex;
     justify-content: center;
-
 }
 
 
 .profileImage {
     grid-column: 2/3;
 }
+
 
 .talentInfo {
     grid-column: 3/4;
@@ -53,6 +55,7 @@ header {
 
 }
 
+
 .pic {
     border-left: 10px solid;
     border-right: 10px solid;
@@ -65,6 +68,7 @@ header {
 
 }
 
+
 .addimg {
     border-left: 10px solid;
     border-right: 10px solid;
@@ -76,13 +80,21 @@ header {
     cursor: pointer;
 }
 
+
 .addimg:hover {
     opacity: 0.5;
 }
 
-label {
+
+.adddoc label {
     cursor: pointer;
 }
+
+
+.addimg label {
+    cursor: pointer
+}
+
 
 .photoholder {
     display: flex;
@@ -90,6 +102,7 @@ label {
     justify-content: space-around;
     flex-wrap: wrap;
 }
+
 
 .documentstitle {
     display: flex;
@@ -111,13 +124,16 @@ label {
     cursor: pointer;
 }
 
+
 .docpics:hover {
     opacity: .5;
 }
 
+
 .documents figcaption {
     background-color: #E4EAFF;
 }
+
 
 figcaption {
     text-align: center;
