@@ -1,0 +1,10 @@
+body{
+	padding: 0;
+	margin: 0;
+}
+
+#container{
+	display: grid;
+	grid-template-columns: repeat(6,1fr);
+	background-color: E4EAFF;
+}
