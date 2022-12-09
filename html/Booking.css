@@ -141,14 +141,14 @@ header{
     grid-column: 2/3;
     grid-row: 2/3;
     gap: 10px;
-    background-color: red;
+    /* background-color: red; */
 }
 
 .g-item{
     display: flex;
     gap: 20px;
     justify-content: space-evenly;
-    background-color: orange;
+    background-color: #6FA8DC;
     flex-wrap: wrap;
     align-content: center;
 }
