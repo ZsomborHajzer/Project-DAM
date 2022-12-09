@@ -47,7 +47,7 @@ header {
 }
 
 
-.phototitle {
+.photoTitle {
     display: flex;
     grid-column: 2/7;
     justify-content: flex-start;
@@ -69,7 +69,7 @@ header {
 }
 
 
-.addimg {
+.addImg {
     border-left: 10px solid;
     border-right: 10px solid;
     border-top: 20px solid;
@@ -81,22 +81,22 @@ header {
 }
 
 
-.addimg:hover {
+.addImg:hover {
     opacity: 0.5;
 }
 
 
-.adddoc label {
+.addDoc label {
     cursor: pointer;
 }
 
 
-.addimg label {
+.addImg label {
     cursor: pointer
 }
 
 
-.photoholder {
+.photoHolder {
     display: flex;
     grid-column: 2/6;
     justify-content: space-around;
@@ -104,7 +104,7 @@ header {
 }
 
 
-.documentstitle {
+.documentsTitle {
     display: flex;
     grid-column: 2/6;
     justify-content: flex-start;
@@ -120,12 +120,12 @@ header {
 
 }
 
-.docpics {
+.docPics {
     cursor: pointer;
 }
 
 
-.docpics:hover {
+.docPics:hover {
     opacity: .5;
 }
 
