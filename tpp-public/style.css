@@ -8,12 +8,14 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #E4EAFF;
+
 }
 
 
 .container {
     grid-template-columns: repeat(6, 1fr);
     display: grid;
+
 }
 
 
@@ -22,11 +24,13 @@ header {
     background-color: #E4EAFF;
     display: flex;
     justify-content: center;
+
 }
 
 
 .profileImage {
     grid-column: 2/3;
+
 }
 
 
@@ -35,6 +39,7 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+
 }
 
 
@@ -43,6 +48,7 @@ header {
     grid-column: 4/6;
     justify-content: center;
     align-items: center;
+
 }
 
 
@@ -51,6 +57,7 @@ header {
     grid-column: 2/7;
     justify-content: flex-start;
     margin-top: 60px;
+
 }
 
 
@@ -62,6 +69,7 @@ header {
     border-color: whitesmoke;
     margin-bottom: 60px;
     object-fit: cover;
+
 }
 
 
@@ -74,11 +82,13 @@ header {
     margin-bottom: 60px;
     object-fit: cover;
     cursor: pointer;
+
 }
 
 
 .addImg:hover {
     opacity: 0.5;
+
 }
 
 
@@ -87,6 +97,7 @@ header {
     grid-column: 2/6;
     justify-content: space-around;
     flex-wrap: wrap;
+
 }
 
 
@@ -94,6 +105,7 @@ header {
     display: flex;
     grid-column: 2/6;
     justify-content: flex-start;
+
 }
 
 
@@ -102,32 +114,38 @@ header {
     grid-column: 2/6;
     flex-wrap: wrap;
     justify-content: space-between;
+
 }
 
 
 .docPics {
     cursor: pointer;
+
 }
 
 
 .docPics:hover {
     opacity: .5;
+
 }
 
 
 .documents figcaption {
     background-color: #E4EAFF;
+
 }
 
 
 .pic figcaption {
     text-align: center;
     background-color: whitesmoke;
+
 }
 
 
 .docPics figcaption {
     text-align: center;
+
 }
 
 
@@ -137,4 +155,5 @@ footer {
     justify-content: center;
     background-color: black;
     color: white;
+
 }
