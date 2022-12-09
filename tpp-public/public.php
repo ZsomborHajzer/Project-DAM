@@ -5,15 +5,12 @@ There is a dynamic upload function which is ran through a sorting algorithm whic
 There are a lot of placeholders such as name and email and other info that will be accessable from database later on
 */
 
-
 //variables needed for later
 $arrayofImages = [];
 $pictureHolder = "pictureholder/";
 $documentHolder = "documentholder/";
 $files = [];
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +29,6 @@ $files = [];
         <header>
             <h1>Placeholder for actual header</h1>
         </header>
-
 
         <div class="profileImage">
             <img src="profileimg/img0.gif" alt="" width=200 height=200 />
@@ -59,7 +55,6 @@ $files = [];
                 // if there is a directory, scan the names of the files in that directory and put it in a array called $array of images
                 $arrayofImages = scandir($pictureHolder);
 
-
                 //count the number of pictures in the array 
                 //exclude the ones called '.' and '..' cuz those are invisible for the user
                 // push the names of the files with  complete location this time to another array called $files
@@ -72,7 +67,6 @@ $files = [];
 
                 // sort files by last modified date
                 // orders them by most recently modified on top and last modified on bottom
-
                 //renaming files does not count as modification apperantly
 
                 usort(
@@ -81,7 +75,6 @@ $files = [];
                         return filemtime($y) <=> filemtime($x);
                     }
                 );
-
 
                 // echo the html script with file locations
 
@@ -95,11 +88,7 @@ $files = [];
 
             ?>
 
-
         </div>
-
-
-
 
         <div class="documentsTitle">
             <h2>Documents</h2>
@@ -112,14 +101,11 @@ $files = [];
             // check if documentholder location exists
             if (is_dir($documentHolder)) {
 
-
                 // puts the name of the docs into the array $arrayofDocs
                 $arrayofDocs = scandir($documentHolder);
 
                 //count the number of docs in the array (starts at two because of the invisible docs '.' and '..')
                 for ($i = 2; $i < count($arrayofDocs); $i++) {
-
-
 
                     //html gibberish
                     echo '<div class="docPics">';
@@ -130,8 +116,6 @@ $files = [];
             }
 
             ?>
-
-
 
         </div>
 
