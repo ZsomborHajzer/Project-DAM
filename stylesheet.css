@@ -48,11 +48,11 @@ main{
 	background-color: #6FA8DC;
 }
 
-h2{
+.contact > h2{
 	color:#1162AD;
 }
 
-h3{
+.contact > h3{
 	color:#1162AD;
 	margin-bottom: 0px;
 }
