@@ -44,6 +44,14 @@ $files = [];
             <p>Email address: <a href="mailto:testemail@adus.com">testemail@adus.com</a></p>
         </div>
 
+        <!-- This part should only allow one profile image, meaning if one is uploaded, the previous one is deleted-->
+        <div class="profileButtons">
+            <form action="#" method="post">
+                <input type="file" name="profileFile" id="profileFile">
+                <input type="submit" value="Update profile pic" name="newProfilePic">
+            </form>
+        </div>
+
         <div class="photoTitle">
             <h1><b>Photos</b></h1>
         </div>
@@ -55,7 +63,7 @@ $files = [];
                 <form action="#" method="post" enctype="multipart/form-data">
                     <label>
                         <input type="file" name="uploadImg" id="" style="display:none">
-                        <img src="stockphotoholder/addimg.png" alt="" height="200" width="200">
+                        <img src="stockphotoholder/addimg.png" alt="addimg" id="stockphotoAddImg">
                         <figcaption>
                             <p>Add a new image</p>
                         </figcaption>
@@ -96,7 +104,7 @@ $files = [];
                 // echo the html script with file locations
                 foreach ($files as $item) {
                     echo "<div class='pic'>";
-                    echo "<img src=" . $item . " height = 200  width = 200 />";
+                    echo "<img src=" . $item . " alt='images' id='images' height='200' width='200' />";
                     echo "<figcaption> <p>Variable input from </br> user limited to a few words</p> </figcaption>";
                     echo "</div>";
                 }
@@ -133,6 +141,7 @@ $files = [];
 
             ?>
 
+            <!--  add doc image on the bottom -->
             <div class="addDoc">
                 <form action="#" method="post" enctype="multipart/form-data">
                     <label>

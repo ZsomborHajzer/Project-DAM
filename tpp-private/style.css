@@ -117,7 +117,17 @@ header {
     flex-wrap: wrap;
     justify-content: space-between;
 
+}
 
+.stockphotoAddImg {
+    height: 200px;
+    width: 200px;
+
+}
+
+.images {
+    height: 200px;
+    width: 200px;
 }
 
 .docPics {
@@ -126,7 +136,7 @@ header {
 
 
 .docPics:hover {
-    opacity: .5;
+    opacity: 0.5;
 }
 
 
@@ -141,6 +151,16 @@ figcaption {
 }
 
 
+.addDoc label:hover {
+    opacity: 0.5;
+}
+
+
+.profileButtons {
+    grid-column: 2/4;
+    display: flex;
+    justify-content: space-between;
+}
 
 footer {
     display: flex;
