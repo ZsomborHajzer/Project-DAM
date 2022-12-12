@@ -140,8 +140,33 @@
                                         echo "</form>";
                                         echo "</div>";
                                     }
+                                   
+                                }    //If it's a specialty
+                                // else if (filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS)){
 
-                                }else {
+                                //     $stmt = $dbHandler-> prepare("SELECT * FROM tbluser 
+                                //                                 INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty 
+                                //                                 WHERE tblspecialties.dtDescription LIKE ?");
+
+                                //     $specialty = filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
+                                //     echo($specialty);
+                                //     $stmt -> execute(["%$specialty%"]);
+                                //     echo $stmt;
+                                //     while($row = $stmt-> fetch()){
+
+                                //         echo "<div class= 'g-item'>";
+                                //         echo "<img class='g-img' src=". $row['dtImage'].">";
+                                //         echo "<p class='g-p'>".$row['dtName']." ".$row['dtLastName']."</p>";
+                                //         echo "<p class='g-p'>" .$row['dtEmail']."</p>";
+                                //         echo "<form>";
+                                //         echo "<p class='a-p' >Book Me</p>" ;
+                                //         echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
+                                //         echo "</form>";
+                                //         echo "</div>";
+                                //     }
+                                // }
+
+                                else {
 
                                     echo "<h3>Please enter a valid name or Email</h3>";
 
