@@ -8,7 +8,8 @@ services:
             - "80:80"
         volumes:
             - ./nginx.conf:/etc/nginx/nginx.conf
-            - ./html:/html
+            - ./html:/var/www/E3T/html
+            - ./images:/var/www/E3T/images
         depends_on:
             - php
     php:
@@ -16,4 +17,4 @@ services:
         container_name: e3t-php
         entrypoint: ''
         volumes:
-            - ./html:/html
+            - ./html:/var/www/E3T/html
