@@ -1,0 +1,19 @@
+version: '3'
+services:
+    web:
+        image: nginx:latest
+        container_name: e3t-nginx
+        entrypoint: ''
+        ports:
+            - "80:80"
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf
+            - ./src:/src
+        depends_on:
+            - php
+    php:
+        image: php:fpm
+        container_name: e3t-php
+        entrypoint: ''
+        volumes:
+            - ./src:/src
