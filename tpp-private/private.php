@@ -5,11 +5,13 @@ This is the area where they can upload images of themselfs and their own documne
 delete these documents.  Profile Image will aslo be changeable. Styling for this page is not a focus. 
 The aim of this page is customization.
 */
-
 $arrayofImages = [];
 $pictureHolder = "pictureholder/";
 $documentHolder = "documentholder/";
+$profileImgLocations = "profileimg/";
 $files = [];
+$profileFiles = [];
+$fileSize = 4 * 1024 * 1024; //4MB
 ?>
 
 <!DOCTYPE html>
@@ -31,8 +33,11 @@ $files = [];
             <h1>Placeholder for actual header</h1>
         </header>
 
+
+        <!-- always echo the first image in the folder "profileimg -->
         <div class="profileImage">
-            <img src="profileimg/img0.gif" alt="" width=200 height=200 />
+            <img src=<?php $printedProfile = scandir($profileImgLocations);
+                        echo $profileImgLocations . $printedProfile[2]; ?> alt="" width=200 height=200 />
         </div>
 
         <div class="talentInfo">
@@ -46,11 +51,14 @@ $files = [];
 
         <!-- This part should only allow one profile image, meaning if one is uploaded, the previous one is deleted-->
         <div class="profileButtons">
-            <form action="#" method="post">
+            <form action="private.php" method="post" enctype="multipart/form-data">
                 <input type="file" name="profileFile" id="profileFile">
                 <input type="submit" value="Update profile pic" name="newProfilePic">
             </form>
         </div>
+        <?php
+        require "profileUpload.php";
+        ?>
 
         <div class="photoTitle">
             <h1><b>Photos</b></h1>
