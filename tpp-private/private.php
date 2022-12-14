@@ -5,6 +5,8 @@ This is the area where they can upload images of themselfs and their own documne
 delete these documents.  Profile Image will aslo be changeable. Styling for this page is not a focus. 
 The aim of this page is customization.
 */
+
+//Double refresh the page in order to update the profile picture correctly
 if (isset($_POST["newProfilePic"])) {
     header("Location: private.php");
 }
