@@ -1,10 +1,18 @@
+/*-------------------------*/
+/*font used for the project*/
+/*-------------------------*/
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/*-------------------------*/
+/*for for the whole page*/
+/*-------------------------*/
 
 * {
     font-family: 'Roboto', sans-serif;
 }
 
-h1{
+h1 {
     margin-left: 7vw;
     font-family: 'Roboto', sans-serif;
     color: #1162AD ;
@@ -15,11 +23,20 @@ body {
     background-color: #E4EAFF ;
 }
 
-main{
+/*-------------------------*/
+/*main page`s grid*/
+/*-------------------------*/
+
+main {
     grid-template-columns: repeat(6, 1fr);
     display: grid;
     background-color: #E4EAFF ;
 }
+
+/*-------------------------*/
+/*Size and shape for the table */
+/*-------------------------*/
+
 table {
     border-collapse: collapse;
     grid-column: 1/7;
@@ -32,17 +49,20 @@ table {
 td,
 th {
     border: 0.2vw solid black;
-    width:1vw;
     height:3vw;
+    width: calc(100%/7);
     vertical-align: middle;
     text-align: center;
 }
 
-th{
-    font-size: 1.2em;
+th {
+    font-size: 1.2vw;
     text-align: left;
     padding-left: 3vw;
 }
+/*-------------------------*/
+/*availability indicators */
+/*-------------------------*/
 
 .booked {
     background-color: #FF8080;
@@ -55,6 +75,10 @@ th{
 .unavailable {
     background-color: #F1C180;
 }
+
+/*-------------------------*/
+/*Boxes for the colors */
+/*-------------------------*/
 
 #colorCode {
     display: flex;
@@ -70,6 +94,10 @@ th{
     width: 2vw;
     align-self: center;
 }
+
+/*-------------------------*/
+/*Color indicators*/
+/*-------------------------*/
 
 .red {
     background-color: #FF8080;
