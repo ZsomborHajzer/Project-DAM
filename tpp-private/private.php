@@ -63,7 +63,10 @@ $fileSize = 4 * 1024 * 1024; //4MB
         </div>
 
         <?php
+
+        // Profile img upload validity check and more info in profileUpload.php
         require "profileUpload.php";
+
         ?>
 
         <div class="photoTitle">
