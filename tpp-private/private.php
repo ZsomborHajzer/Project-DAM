@@ -5,6 +5,9 @@ This is the area where they can upload images of themselfs and their own documne
 delete these documents.  Profile Image will aslo be changeable. Styling for this page is not a focus. 
 The aim of this page is customization.
 */
+if (isset($_POST["newProfilePic"])) {
+    header("Location: private.php");
+}
 $arrayofImages = [];
 $pictureHolder = "pictureholder/";
 $documentHolder = "documentholder/";
@@ -56,6 +59,7 @@ $fileSize = 4 * 1024 * 1024; //4MB
                 <input type="submit" value="Update profile pic" name="newProfilePic">
             </form>
         </div>
+
         <?php
         require "profileUpload.php";
         ?>

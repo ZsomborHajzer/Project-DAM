@@ -1,6 +1,5 @@
-
-    <?php
-
+   
+   <?php
 
     //Check for POST request by user
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -55,8 +54,8 @@
                                     );
                                     //Sort them with usort by unix timestamp and then later delete the last item in the array. The last item should always be array[1] since there should be max 2 files.
 
-                                    $file_to_delete = $profileFiles[1];
-                                    unlink($file_to_delete);
+                                    $filetoDelete = $profileFiles[1];
+                                    unlink($filetoDelete);
                                 }
                             } else {
                                 echo "Something went wrong please try again";
