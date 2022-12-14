@@ -17,3 +17,4 @@ services:
         entrypoint: ''
         volumes:
             - ./public:/var/www/E3T/public
+            - ./components:/var/www/E3T/components

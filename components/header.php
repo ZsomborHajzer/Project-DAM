@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/index.css">
     <!--Font Awesome script-->
     <script src="https://kit.fontawesome.com/08626bfbba.js" crossorigin="anonymous"></script>
-    <title>E3T-Home</title>
+    <title><?= $pageName; ?></title>
 </head>
 
 <body>
@@ -48,53 +48,3 @@
             </ul>
         </div>
     </header>
-
-    <main id="main-container" class="main-bdy">
-
-    </main>
-    <!-- Foooter -->
-
-
-    <footer>
-        <div class="f-content">
-            <ul>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Blog</a>
-                </li>
-                <li>
-                    <a href="#">Team</a>
-                </li>
-                <li>
-                    <a href="#">bla</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <div class="f-content">
-            <a href="#">
-                <img src="../images/instagram.png" alt="instagram">
-            </a>
-            <a href="#">
-                <img src="../images/facebook.png" alt="facebook">
-            </a>
-            <a href="#">
-                <img src="../images/twitter.png" alt="twitter">
-            </a>
-            <a href="#">
-                <img src="../images/linkedin.png" alt="linkedin">
-            </a>
-        </div>
-        <div class="f-content">
-            <p>© Copyright E3T and PEZARB 2022. All rights reserved</p>
-        </div>
-    </footer>
-</body>
-
-<script src="deskapp.js"></script>
-
-</html>
