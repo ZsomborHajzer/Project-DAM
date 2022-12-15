@@ -1,7 +1,7 @@
 <?
 
 $pageName = "E3T-home";
-include "../components/header.php";
+include "/var/www/E3T/components/header.php";
 
 ?>
 
@@ -12,6 +12,6 @@ include "../components/header.php";
 
 <?
 
-include "../components/footer.html";
+include "/var/www/E3T/components/footer.html";
 
 ?>
