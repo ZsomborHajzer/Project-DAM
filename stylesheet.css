@@ -57,29 +57,29 @@ main{
 	margin-bottom: 0px;
 }
 
-#contactinfo{
+#contactInfo{
 	grid-column: 5/7;
 	display:flex;
 	flex-direction: column;
 }
 
-.contactbox{
+.contactBox{
 	display: flex;
 	
 	background-color: white;
 	margin-top: 20px;
 }
 
-.contactpicture{
+.contactPicture{
 	margin: 15px;
 }
 
-.contactportrait{
+.contactPortrait{
 	height: 130px;
 	width: 100px;
 }
 
-.contacttext{
+.contactText{
 	text-align: center;
 	margin-right: 50px; 
 	margin-left: 50px; 

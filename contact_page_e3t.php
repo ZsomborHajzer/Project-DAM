@@ -59,34 +59,34 @@
 	}
 	?>
 	
-	<div id="contactinfo">
-		<div class="contactbox">
-			<div class="contactpicture">
-				<img src="pictures/contact1.jpg" class="contactportrait">
+	<div id="contactInfo">
+		<div class="contactBox">
+			<div class="contactPicture">
+				<img src="pictures/contact1.jpg" class="contactPortrait">
 			</div>
-			<div class="contacttext">
+			<div class="contactText">
 				<h3> FirstName LastName </h3>
 				<p class="texts"> manager </p>
 				<p class="mail"> name@mail.com </p>
 				<p class="phone"> +12 345 6789 </p>
 			</div>
 		</div>
-		<div class="contactbox">
-			<div class="contactpicture">
-				<img src="pictures/contact2.jpg" class="contactportrait">
+		<div class="contactBox">
+			<div class="contactPicture">
+				<img src="pictures/contact2.jpg" class="contactPortrait">
 			</div>
-			<div class="contacttext">
+			<div class="contactText">
 				<h3> FirstName LastName </h3>
 				<p class="texts"> manager </p>
 				<p class="mail"> name@mail.com </p>
 				<p class="phone"> +12 345 6789 </p>
 			</div>
 		</div>
-		<div class="contactbox">
-			<div class="contactpicture">
-				<img src="pictures/contact4.jpg" class="contactportrait">
+		<div class="contactBox">
+			<div class="contactPicture">
+				<img src="pictures/contact4.jpg" class="contactPortrait">
 			</div>
-			<div class="contacttext">
+			<div class="contactText">
 				<h3> FirstName LastName </h3>
 				<p class="texts"> manager </p>
 				<p class="mail"> name@mail.com </p>
