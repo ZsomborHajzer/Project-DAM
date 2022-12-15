@@ -1,4 +1,4 @@
-<?
+<?php
 
 $pageName = "E3T-home";
 include "/var/www/E3T/components/header.php";
@@ -10,7 +10,7 @@ include "/var/www/E3T/components/header.php";
 </main>
 
 
-<?
+<?php
 
 include "/var/www/E3T/components/footer.html";
 

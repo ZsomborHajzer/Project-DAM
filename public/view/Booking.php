@@ -1,4 +1,4 @@
-<?
+<?php
 
 $pageName = "E3T-Talents";
 include "/var/www/E3T/components/header.php";
@@ -198,7 +198,7 @@ include "/var/www/E3T/components/header.php";
     </article>
 </main>
 
-<?
+<?php
 
 include "/var/www/E3T/components/footer.html";
 
