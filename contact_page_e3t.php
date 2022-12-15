@@ -62,7 +62,7 @@
 	<div id="contactinfo">
 		<div class="contactbox">
 			<div class="contactpicture">
-				<img src="pictures/contact1.jpg" height="130px" width="100px">
+				<img src="pictures/contact1.jpg" class="contactportrait">
 			</div>
 			<div class="contacttext">
 				<h3> FirstName LastName </h3>
@@ -73,7 +73,7 @@
 		</div>
 		<div class="contactbox">
 			<div class="contactpicture">
-				<img src="pictures/contact2.jpg" height="130px" width="100px">
+				<img src="pictures/contact2.jpg" class="contactportrait">
 			</div>
 			<div class="contacttext">
 				<h3> FirstName LastName </h3>
@@ -84,7 +84,7 @@
 		</div>
 		<div class="contactbox">
 			<div class="contactpicture">
-				<img src="pictures/contact4.jpg" height="130px" width="100px">
+				<img src="pictures/contact4.jpg" class="contactportrait">
 			</div>
 			<div class="contacttext">
 				<h3> FirstName LastName </h3>

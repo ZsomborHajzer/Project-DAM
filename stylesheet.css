@@ -74,6 +74,11 @@ main{
 	margin: 15px;
 }
 
+.contactportrait{
+	height: 130px;
+	width: 100px;
+}
+
 .contacttext{
 	text-align: center;
 	margin-right: 50px; 
