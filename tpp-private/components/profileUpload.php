@@ -9,7 +9,7 @@
 
             //4mb max filesize
             $fileSize = (4 * 1024 * 1024);
-            $profileImgLocations = "profileimg/";
+            $profileImgLocations = "../img/profileimg/";
 
             //Check for error in uploaded file. If == 0 then no error
             if ($_FILES["profileFile"]["error"] == 0) {
@@ -22,10 +22,10 @@
 
                     //Check if the file type meets the requierments and check if the file is already existing in our direcotrory or no
                     if (in_array($uploadedFileType, $acceptedFileTypes)) {
-                        if (!file_exists("profileimg/" . $_FILES["profileFile"]["name"])) {
+                        if (!file_exists($profileImgLocations . $_FILES["profileFile"]["name"])) {
 
                             //if it didnt exist then upload the file into our directory
-                            if (move_uploaded_file($_FILES["profileFile"]["tmp_name"], "profileimg/" . $_FILES["profileFile"]["name"])) {
+                            if (move_uploaded_file($_FILES["profileFile"]["tmp_name"], $profileImgLocations . $_FILES["profileFile"]["name"])) {
 
                                 if (is_dir($profileImgLocations)) {
 

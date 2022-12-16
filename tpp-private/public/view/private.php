@@ -1,4 +1,6 @@
 <?php
+
+
 /*
 This is the private talent page where seperate talents will have different seperate personal pages
 This is the area where they can upload images of themselfs and their own documnets. They are also able to 
@@ -11,9 +13,15 @@ if (isset($_POST["newProfilePic"])) {
     header("Location: private.php");
 }
 $arrayofImages = [];
-$pictureHolder = "pictureholder/";
-$documentHolder = "documentholder/";
-$profileImgLocations = "profileimg/";
+$pictureHolder = "../img/pictureholder/";
+$documentHolder = "../img/documentholder/";
+$profileImgLocations = "../img/profileimg/";
+$stockPhotoLocation = "../img/stockphotoholder/addimg.png";
+$addDocLocation = "../img/stockphotoholder/adddoc.png";
+$stockDocumentLocation = "../img/stockphotoholder/";
+
+
+// ../../public/view
 $files = [];
 $profileFiles = [];
 $fileSize = 4 * 1024 * 1024; //4MB
@@ -27,7 +35,7 @@ $fileSize = 4 * 1024 * 1024; //4MB
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talent personal page</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -41,8 +49,10 @@ $fileSize = 4 * 1024 * 1024; //4MB
 
         <!-- always echo the first image in the folder "profileimg -->
         <div class="profileImage">
-            <img src=<?php $printedProfile = scandir($profileImgLocations);
-                        echo $profileImgLocations . $printedProfile[2]; ?> alt="" width=200 height=200 />
+            <img src=<?php
+                        $printedProfile = scandir($profileImgLocations);
+                        echo $profileImgLocations . $printedProfile[2];
+                        ?> alt="" width=200 height=200 />
         </div>
 
         <div class="talentInfo">
@@ -64,8 +74,7 @@ $fileSize = 4 * 1024 * 1024; //4MB
 
         <?php
 
-        // Profile img upload validity check and more info in profileUpload.php
-        require "profileUpload.php";
+        require "../../components/profileUpload.php";
 
         ?>
 
@@ -80,7 +89,7 @@ $fileSize = 4 * 1024 * 1024; //4MB
                 <form action="#" method="post" enctype="multipart/form-data">
                     <label>
                         <input type="file" name="uploadImg" id="" style="display:none">
-                        <img src="stockphotoholder/addimg.png" alt="addimg" id="stockphotoAddImg">
+                        <img src=<?php echo $stockPhotoLocation; ?> alt="addimg" id="stockphotoAddImg">
                         <figcaption>
                             <p>Add a new image</p>
                         </figcaption>
@@ -150,7 +159,7 @@ $fileSize = 4 * 1024 * 1024; //4MB
 
                     // html gibberish
                     echo '<div class="docPics">';
-                    echo "<a href='documentholder/doc1.docx' download><img src='stockphotoholder/docxstockphoto.png'  height = 250  width = 200 /></a>";
+                    echo "<a href='" . $documentHolder . $arrayofDocs[$i] . "' download><img src='" . $stockDocumentLocation . "/docxstockphoto.png'  height = 250  width = 200 /></a>";
                     echo '<figcaption>' . $arrayofDocs[$i] . '</figcaption>';
                     echo '</div>';
                 }
@@ -163,7 +172,7 @@ $fileSize = 4 * 1024 * 1024; //4MB
                 <form action="#" method="post" enctype="multipart/form-data">
                     <label>
                         <input type="file" name="uploadDoc" id="" style="display:none">
-                        <img src="stockphotoholder/adddoc.png" alt="" height="200" width="200">
+                        <img src=<?php echo $addDocLocation; ?> alt="" height="200" width="200">
                         <figcaption>
                             <p>Add a new document</p>
                         </figcaption>
