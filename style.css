@@ -12,7 +12,7 @@
     font-family: 'Roboto', sans-serif;
 }
 
-h1 {
+body > #calendarTitle {
     margin-left: 7vw;
     font-family: 'Roboto', sans-serif;
     color: #1162AD ;
@@ -27,7 +27,7 @@ body {
 /*main page`s grid*/
 /*-------------------------*/
 
-main {
+#calenderMain {
     grid-template-columns: repeat(6, 1fr);
     display: grid;
     background-color: #E4EAFF ;
@@ -37,7 +37,7 @@ main {
 /*Size and shape for the table */
 /*-------------------------*/
 
-#calender {
+#calenderTable {
     border-collapse: collapse;
     grid-column: 1/7;
     margin-left:7vw;
@@ -46,7 +46,7 @@ main {
     color: #464646 ;
  }
 
-#calender  td,
+#calenderTable  td,
 th {
     border: 0.2vw solid black;
     height:3vw;
@@ -55,7 +55,7 @@ th {
     text-align: center;
 }
 
-#calender > th {
+#calenderTable > th {
     font-size: 1.2vw;
     text-align: left;
     padding-left: 3vw;
