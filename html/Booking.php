@@ -13,7 +13,35 @@
     <link rel="stylesheet" href="Booking.css">
     <!--Font Awesome script-->
     <script src="https://kit.fontawesome.com/08626bfbba.js" crossorigin="anonymous"></script>
+    <!-- jquery link -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <title>E3T-Talents</title>
+    <script>
+
+        $(document).ready(function () {
+
+
+
+            $(".subClass").hide();
+
+            $(".dropUpImg").hide();
+
+
+            $(".g-item").click(function (){
+                $(".g-item > .subClass").fadeOut();
+                $(".a-mg", this).hide();
+                $(".dropUpImg",this).show();
+                $(".subClass").prev().css({"background-color": "#1bdeff", "color": "#000"});
+                $(this).next().fadeIn();
+                $(".g-item > .subClass", this).css("color","#F5F5F5");
+                $(".subClass",this).hide();
+            })
+
+
+
+
+        });
+    </script>
 </head>
 <body>
 <header>
@@ -115,8 +143,39 @@
                                         echo "<form>";
                                         echo "<p class='a-p' >Book Me</p>" ;
                                         echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
+                                        echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>"."</a>";
                                         echo "</form>";
                                         echo "</div>";
+                                        echo "<div class='subClass'>";
+                                        echo "<p>Select the date of booking</p>";
+                                        ?>
+                                        <form method="post" action="#">
+                                            <label for="dataMail">Your Email</label>
+                                            <input type="email" name="dataMail" id="dataMail">
+
+                                            <label for="dataDate">Date</label>
+                                            <input type="date" name="dataDate" id="dataDate">
+                                            <input type="submit" name="dataSendBooking" placeholder="Book">
+                                        </form>
+
+                                        <?php
+                                        echo "</div>";
+
+
+
+                                        if (isset ($_POST["dataSendBooking"])) {
+
+                                            if ($mailClient = filter_input(INPUT_POST,"dataMail",FILTER_VALIDATE_EMAIL) && $data = filter_input(INPUT_POST,"dataDate",FILTER_SANITIZE_NUMBER_INT)){
+
+
+
+                                            }else {
+                                                echo '<script>   alert("email or data wrong");
+                                                     window.location = "booking.php?reloaded=yes";
+                                                  </script>';
+
+                                            }
+                                        }
                                     }
                                     //if that is not correct then we will filter per Name
                                 }else if (filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS)){
@@ -137,8 +196,36 @@
                                         echo "<form>";
                                         echo "<p class='a-p' >Book Me</p>" ;
                                         echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
+                                        echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>"."</a>";
                                         echo "</form>";
                                         echo "</div>";
+                                        echo "<div class='subClass'>";
+                                        echo "<p>Select the date of booking</p>";
+                                        ?>
+                                        <form method="post" action="#">
+                                            <label for="dataMail">Your Email</label>
+                                            <input type="email" name="dataMail" id="dataMail">
+
+                                            <label for="dataDate">Date</label>
+                                            <input type="date" name="dataDate" id="dataDate">
+                                            <input type="submit" name="dataSendBooking" placeholder="Book">
+                                        </form>
+
+                                        <?php
+                                        echo "</div>";
+                                        if (isset ($_POST["dataSendBooking"])) {
+
+                                            if ($mailClient = filter_input(INPUT_POST,"dataMail",FILTER_VALIDATE_EMAIL) && $data = filter_input(INPUT_POST,"dataDate",FILTER_SANITIZE_NUMBER_INT)){
+
+
+
+                                            }else {
+                                                echo '<script>   alert("email or data wrong");
+                                                     window.location = "booking.php?reloaded=yes";
+                                                  </script>';
+
+                                            }
+                                        }
                                     }
                                    
                                 }    //If it's a specialty
@@ -198,8 +285,37 @@
                                     echo "<form>";
                                     echo "<p class='a-p' >Book Me</p>" ;
                                     echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
+                                    echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>"."</a>";
                                     echo "</form>";
                                     echo "</div>";
+                                    echo "<div class='subClass'>";
+                                    echo "<p>Select the date of booking</p>";
+                                    ?>
+                                    <form method="post" action="#">
+                                        <label for="dataMail">Your Email</label>
+                                        <input type="email" name="dataMail" id="dataMail">
+
+                                        <label for="dataDate">Date</label>
+                                        <input type="date" name="dataDate" id="dataDate">
+
+                                        <input type="submit" name="dataSendBooking" placeholder="Book">
+                                    </form>
+
+                                    <?php
+                                    echo "</div>";
+                                    if (isset ($_POST["dataSendBooking"])) {
+
+                                        if ($mailClient = filter_input(INPUT_POST,"dataMail",FILTER_VALIDATE_EMAIL) && $data = filter_input(INPUT_POST,"dataDate",FILTER_SANITIZE_NUMBER_INT)){
+
+
+
+                                        }else {
+                                            echo '<script>   alert("email or data wrong");
+                                                     window.location = "booking.php?reloaded=yes";
+                                                  </script>';
+
+                                        }
+                                    }
                                 }
                             }else{
 
@@ -219,8 +335,37 @@
                                 echo "<form>";
                                 echo "<p class='a-p' >Book Me</p>" ;
                                 echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
+                                echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>"."</a>";
                                 echo "</form>";
                                 echo "</div>";
+                                echo "<div class='subClass'>";
+                                echo "<p>Select the date of booking</p>";
+                                ?>
+                                <form method="post" action="#">
+                                    <label for="dataMail">Your Email</label>
+                                    <input type="email" name="dataMail" id="dataMail">
+
+                                    <label for="dataDate">Date</label>
+                                    <input type="date" name="dataDate" id="dataDate">
+
+                                    <input type="submit" name="dataSendBooking" placeholder="Book">
+                                </form>
+
+                                <?php
+                                echo "</div>";
+                                if (isset ($_POST["dataSendBooking"])) {
+
+                                    if ($mailClient = filter_input(INPUT_POST,"dataMail",FILTER_VALIDATE_EMAIL) && $data = filter_input(INPUT_POST,"dataDate",FILTER_SANITIZE_NUMBER_INT)){
+
+
+
+                                    }else {
+                                        echo '<script>   alert("email or data wrong");
+                                                     window.location = "booking.php?reloaded=yes";
+                                                  </script>';
+
+                                    }
+                                }
 
                                 $dbHandler = null;
                             }
