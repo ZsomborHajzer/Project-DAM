@@ -12,6 +12,16 @@ The aim of this page is customization.
 if (isset($_POST["newProfilePic"])) {
     header("Location: private.php");
 }
+
+//double refresh is required apperantly at all new file uploads
+if (isset($_POST["imgUpload"])) {
+    header("Location: private.php");
+}
+//double refresh is required apperantly at all new file uploads
+if (isset($_POST["docUpload"])) {
+    header("Location: private.php");
+}
+
 $arrayofImages = [];
 $pictureHolder = "../img/pictureholder/";
 $documentHolder = "../img/documentholder/";
@@ -19,9 +29,6 @@ $profileImgLocations = "../img/profileimg/";
 $stockPhotoLocation = "../img/stockphotoholder/addimg.png";
 $addDocLocation = "../img/stockphotoholder/adddoc.png";
 $stockDocumentLocation = "../img/stockphotoholder/";
-
-
-// ../../public/view
 $files = [];
 $profileFiles = [];
 $fileSize = 4 * 1024 * 1024; //4MB
@@ -45,7 +52,6 @@ $fileSize = 4 * 1024 * 1024; //4MB
         <header>
             <h1>Placeholder for actual header</h1>
         </header>
-
 
         <!-- always echo the first image in the folder "profileimg -->
         <div class="profileImage">
@@ -72,12 +78,6 @@ $fileSize = 4 * 1024 * 1024; //4MB
             </form>
         </div>
 
-        <?php
-
-        require "../../components/profileUpload.php";
-        ?>
-
-
         <div class="photoTitle">
             <h1><b>Photos</b></h1>
         </div>
@@ -88,11 +88,11 @@ $fileSize = 4 * 1024 * 1024; //4MB
 
             <form action="" method="POST" enctype="multipart/form-data" name="yes">
 
-
                 <div class="addImg">
                     <label>
                         <input type="file" name="uploadImg" onchange="this.form.submit()" style=" display:none">
                         <img src=<?php echo $stockPhotoLocation; ?> alt="addimg" id="stockphotoAddImg">
+                        <input type="hidden" name="imgUpload" value="imgUpload">
                         <figcaption>
                             <p>Add a new image</p>
                         </figcaption>
@@ -100,17 +100,6 @@ $fileSize = 4 * 1024 * 1024; //4MB
                 </div>
 
             </form>
-
-            <?php
-            // if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-            //     if (isset($_GET["uploadImg"])) {
-            require_once "../../components/photoAdd.php";
-            //       }
-            // }
-
-
-            ?>
 
             <?php
 
@@ -154,14 +143,8 @@ $fileSize = 4 * 1024 * 1024; //4MB
 
     </div>
 
-    <div class="documentsTitle">
+    <div class=" documentsTitle">
         <h2>Documents</h2>
-    </div>
-
-    <div class="documentAdd">
-        <form action="" method="post" enctype="multipart/form-data">
-            <input type="submit" value="Add New Documnet" name="documentAdd">
-        </form>
     </div>
 
     <div class="documents">
@@ -191,14 +174,34 @@ $fileSize = 4 * 1024 * 1024; //4MB
         <div class="addDoc">
             <form action="#" method="post" enctype="multipart/form-data">
                 <label>
-                    <input type="file" name="uploadDoc" id="" style="display:none">
+                    <input type="file" name="uploadDoc" onchange="this.form.submit()" id="" style="display:none">
                     <img src=<?php echo $addDocLocation; ?> alt="" height="200" width="200">
+                    <input type="hidden" name="docUpload" value="docUpload">
                     <figcaption>
                         <p>Add a new document</p>
                     </figcaption>
                 </label>
         </div>
 
+
+        <?php
+
+        //Require files to lessen the amount of code in one page
+        if (isset($_POST["imgUpload"])) {
+            require "../../components/photoAdd.php";
+        }
+
+        if (isset($_POST["docUpload"])) {
+            require "../../components/documentAdd.php";
+        }
+
+        if (isset($_POST["newProfilePic"])) {
+            require "../../components/profileUpload.php";
+        }
+
+
+
+        ?>
     </div>
 
     <footer>
