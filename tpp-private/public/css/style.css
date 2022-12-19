@@ -118,12 +118,20 @@ header {
     justify-content: flex-start;
 }
 
-.documentAdd {
+.deletePhotoTitle {
     display: flex;
     grid-column: 2/6;
     justify-content: flex-start;
 }
 
+.deletePhoto {
+    display: flex;
+    grid-column: 2/6;
+    justify-content: flex-start;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
 
 .documents {
     display: flex;
@@ -174,6 +182,23 @@ figcaption {
     grid-column: 2/4;
     display: flex;
     justify-content: space-between;
+}
+
+
+.deleteDocumentTitle {
+    display: flex;
+    grid-column: 2/6;
+    justify-content: flex-start;
+    margin-top: 30px;
+}
+
+.deleteDocument {
+    display: flex;
+    grid-column: 2/6;
+    justify-content: flex-start;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
 }
 
 footer {

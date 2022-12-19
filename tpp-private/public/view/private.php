@@ -1,6 +1,4 @@
 <?php
-
-
 /*
 This is the private talent page where seperate talents will have different seperate personal pages
 This is the area where they can upload images of themselfs and their own documnets. They are also able to 
@@ -140,11 +138,28 @@ $fileSize = 4 * 1024 * 1024; //4MB
             }
 
             ?>
+    </div>
 
+    <div class="deletePhotoTitle">
+        <h1><b>Delete a photo</b></h1>
+    </div>
+
+    <div class="deletePhoto">
+        <form action="#" method="post" enctype="multipart/form-data">
+            <select name="123" id="123" value="Delete">
+                <option value="photo1">Photo1</option>
+                <option value="photo2">Photo2</option>
+                <option value="photo3">Photo3</option>
+                <option value="photo4">Photo4</option>
+                <option value="photo5">Photo5</option>
+                <option value="photo6">Photo6</option>
+            </select>
+            <input type="submit" value="Delete" name="Delete">
+        </form>
     </div>
 
     <div class=" documentsTitle">
-        <h2>Documents</h2>
+        <h1>Documents</h1>
     </div>
 
     <div class="documents">
@@ -183,26 +198,43 @@ $fileSize = 4 * 1024 * 1024; //4MB
                 </label>
         </div>
 
-
-        <?php
-
-        //Require files to lessen the amount of code in one page
-        if (isset($_POST["imgUpload"])) {
-            require "../../components/photoAdd.php";
-        }
-
-        if (isset($_POST["docUpload"])) {
-            require "../../components/documentAdd.php";
-        }
-
-        if (isset($_POST["newProfilePic"])) {
-            require "../../components/profileUpload.php";
-        }
-
-
-
-        ?>
     </div>
+    <div class="deleteDocumentTitle">
+        <h1><b>Delete a Document</b></h1>
+    </div>
+
+    <div class="deleteDocument">
+        <form action="#" method="post" enctype="multipart/form-data">
+            <select name="123" id="123" value="Delete">
+                <option value="photo1">Photo1</option>
+                <option value="photo2">Photo2</option>
+                <option value="photo3">Photo3</option>
+                <option value="photo4">Photo4</option>
+                <option value="photo5">Photo5</option>
+                <option value="photo6">Photo6</option>
+            </select>
+            <input type="submit" value="Delete" name="deleteDoc">
+        </form>
+    </div>
+
+    <?php
+
+    //Require files to lessen the amount of code in one page
+    if (isset($_POST["imgUpload"])) {
+        require "../../components/photoAdd.php";
+    }
+
+    if (isset($_POST["docUpload"])) {
+        require "../../components/documentAdd.php";
+    }
+
+    if (isset($_POST["newProfilePic"])) {
+        require "../../components/profileUpload.php";
+    }
+
+    ?>
+
+
 
     <footer>
         <h1>Placeholder for actuall footer</h1>
