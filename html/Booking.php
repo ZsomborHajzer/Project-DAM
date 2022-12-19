@@ -31,7 +31,7 @@
                 $(".g-item > .subClass").fadeOut();
                 $(".a-mg", this).hide();
                 $(".dropUpImg",this).show();
-                $(".subClass").prev().css({"background-color": "#1bdeff", "color": "#000"});
+                $(".subClass").prev().css({"background-color": "#6FA8DC"});
                 $(this).next().fadeIn();
                 $(".g-item > .subClass", this).css("color","#F5F5F5");
                 $(".subClass",this).hide();
@@ -275,7 +275,7 @@
 
                                 $name= filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
 
-                                $stmt->execute(["$sanitzeOption"]);
+                                $stmt->execute();
                                 while ($row = $stmt->fetch()) {
 
                                     echo "<div class= 'g-item'>";
