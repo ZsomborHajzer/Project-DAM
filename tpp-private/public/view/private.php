@@ -221,7 +221,7 @@ $fileSize = 4 * 1024 * 1024; //4MB
                 }
                 ?>
             </select>
-            <input type="submit" value="Delete" name="deleteDoc">
+            <input type="submit" value="Delete" name="deleteDocSubmit">
         </form>
     </div>
 
@@ -234,12 +234,7 @@ $fileSize = 4 * 1024 * 1024; //4MB
             @(unlink("../img/pictureholder/" . $deletePic . ""));
         }
 
-
-
-
-
-        //this one still done not work!!!!!!
-        if (isset($_POST["deleteDoc"])) {
+        if (isset($_POST["deleteDocSubmit"])) {
             print_r($_POST);
             $deleteDoc = $_POST["deleteDoc"];
             @(unlink("../img/documentholder/" . $deleteDoc . ""));
