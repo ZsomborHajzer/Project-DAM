@@ -31,9 +31,9 @@
                 $(".g-item > .subClass").fadeOut();
                 $(".a-mg", this).hide();
                 $(".dropUpImg",this).show();
-                $(".subClass").prev().css({"background-color": "#6FA8DC"});
+                $(".subClass").prev()
                 $(this).next().fadeIn();
-                $(".g-item > .subClass", this).css("color","#F5F5F5");
+                $(".g-item > .subClass", this);
                 $(".subClass",this).hide();
             })
 
@@ -147,15 +147,18 @@
                                         echo "</form>";
                                         echo "</div>";
                                         echo "<div class='subClass'>";
-                                        echo "<p>Select the date of booking</p>";
+                                        echo "<p class='s-content s-p'>Select the date of booking</p>";
                                         ?>
-                                        <form method="post" action="#">
-                                            <label for="dataMail">Your Email</label>
-                                            <input type="email" name="dataMail" id="dataMail">
-
-                                            <label for="dataDate">Date</label>
-                                            <input type="date" name="dataDate" id="dataDate">
-                                            <input type="submit" name="dataSendBooking" placeholder="Book">
+                                        <form class="s-content" method="post" action="#">
+                                            <div> 
+                                                <label class="s-label" for="dataDate">Date: </label>
+                                                <input class="s-date" type="date" name="dataDate" id="dataDate">
+                                            </div>
+                                            <div>
+                                                <label class="s-label" for="dataMail">Email: </label>
+                                                <input class="s-email" type="email" name="dataMail" id="dataMail">
+                                            </div>
+                                            <input class="s-sub" type="submit" name="dataSendBooking" placeholder="Book">
                                         </form>
 
                                         <?php
@@ -200,15 +203,18 @@
                                         echo "</form>";
                                         echo "</div>";
                                         echo "<div class='subClass'>";
-                                        echo "<p>Select the date of booking</p>";
+                                        echo "<p class='s-content s-p'>Select the date of booking</p>";
                                         ?>
-                                        <form method="post" action="#">
-                                            <label for="dataMail">Your Email</label>
-                                            <input type="email" name="dataMail" id="dataMail">
-
-                                            <label for="dataDate">Date</label>
-                                            <input type="date" name="dataDate" id="dataDate">
-                                            <input type="submit" name="dataSendBooking" placeholder="Book">
+                                        <form class="s-content" method="post" action="#">
+                                            <div> 
+                                                <label class="s-label" for="dataDate">Date: </label>
+                                                <input class="s-date" type="date" name="dataDate" id="dataDate">
+                                            </div>
+                                            <div>
+                                                <label class="s-label" for="dataMail">Email: </label>
+                                                <input class="s-email" type="email" name="dataMail" id="dataMail">
+                                            </div>
+                                            <input class="s-sub" type="submit" name="dataSendBooking" placeholder="Book">
                                         </form>
 
                                         <?php
@@ -289,18 +295,19 @@
                                     echo "</form>";
                                     echo "</div>";
                                     echo "<div class='subClass'>";
-                                    echo "<p>Select the date of booking</p>";
+                                    echo "<p class='s-content s-p' >Select the date of booking</p>";
                                     ?>
-                                    <form method="post" action="#">
-                                        <label for="dataMail">Your Email</label>
-                                        <input type="email" name="dataMail" id="dataMail">
-
-                                        <label for="dataDate">Date</label>
-                                        <input type="date" name="dataDate" id="dataDate">
-
-                                        <input type="submit" name="dataSendBooking" placeholder="Book">
-                                    </form>
-
+                                        <form class="s-content" method="post" action="#">
+                                            <div> 
+                                                <label class="s-label" for="dataDate">Date: </label>
+                                                <input class="s-date" type="date" name="dataDate" id="dataDate">
+                                            </div>
+                                            <div>
+                                                <label class="s-label" for="dataMail">Email: </label>
+                                                <input class="s-email" type="email" name="dataMail" id="dataMail">
+                                            </div>
+                                            <input class="s-sub" type="submit" name="dataSendBooking" placeholder="Book">
+                                        </form>
                                     <?php
                                     echo "</div>";
                                     if (isset ($_POST["dataSendBooking"])) {
@@ -339,17 +346,19 @@
                                 echo "</form>";
                                 echo "</div>";
                                 echo "<div class='subClass'>";
-                                echo "<p>Select the date of booking</p>";
+                                echo "<p class='s-content s-p' >Select the date of booking</p>";
                                 ?>
-                                <form method="post" action="#">
-                                    <label for="dataMail">Your Email</label>
-                                    <input type="email" name="dataMail" id="dataMail">
-
-                                    <label for="dataDate">Date</label>
-                                    <input type="date" name="dataDate" id="dataDate">
-
-                                    <input type="submit" name="dataSendBooking" placeholder="Book">
-                                </form>
+                                    <form class="s-content" method="post" action="#">
+                                        <div> 
+                                            <label class="s-label" for="dataDate">Date: </label>
+                                            <input class="s-date" type="date" name="dataDate" id="dataDate">
+                                        </div>
+                                        <div>
+                                            <label class="s-label" for="dataMail">Email: </label>
+                                            <input class="s-email" type="email" name="dataMail" id="dataMail">
+                                        </div>
+                                        <input class="s-sub" type="submit" name="dataSendBooking" placeholder="Book">
+                                    </form>
 
                                 <?php
                                 echo "</div>";
