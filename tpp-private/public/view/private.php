@@ -20,6 +20,10 @@ if (isset($_POST["docUpload"])) {
     header("Location: private.php");
 }
 
+if (isset($_POST["deletePic"])) {
+    header("Location: private.php");
+}
+
 $arrayofImages = [];
 $pictureHolder = "../img/pictureholder/";
 $documentHolder = "../img/documentholder/";
@@ -146,7 +150,7 @@ $fileSize = 4 * 1024 * 1024; //4MB
 
     <div class="deletePhoto">
         <form action="#" method="post" enctype="multipart/form-data">
-            <select name="123" id="123" value="Delete">
+            <select name="deletePic" id="deletePic" value="Delete">
                 <?php
                 $arrayofImages = scandir($pictureHolder);
                 for ($i = 0; $i < count($arrayofImages); $i++) {
@@ -209,7 +213,7 @@ $fileSize = 4 * 1024 * 1024; //4MB
 
     <div class="deleteDocument">
         <form action="#" method="post" enctype="multipart/form-data">
-            <select name="123" id="123" value="Delete">
+            <select name="deleteDoc" id="deleteDoc" value="Delete">
                 <?php
                 $arrayofDocs = scandir($documentHolder);
                 for ($i = 2; $i < count($arrayofDocs); $i++) {
@@ -221,7 +225,29 @@ $fileSize = 4 * 1024 * 1024; //4MB
         </form>
     </div>
 
+
     <?php
+    //Delete Picture part
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST["deletePic"])) {
+            $deletePic = $_POST["deletePic"];
+            @(unlink("../img/pictureholder/" . $deletePic . ""));
+        }
+
+
+
+
+
+        //this one still done not work!!!!!!
+        if (isset($_POST["deleteDoc"])) {
+            print_r($_POST);
+            $deleteDoc = $_POST["deleteDoc"];
+            @(unlink("../img/documentholder/" . $deleteDoc . ""));
+        }
+    }
+
+
+
 
     //Require files to lessen the amount of code in one page
     if (isset($_POST["imgUpload"])) {

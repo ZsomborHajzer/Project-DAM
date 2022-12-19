@@ -22,6 +22,7 @@ if ($_FILES[$uploadDoc]["error"] == 0) {
                     echo "Something went wrong";
                 }
             } else {
+                echo "IT is already there";
             }
         } else {
             echo "Invalid file type. Must be gif, jpeg or jpg or png";
