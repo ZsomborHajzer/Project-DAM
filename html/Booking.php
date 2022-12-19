@@ -21,26 +21,33 @@
         $(document).ready(function () {
 
 
-
             $(".subClass").hide();
 
             $(".dropUpImg").hide();
 
 
-            $(".g-item").click(function (){
+            $(".g-item").click(function () {
                 $(".g-item > .subClass").fadeOut();
                 $(".a-mg", this).hide();
-                $(".dropUpImg",this).show();
-                $(".subClass").prev().css({"background-color": "#1bdeff", "color": "#000"});
+                $(".dropUpImg", this).show();
+                $(".subClass").prev()
                 $(this).next().fadeIn();
-                $(".g-item > .subClass", this).css("color","#F5F5F5");
-                $(".subClass",this).hide();
+                $(".g-item > .subClass", this);
+                $(".subClass", this).hide();
             })
 
-
-
-
         });
+
+
+        //     document.querySelectorAll("g-item").forEach(function(img)){
+        //         if(img.id == id){
+        //             div.style.display = div.style.display == "none" ? "block" : "none";
+        //         }else {
+        //             // Hide other DIVs
+        //             div.style.display = "none";
+        //         }
+        //     }
+        // });
     </script>
 </head>
 <body>
@@ -94,7 +101,7 @@
                     // getting the different filter option to search talents
 
 
-                    $arrayFilter = ["Pricing", "Active",];
+                    $arrayFilter = ["Pricing", "Active", "Specialty"];
 
                     foreach ($arrayFilter as $item) {
                         echo "<option value='$item'>$item</option>";
@@ -121,131 +128,171 @@
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
+                    if ($_POST["dataNameOrEmail"] != "") {
+                    //if the email is correct then we will filter per Email
+                    if (filter_input(INPUT_POST, "dataNameOrEmail", FILTER_VALIDATE_EMAIL)) {
+
+                    $stmt = $dbHandler->prepare("SELECT * FROM tbluser  INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty WHERE dtEmail LIkE ? ");
+
+                    //$stmt->bind_param
+
+                    $mail = filter_input(INPUT_POST, "dataNameOrEmail", FILTER_VALIDATE_EMAIL);
+
+                    $stmt->execute(["%$mail%"]);
+
+                    $i = 1;       //id for dropdown
+                    $j = 1;       //id for subclass
+                    while ($row = $stmt->fetch()) {
+                    $id = $row['idUser'];
+                    $spec = $row['fiSpeciality'];
+
+                    echo "<div class= 'g-item'>";
+                    echo "<img class='g-img' src=" . $row['dtImage'] . ">";
+                    echo "<p class='g-p'>" . $row['dtName'] . " " . $row['dtLastName'] . "</p>";
+                    echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
+                    echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
+                    echo "<form>";
+                    echo "<p class='a-p' >Book Me</p>";
+                    echo "<a href='#'> <img id=" . $i . " class='a-mg' src='../images/dropdown.png'>" . "</a>";
+                    echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>" . "</a>";
+                    echo "</form>";
+                    echo "</div>";
+                    echo "<div id=" . $j . " class='subClass'>";
+                    echo "<p class='s-content s-p'>Select the date of booking</p>";
+                    ?>
+
+                    <form method="post" action="insertIntoBooking.php?id=<?php echo $id ?>&spec=<?php echo $spec ?>">
+                        <label for="dataMail">Your Email</label>
+                        <input type="email" name="dataMail" id="dataMail">
+
+                        <label for="dataDate">Date</label>
+                        <input type="date" name="dataDate" id="dataDate">
+                        <input type="submit" name="dataSendByMail" placeholder="Book">
+
+                        <form class="s-content" method="post" action="#">
+                            <div>
+                                <label class="s-label" for="dataDate">Date: </label>
+                                <input class="s-date" type="date" name="dataDate" id="dataDate">
+                            </div>
+                            <div>
+                                <label class="s-label" for="dataMail">Email: </label>
+                                <input class="s-email" type="email" name="dataMail" id="dataMail">
+                            </div>
+                            <input class="s-sub" type="submit" name="dataSendBooking" placeholder="Book">
+
+                        </form>
+
+                        <?php
+
+                        echo "</div>";
 
 
-                        if ($_POST["dataNameOrEmail"] != "") {
-                                //if the email is correct then we will filter per Email
-                                if(filter_input(INPUT_POST, "dataNameOrEmail", FILTER_VALIDATE_EMAIL)) {
+                        }
+                        $i++;
+                        $j++;
 
-                                    $stmt = $dbHandler->prepare("SELECT * FROM tbluser  INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty WHERE dtEmail LIkE ? ");
+                        //if that is not correct then we will filter per Name
+                        }else if (filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS)){
 
-                                    //$stmt->bind_param
+                        $stmt = $dbHandler->prepare("SELECT * FROM tbluser INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty  WHERE dtName LIkE ? ");
 
-                                    $mail= filter_input(INPUT_POST, "dataNameOrEmail", FILTER_VALIDATE_EMAIL);
+                        //$stmt->bind_param
 
-                                    $stmt->execute(["%$mail%"]);
-                                    while ($row = $stmt->fetch()) {
-                                        $id = $row['idUser'];
-                                        $spec = $row['fiSpeciality'];
+                        $name = filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
 
-                                        echo "<div class= 'g-item'>";
-                                        echo "<img class='g-img' src=". $row['dtImage'].">";
-                                        echo "<p class='g-p'>".$row['dtName']." ".$row['dtLastName']."</p>";
-                                        echo "<p class='g-p'>" .$row['dtEmail']."</p>";
-                                        echo "<p class='g-p'>" .$row['dtDescription']."</p>";
-                                        echo "<form>";
-                                        echo "<p class='a-p' >Book Me</p>" ;
-                                        echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
-                                        echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>"."</a>";
-                                        echo "</form>";
-                                        echo "</div>";
-                                        echo "<div class='subClass'>";
-                                        echo "<p>Select the date of booking</p>";
-                                        ?>
-                                        <form method="post" action="insertIntoBooking.php?id=<?php echo $id?>?spec=<?php echo $spec ?>">
-                                            <label for="dataMail">Your Email</label>
-                                            <input type="email" name="dataMail" id="dataMail">
+                        $stmt->execute(["%$name%"]);
 
-                                            <label for="dataDate">Date</label>
-                                            <input type="date" name="dataDate" id="dataDate">
-                                            <input type="submit" name="dataSendByMail" placeholder="Book">
-                                        </form>
+                        $i = 1;
+                        $j = 1;
+                        while ($row = $stmt->fetch()) {
+                        $id = $row['idUser'];
+                        $spec = $row['fiSpeciality'];
 
-                                        <?php
-                                        echo "</div>";
+                        echo "<div class= 'g-item'>";
+                        echo "<img class='g-img' src=" . $row['dtImage'] . ">";
+                        echo "<p class='g-p'>" . $row['dtName'] . " " . $row['dtLastName'] . "</p>";
+                        echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
+                        echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
+                        echo "<form>";
+                        echo "<p class='a-p' >Book Me</p>";
+                        echo "<a href='#'> <img id=" . $i . "class='a-mg'  src='../images/dropdown.png'>" . "</a>";
+                        echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>" . "</a>";
+                        echo "</form>";
+                        echo "</div>";
+                        echo "<div id=" . $j . " class='subClass'>";
+                        echo "<p class='s-content s-p'>Select the date of booking</p>";
+                        ?>
 
+                        <form method="post"
+                              action="insertIntoBooking.php?id=<?php echo $id ?>&spec=<?php echo $spec ?>">
+                            <label for="dataMail">Your Email</label>
+                            <input type="email" name="dataMail" id="dataMail">
 
-
-
-                                    }
-                                    //if that is not correct then we will filter per Name
-                                }else if (filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS)){
-
-                                    $stmt = $dbHandler->prepare("SELECT * FROM tbluser INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty  WHERE dtName LIkE ? ");
-
-                                    //$stmt->bind_param
-
-                                    $name= filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
-
-                                    $stmt->execute(["%$name%"]);
-                                    while ($row = $stmt->fetch()) {
-                                        $id = $row['idUser'];
-                                        $spec = $row['fiSpeciality'];
-
-                                        echo "<div class= 'g-item'>";
-                                        echo "<img class='g-img' src=". $row['dtImage'].">";
-                                        echo "<p class='g-p'>".$row['dtName']." ".$row['dtLastName']."</p>";
-                                        echo "<p class='g-p'>" .$row['dtEmail']."</p>";
-                                        echo "<p class='g-p'>" .$row['dtDescription']."</p>";
-                                        echo "<form>";
-                                        echo "<p class='a-p' >Book Me</p>" ;
-                                        echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
-                                        echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>"."</a>";
-                                        echo "</form>";
-                                        echo "</div>";
-                                        echo "<div class='subClass'>";
-                                        echo "<p>Select the date of booking</p>";
-                                        ?>
-                                        <form method="post" action="insertIntoBooking.php?id=<?php echo $id?>?spec=<?php echo $spec ?>">
-                                            <label for="dataMail">Your Email</label>
-                                            <input type="email" name="dataMail" id="dataMail">
-
-                                            <label for="dataDate">Date</label>
-                                            <input type="date" name="dataDate" id="dataDate">
-                                            <input type="submit" name="dataSendByName" placeholder="Book">
-                                        </form>
-
-                                        <?php
-                                        echo "</div>";
-
-                                    }
-                                   
-                                }    //If it's a specialty
-                                // else if (filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS)){
-
-                                //     $stmt = $dbHandler-> prepare("SELECT * FROM tbluser 
-                                //                                 INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty 
-                                //                                 WHERE tblspecialties.dtDescription LIKE ?");
-
-                                //     $specialty = filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
-                                //     echo($specialty);
-                                //     $stmt -> execute(["%$specialty%"]);
-                                //     echo $stmt;
-                                //     while($row = $stmt-> fetch()){
-
-                                //         echo "<div class= 'g-item'>";
-                                //         echo "<img class='g-img' src=". $row['dtImage'].">";
-                                //         echo "<p class='g-p'>".$row['dtName']." ".$row['dtLastName']."</p>";
-                                //         echo "<p class='g-p'>" .$row['dtEmail']."</p>";
-                                //         echo "<form>";
-                                //         echo "<p class='a-p' >Book Me</p>" ;
-                                //         echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
-                                //         echo "</form>";
-                                //         echo "</div>";
-                                //     }
-                                // }
-
-                                else {
-
-                                    echo "<h3>Please enter a valid name or Email</h3>";
-
-                                }
+                            <label for="dataDate">Date</label>
+                            <input type="date" name="dataDate" id="dataDate">
+                            <input type="submit" name="dataSendByName" placeholder="Book">
 
 
-                        }else {
-                        //if none of the above is the case then a select option has been choosen
+                            <form class="s-content" method="post" action="#">
+                                <div>
+                                    <label class="s-label" for="dataDate">Date: </label>
+                                    <input class="s-date" type="date" name="dataDate" id="dataDate">
+                                </div>
+                                <div>
+                                    <label class="s-label" for="dataMail">Email: </label>
+                                    <input class="s-email" type="email" name="dataMail" id="dataMail">
+                                </div>
+                                <input class="s-sub" type="submit" name="dataSendBooking" placeholder="Book">
 
-                            $sanitzeOption =  filter_input(INPUT_POST,"dataTalents",FILTER_SANITIZE_SPECIAL_CHARS);
+                            </form>
+
+                            <?php
+                            echo "</div>";
+
+
+                            }
+
+                            $i++;
+                            $j++;
+
+                            }
+
+
+
+                            //If it's a specialty
+                            // else if (filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS)){
+
+                            //     $stmt = $dbHandler-> prepare("SELECT * FROM tbluser
+                            //                                 INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty
+                            //                                 WHERE tblspecialties.dtDescription LIKE ?");
+
+                            //     $specialty = filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
+                            //     echo($specialty);
+                            //     $stmt -> execute(["%$specialty%"]);
+                            //     echo $stmt;
+                            //     while($row = $stmt-> fetch()){
+
+                            //         echo "<div class= 'g-item'>";
+                            //         echo "<img class='g-img' src=". $row['dtImage'].">";
+                            //         echo "<p class='g-p'>".$row['dtName']." ".$row['dtLastName']."</p>";
+                            //         echo "<p class='g-p'>" .$row['dtEmail']."</p>";
+                            //         echo "<form>";
+                            //         echo "<p class='a-p' >Book Me</p>" ;
+                            //         echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
+                            //         echo "</form>";
+                            //         echo "</div>";
+                            //     }
+                            // }
+
+                            else {
+
+                                echo "<h3>Please enter a valid name or Email</h3>";
+
+                            }
+                            }else {
+                            //if none of the above is the case then a select option has been choosen
+
+                            $sanitzeOption = filter_input(INPUT_POST, "dataTalents", FILTER_SANITIZE_SPECIAL_CHARS);
 
                             // new test needs to be added. If the users wants to only see avaible ones then we only need to show those ones.
 
@@ -255,28 +302,33 @@
 
                                 //$stmt->bind_param
 
-                                $name= filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
+                                $name = filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
 
-                                $stmt->execute(["$sanitzeOption"]);
+                                $stmt->execute();
+
+                                $i = 1;
+                                $j = 1;
                                 while ($row = $stmt->fetch()) {
                                     $id = $row['idUser'];
                                     $spec = $row['fiSpeciality'];
 
                                     echo "<div class= 'g-item'>";
-                                    echo "<img class='g-img' src=". $row['dtImage'].">";
-                                    echo "<p class='g-p'>".$row['dtName']." ".$row['dtLastName']."</p>";
-                                    echo "<p class='g-p'>" .$row['dtEmail']."</p>";
-                                    echo "<p class='g-p'>" .$row['dtDescription']."</p>";
+                                    echo "<img class='g-img' src=" . $row['dtImage'] . ">";
+                                    echo "<p class='g-p'>" . $row['dtName'] . " " . $row['dtLastName'] . "</p>";
+                                    echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
+                                    echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
                                     echo "<form>";
-                                    echo "<p class='a-p' >Book Me</p>" ;
-                                    echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
-                                    echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>"."</a>";
+                                    echo "<p class='a-p' >Book Me</p>";
+                                    echo "<a href='#'> <img id=" . $i . " class='a-mg' src='../images/dropdown.png'>" . "</a>";
+                                    echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>" . "</a>";
                                     echo "</form>";
                                     echo "</div>";
-                                    echo "<div class='subClass'>";
-                                    echo "<p>Select the date of booking</p>";
+                                    echo "<div id=" . $j . " class='subClass'>";
+                                    echo "<p class='s-content s-p' >Select the date of booking</p>";
                                     ?>
-                                    <form method="post" action="insertIntoBooking.php?id=<?php echo $id?>?spec=<?php echo $spec ?>">
+
+                                    <form method="post"
+                                          action="insertIntoBooking.php?id=<?php echo $id ?>&spec=<?php echo $spec ?>">
                                         <label for="dataMail">Your Email</label>
                                         <input type="email" name="dataMail" id="dataMail">
 
@@ -286,68 +338,104 @@
                                         <input type="submit" name="dataSendByActive" placeholder="Book">
                                     </form>
 
+
+                                    <form class="s-content" method="post" action="#">
+                                        <div>
+                                            <label class="s-label" for="dataDate">Date: </label>
+                                            <input class="s-date" type="date" name="dataDate" id="dataDate">
+                                        </div>
+                                        <div>
+                                            <label class="s-label" for="dataMail">Email: </label>
+                                            <input class="s-email" type="email" name="dataMail" id="dataMail">
+                                        </div>
+                                        <input class="s-sub" type="submit" name="dataSendBooking" placeholder="Book">
+                                    </form>
+
                                     <?php
                                     echo "</div>";
 
+
                                 }
-                            }else{
+                                $i++;
+                                $j++;
+
+
+                            }
+                            else{
 
                             $stmt = $dbHandler->prepare("SELECT * FROM tbluser  INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty ORDER BY ?  ASC");
 
                             //$stmt->bind_param
 
-                            $name= filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
+                            $name = filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
 
+                            $i = 1;
                             $stmt->execute(["$sanitzeOption"]);
                             while ($row = $stmt->fetch()) {
-                                $id = $row['idUser'];
-                                $spec = $row['fiSpeciality'];
+                            $id = $row['idUser'];
+                            $spec = $row['fiSpeciality'];
 
-                                //<option disabled selected value> -- select an option --</option>
-                                echo "<div class= 'g-item'>";
-                                echo "<img class='g-img' src=". $row['dtImage'].">";
-                                echo "<p class='g-p'>".$row['dtName']." ".$row['dtLastName']."</p>";
-                                echo "<p class='g-p'>" .$row['dtEmail']."</p>";
-                                echo "<p class='g-p'>" .$row['dtDescription']."</p>";
-                                echo "<form>";
-                                echo "<p class='a-p' >Book Me</p>" ;
-                                echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
-                                echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>"."</a>";
-                                echo "</form>";
-                                echo "</div>";
-                                echo "<div class='subClass'>";
-                                echo "<p>Select the date of booking</p>";
+                            //<option disabled selected value> -- select an option --</option>
+                            echo "<div class= 'g-item'>";
+                            echo "<img class='g-img' src=" . $row['dtImage'] . ">";
+                            echo "<p class='g-p'>" . $row['dtName'] . " " . $row['dtLastName'] . "</p>";
+                            echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
+                            echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
+                            echo "<form>";
+                            echo "<p class='a-p' >Book Me</p>";
+                            echo "<a href='#'> <img id=" . $i . " class='a-mg' src='../images/dropdown.png'>" . "</a>";
+                            echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>" . "</a>";
+                            echo "</form>";
+                            echo "</div>";
 
-                                ?>
+                            echo "<div class='subClass'>";
+                            echo "<p>Select the date of booking</p>";
 
-                                <form method="post" action="insertIntoBooking.php?id=<?php echo $id?>?spec=<?php echo $spec ?>">
-                                    <label for="dataMail">Your Email</label>
-                                    <input type="email" name="dataMail" id="dataMail">
+                            ?>
 
-                                    <label for="dataDate">Date</label>
-                                    <input type="date" name="dataDate" id="dataDate">
+                            <form method="post"
+                                  action="insertIntoBooking.php?id=<?php echo $id ?>&spec=<?php echo $spec ?>">
+                                <label for="dataMail">Your Email</label>
+                                <input type="email" name="dataMail" id="dataMail">
 
-                                    <input type="submit" name="dataSendByPrice" placeholder="Book">
+                                <label for="dataDate">Date</label>
+                                <input type="date" name="dataDate" id="dataDate">
+
+                                <input type="submit" name="dataSendByPrice" placeholder="Book">
+                            </form>
+
+                            <div id=".$j." class='subClass'>
+                                <p class='s-content s-p'>Select the date of booking</p>
+                                <form class="s-content" method="post" action="#">
+                                    <div>
+                                        <label class="s-label" for="dataDate">Date: </label>
+                                        <input class="s-date" type="date" name="dataDate" id="dataDate">
+                                    </div>
+                                    <div>
+                                        <label class="s-label" for="dataMail">Email: </label>
+                                        <input class="s-email" type="email" name="dataMail" id="dataMail">
+                                    </div>
+                                    <input class="s-sub" type="submit" name="dataSendBooking" placeholder="Book">
                                 </form>
+
 
                                 <?php
                                 echo "</div>";
 
                                 $dbHandler = null;
-                            }
-                            }
+                                $i++;
+                                $j++;
+                                }
+                                }
 
 
-                        }
-
-
-                    }
-
-                    $dbHandler = null;
-                    ?>
+                                }
+                                }
+                                $dbHandler = null;
+                                ?>
+                            </div>
                 </div>
             </div>
-        </div>
     </article>
 </main>
 <!-- Foooter -->

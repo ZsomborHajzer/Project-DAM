@@ -9,30 +9,39 @@ if (isset ($_POST["dataSendByPrice"])) {
 
     if ($mailClient = filter_input(INPUT_POST, "dataMail", FILTER_VALIDATE_EMAIL) && $date = filter_input(INPUT_POST, "dataDate", FILTER_SANITIZE_NUMBER_INT)) {
 
-        $query = $dbHandler->query("SELECT `dtDate`, `fiUser` FROM tblbooking");
         $mail = $_POST["dataMail"];
-        $submit_id = $_GET['id'];
+        $submitId = $_GET['id'];
         $speciality =  $_GET['spec'];
+
+        $query = $dbHandler->query("SELECT `dtDate`, `fiUser` FROM tblbooking WHERE `dtDate` = $date AND `fiUser` =$submitId ");
+
 
         while ($row = $query->fetch()) {
 
+            var_dump($row["dtDate"]);
+            var_dump($date);
+            var_dump($row["fiUser"]);
+            var_dump($submitId);
+            foreach($row as $r) {
 
-            if ($date != $row["dtDate"] && $submit_id != $row["fiUser"]) {
+                if ($r->total_rating_votes == null) {
 
-                $sql = "INSERT INTO tblbooking (dtDate, dtEmail, fiUser,fiSpeciality) VALUES (?,?,?,?)";
-                $stmt = $dbHandler->prepare($sql);
-                $stmt->execute([$date, $mail, $submit_id, $speciality]);
-                //$dbHandler = null;
-                //echo "<script>alert('Value added succefully')</script>";
-                //header("Location: booking.php");
 
-            }else {
-                echo "<script>alert('User is already booked on this date')</script>";
-                header("Location: booking.php");
+                    $sql = "INSERT INTO tblbooking (dtDate, dtEmail, fiUser,fiSpeciality) VALUES (?,?,?,?)";
+                    $stmt = $dbHandler->prepare($sql);
+                    $stmt->execute([$date, $mail, $submitId, $speciality]);
+                    //$dbHandler = null;
+                    //echo "<script>alert('Value added succefully')</script>";
+                    //header("Location: booking.php");
+
+
+                } else {
+                    echo "<script>alert('User is already booked on this date')</script>";
+                    header("Location: booking.php");
+                }
+
             }
-        }
-
-    } else {
+    }} else {
         echo '<script>   alert("email or data wrong");
                                                      window.location = "booking.php?reloaded=yes";
                                                   </script>';
@@ -47,18 +56,18 @@ if (isset ($_POST["dataSendByActive"])) {
 
         $query = $dbHandler->query("SELECT `dtDate`, `fiUSer` FROM tblbooking");
         $mail = $_POST["dataMail"];
-        $submit_id = $_GET['id'];
+        $submitId = $_GET['id'];
         $speciality =  $_GET['spec'];
 
-        $submit_id = $_GET['id'];
+        $submitId = $_GET['id'];
         while ($row = $query->fetch()) {
 
 
-            if ($date != $row["dtDate"] && $submit_id != $row["fiUser"]) {
+            if ($date != $row["dtDate"] && $submitId != $row["fiUser"]) {
 
                 $sql = "INSERT INTO tblbooking (dtDate, dtEmail, fiUser,fiSpeciality) VALUES (?,?,?,?)";
                 $stmt = $dbHandler->prepare($sql);
-                $stmt->execute([$date, $mail, $submit_id, $speciality]);
+                $stmt->execute([$date, $mail, $submitId, $speciality]);
                 //$dbHandler = null;
                 //echo "<script>alert('Value added succefully')</script>";
                 //header("Location: booking.php");
@@ -81,17 +90,17 @@ if (isset ($_POST["dataSendByName"])) {
 
         $query = $dbHandler->query("SELECT `dtDate`, `fiUSer` FROM tblbooking");
         $mail = $_POST["dataMail"];
-        $submit_id = $_GET['id'];
+        $submitId = $_GET['id'];
         $speciality =  $_GET['spec'];
 
         while ($row = $query->fetch()) {
 
 
-            if ($date != $row["dtDate"] && $submit_id != $row["fiUser"]) {
+            if ($date != $row["dtDate"] && $submitId != $row["fiUser"]) {
 
                 $sql = "INSERT INTO tblbooking (dtDate, dtEmail, fiUser,fiSpeciality) VALUES (?,?,?,?)";
                 $stmt = $dbHandler->prepare($sql);
-                $stmt->execute([$date, $mail, $submit_id, $speciality]);
+                $stmt->execute([$date, $mail, $submitId, $speciality]);
                 //$dbHandler = null;
                 //echo "<script>alert('Value added succefully')</script>";
                 //header("Location: booking.php");
@@ -116,17 +125,17 @@ if (isset ($_POST["dataSendByMail"])) {
 
         $query = $dbHandler->query("SELECT `dtDate`, `fiUSer` FROM tblbooking");
         $mail = $_POST["dataMail"];
-        $submit_id = $_GET['id'];
+        $submitId = $_GET['id'];
         $speciality =  $_GET['spec'];
 
         while ($row = $query->fetch()) {
 
 
-            if ($date != $row["dtDate"] && $submit_id != $row["fiUser"]) {
+            if ($date != $row["dtDate"] && $submitId != $row["fiUser"]) {
 
                 $sql = "INSERT INTO tblbooking (dtDate, dtEmail, fiUser,fiSpeciality) VALUES (?,?,?,?)";
                 $stmt = $dbHandler->prepare($sql);
-                $stmt->execute([$date, $mail, $submit_id, $speciality]);
+                $stmt->execute([$date, $mail, $submitId, $speciality]);
                 //$dbHandler = null;
                 //echo "<script>alert('Value added succefully')</script>";
                 //header("Location: booking.php");

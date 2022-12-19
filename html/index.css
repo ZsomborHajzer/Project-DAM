@@ -9,7 +9,7 @@ body{
     font-family:'inter';
     display: grid;
     gap: 30px;
-    grid-template-rows: 81px 550px 150px;
+    grid-template-rows: 10vh 75vh 15vh;
     background-color: #E4EAFF;
     
 }
