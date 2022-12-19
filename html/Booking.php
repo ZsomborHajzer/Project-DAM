@@ -135,11 +135,14 @@
 
                                     $stmt->execute(["%$mail%"]);
                                     while ($row = $stmt->fetch()) {
+                                        $id = $row['idUser'];
+                                        $spec = $row['fiSpeciality'];
 
                                         echo "<div class= 'g-item'>";
                                         echo "<img class='g-img' src=". $row['dtImage'].">";
                                         echo "<p class='g-p'>".$row['dtName']." ".$row['dtLastName']."</p>";
                                         echo "<p class='g-p'>" .$row['dtEmail']."</p>";
+                                        echo "<p class='g-p'>" .$row['dtDescription']."</p>";
                                         echo "<form>";
                                         echo "<p class='a-p' >Book Me</p>" ;
                                         echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
@@ -149,13 +152,13 @@
                                         echo "<div class='subClass'>";
                                         echo "<p>Select the date of booking</p>";
                                         ?>
-                                        <form method="post" action="#">
+                                        <form method="post" action="insertIntoBooking.php?id=<?php echo $id?>?spec=<?php echo $spec ?>">
                                             <label for="dataMail">Your Email</label>
                                             <input type="email" name="dataMail" id="dataMail">
 
                                             <label for="dataDate">Date</label>
                                             <input type="date" name="dataDate" id="dataDate">
-                                            <input type="submit" name="dataSendBooking" placeholder="Book">
+                                            <input type="submit" name="dataSendByMail" placeholder="Book">
                                         </form>
 
                                         <?php
@@ -163,19 +166,7 @@
 
 
 
-                                        if (isset ($_POST["dataSendBooking"])) {
 
-                                            if ($mailClient = filter_input(INPUT_POST,"dataMail",FILTER_VALIDATE_EMAIL) && $data = filter_input(INPUT_POST,"dataDate",FILTER_SANITIZE_NUMBER_INT)){
-
-
-
-                                            }else {
-                                                echo '<script>   alert("email or data wrong");
-                                                     window.location = "booking.php?reloaded=yes";
-                                                  </script>';
-
-                                            }
-                                        }
                                     }
                                     //if that is not correct then we will filter per Name
                                 }else if (filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS)){
@@ -188,11 +179,14 @@
 
                                     $stmt->execute(["%$name%"]);
                                     while ($row = $stmt->fetch()) {
+                                        $id = $row['idUser'];
+                                        $spec = $row['fiSpeciality'];
 
                                         echo "<div class= 'g-item'>";
                                         echo "<img class='g-img' src=". $row['dtImage'].">";
                                         echo "<p class='g-p'>".$row['dtName']." ".$row['dtLastName']."</p>";
                                         echo "<p class='g-p'>" .$row['dtEmail']."</p>";
+                                        echo "<p class='g-p'>" .$row['dtDescription']."</p>";
                                         echo "<form>";
                                         echo "<p class='a-p' >Book Me</p>" ;
                                         echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
@@ -202,30 +196,18 @@
                                         echo "<div class='subClass'>";
                                         echo "<p>Select the date of booking</p>";
                                         ?>
-                                        <form method="post" action="#">
+                                        <form method="post" action="insertIntoBooking.php?id=<?php echo $id?>?spec=<?php echo $spec ?>">
                                             <label for="dataMail">Your Email</label>
                                             <input type="email" name="dataMail" id="dataMail">
 
                                             <label for="dataDate">Date</label>
                                             <input type="date" name="dataDate" id="dataDate">
-                                            <input type="submit" name="dataSendBooking" placeholder="Book">
+                                            <input type="submit" name="dataSendByName" placeholder="Book">
                                         </form>
 
                                         <?php
                                         echo "</div>";
-                                        if (isset ($_POST["dataSendBooking"])) {
 
-                                            if ($mailClient = filter_input(INPUT_POST,"dataMail",FILTER_VALIDATE_EMAIL) && $data = filter_input(INPUT_POST,"dataDate",FILTER_SANITIZE_NUMBER_INT)){
-
-
-
-                                            }else {
-                                                echo '<script>   alert("email or data wrong");
-                                                     window.location = "booking.php?reloaded=yes";
-                                                  </script>';
-
-                                            }
-                                        }
                                     }
                                    
                                 }    //If it's a specialty
@@ -277,11 +259,14 @@
 
                                 $stmt->execute(["$sanitzeOption"]);
                                 while ($row = $stmt->fetch()) {
+                                    $id = $row['idUser'];
+                                    $spec = $row['fiSpeciality'];
 
                                     echo "<div class= 'g-item'>";
                                     echo "<img class='g-img' src=". $row['dtImage'].">";
                                     echo "<p class='g-p'>".$row['dtName']." ".$row['dtLastName']."</p>";
                                     echo "<p class='g-p'>" .$row['dtEmail']."</p>";
+                                    echo "<p class='g-p'>" .$row['dtDescription']."</p>";
                                     echo "<form>";
                                     echo "<p class='a-p' >Book Me</p>" ;
                                     echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
@@ -291,31 +276,19 @@
                                     echo "<div class='subClass'>";
                                     echo "<p>Select the date of booking</p>";
                                     ?>
-                                    <form method="post" action="#">
+                                    <form method="post" action="insertIntoBooking.php?id=<?php echo $id?>?spec=<?php echo $spec ?>">
                                         <label for="dataMail">Your Email</label>
                                         <input type="email" name="dataMail" id="dataMail">
 
                                         <label for="dataDate">Date</label>
                                         <input type="date" name="dataDate" id="dataDate">
 
-                                        <input type="submit" name="dataSendBooking" placeholder="Book">
+                                        <input type="submit" name="dataSendByActive" placeholder="Book">
                                     </form>
 
                                     <?php
                                     echo "</div>";
-                                    if (isset ($_POST["dataSendBooking"])) {
 
-                                        if ($mailClient = filter_input(INPUT_POST,"dataMail",FILTER_VALIDATE_EMAIL) && $data = filter_input(INPUT_POST,"dataDate",FILTER_SANITIZE_NUMBER_INT)){
-
-
-
-                                        }else {
-                                            echo '<script>   alert("email or data wrong");
-                                                     window.location = "booking.php?reloaded=yes";
-                                                  </script>';
-
-                                        }
-                                    }
                                 }
                             }else{
 
@@ -327,11 +300,15 @@
 
                             $stmt->execute(["$sanitzeOption"]);
                             while ($row = $stmt->fetch()) {
+                                $id = $row['idUser'];
+                                $spec = $row['fiSpeciality'];
+
                                 //<option disabled selected value> -- select an option --</option>
                                 echo "<div class= 'g-item'>";
                                 echo "<img class='g-img' src=". $row['dtImage'].">";
                                 echo "<p class='g-p'>".$row['dtName']." ".$row['dtLastName']."</p>";
                                 echo "<p class='g-p'>" .$row['dtEmail']."</p>";
+                                echo "<p class='g-p'>" .$row['dtDescription']."</p>";
                                 echo "<form>";
                                 echo "<p class='a-p' >Book Me</p>" ;
                                 echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
@@ -340,32 +317,21 @@
                                 echo "</div>";
                                 echo "<div class='subClass'>";
                                 echo "<p>Select the date of booking</p>";
+
                                 ?>
-                                <form method="post" action="#">
+
+                                <form method="post" action="insertIntoBooking.php?id=<?php echo $id?>?spec=<?php echo $spec ?>">
                                     <label for="dataMail">Your Email</label>
                                     <input type="email" name="dataMail" id="dataMail">
 
                                     <label for="dataDate">Date</label>
                                     <input type="date" name="dataDate" id="dataDate">
 
-                                    <input type="submit" name="dataSendBooking" placeholder="Book">
+                                    <input type="submit" name="dataSendByPrice" placeholder="Book">
                                 </form>
 
                                 <?php
                                 echo "</div>";
-                                if (isset ($_POST["dataSendBooking"])) {
-
-                                    if ($mailClient = filter_input(INPUT_POST,"dataMail",FILTER_VALIDATE_EMAIL) && $data = filter_input(INPUT_POST,"dataDate",FILTER_SANITIZE_NUMBER_INT)){
-
-
-
-                                    }else {
-                                        echo '<script>   alert("email or data wrong");
-                                                     window.location = "booking.php?reloaded=yes";
-                                                  </script>';
-
-                                    }
-                                }
 
                                 $dbHandler = null;
                             }
