@@ -147,12 +147,16 @@ $fileSize = 4 * 1024 * 1024; //4MB
     <div class="deletePhoto">
         <form action="#" method="post" enctype="multipart/form-data">
             <select name="123" id="123" value="Delete">
-                <option value="photo1">Photo1</option>
-                <option value="photo2">Photo2</option>
-                <option value="photo3">Photo3</option>
-                <option value="photo4">Photo4</option>
-                <option value="photo5">Photo5</option>
-                <option value="photo6">Photo6</option>
+                <?php
+                $arrayofImages = scandir($pictureHolder);
+                for ($i = 0; $i < count($arrayofImages); $i++) {
+                    if ($arrayofImages[$i] != '.' && $arrayofImages[$i] != '..') {
+                        echo '<option value="' . $arrayofImages[$i] . '">' . $arrayofImages[$i] . '</option>';
+                    }
+                }
+
+                ?>
+
             </select>
             <input type="submit" value="Delete" name="Delete">
         </form>
@@ -206,12 +210,12 @@ $fileSize = 4 * 1024 * 1024; //4MB
     <div class="deleteDocument">
         <form action="#" method="post" enctype="multipart/form-data">
             <select name="123" id="123" value="Delete">
-                <option value="photo1">Photo1</option>
-                <option value="photo2">Photo2</option>
-                <option value="photo3">Photo3</option>
-                <option value="photo4">Photo4</option>
-                <option value="photo5">Photo5</option>
-                <option value="photo6">Photo6</option>
+                <?php
+                $arrayofDocs = scandir($documentHolder);
+                for ($i = 2; $i < count($arrayofDocs); $i++) {
+                    echo '<option value="' . $arrayofDocs[$i] . '">' . $arrayofDocs[$i] . '</option>';
+                }
+                ?>
             </select>
             <input type="submit" value="Delete" name="deleteDoc">
         </form>
@@ -233,8 +237,6 @@ $fileSize = 4 * 1024 * 1024; //4MB
     }
 
     ?>
-
-
 
     <footer>
         <h1>Placeholder for actuall footer</h1>
