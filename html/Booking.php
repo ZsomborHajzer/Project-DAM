@@ -37,10 +37,18 @@
                 $(".subClass",this).hide();
             })
 
-
-
-
         });
+
+        // $(document).ready(function togglediv(id){
+        //     document.querySelectorAll("g-item").forEach(function(img)){
+        //         if(img.id == id){
+        //             div.style.display = div.style.display == "none" ? "block" : "none";
+        //         }else {
+        //             // Hide other DIVs
+        //             div.style.display = "none";
+        //         }
+        //     }
+        // });
     </script>
 </head>
 <body>
@@ -134,6 +142,9 @@
                                     $mail= filter_input(INPUT_POST, "dataNameOrEmail", FILTER_VALIDATE_EMAIL);
 
                                     $stmt->execute(["%$mail%"]);
+
+                                    $i=1;       //id for dropdown
+                                    $j=1;       //id for subclass
                                     while ($row = $stmt->fetch()) {
 
                                         echo "<div class= 'g-item'>";
@@ -142,11 +153,11 @@
                                         echo "<p class='g-p'>" .$row['dtEmail']."</p>";
                                         echo "<form>";
                                         echo "<p class='a-p' >Book Me</p>" ;
-                                        echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
+                                        echo "<a href='#'> <img id=".$i." class='a-mg' src='../images/dropdown.png'>"."</a>";
                                         echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>"."</a>";
                                         echo "</form>";
                                         echo "</div>";
-                                        echo "<div class='subClass'>";
+                                        echo "<div id=".$j." class='subClass'>";
                                         echo "<p class='s-content s-p'>Select the date of booking</p>";
                                         ?>
                                         <form class="s-content" method="post" action="#">
@@ -162,6 +173,7 @@
                                         </form>
 
                                         <?php
+                                    
                                         echo "</div>";
 
 
@@ -179,6 +191,8 @@
 
                                             }
                                         }
+                                    $i++;
+                                    $j++;
                                     }
                                     //if that is not correct then we will filter per Name
                                 }else if (filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS)){
@@ -190,6 +204,9 @@
                                     $name= filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
 
                                     $stmt->execute(["%$name%"]);
+
+                                    $i=1;
+                                    $j=1;
                                     while ($row = $stmt->fetch()) {
 
                                         echo "<div class= 'g-item'>";
@@ -198,11 +215,11 @@
                                         echo "<p class='g-p'>" .$row['dtEmail']."</p>";
                                         echo "<form>";
                                         echo "<p class='a-p' >Book Me</p>" ;
-                                        echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
+                                        echo "<a href='#'> <img id=".$i."class='a-mg'  src='../images/dropdown.png'>"."</a>";
                                         echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>"."</a>";
                                         echo "</form>";
                                         echo "</div>";
-                                        echo "<div class='subClass'>";
+                                        echo "<div id=".$j." class='subClass'>";
                                         echo "<p class='s-content s-p'>Select the date of booking</p>";
                                         ?>
                                         <form class="s-content" method="post" action="#">
@@ -232,6 +249,8 @@
 
                                             }
                                         }
+                                    $i++;
+                                    $j++;
                                     }
                                    
                                 }    //If it's a specialty
@@ -282,6 +301,9 @@
                                 $name= filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
 
                                 $stmt->execute();
+
+                                $i=1;
+                                $j=1;
                                 while ($row = $stmt->fetch()) {
 
                                     echo "<div class= 'g-item'>";
@@ -290,11 +312,11 @@
                                     echo "<p class='g-p'>" .$row['dtEmail']."</p>";
                                     echo "<form>";
                                     echo "<p class='a-p' >Book Me</p>" ;
-                                    echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
+                                    echo "<a href='#'> <img id=".$i." class='a-mg' src='../images/dropdown.png'>"."</a>";
                                     echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>"."</a>";
                                     echo "</form>";
                                     echo "</div>";
-                                    echo "<div class='subClass'>";
+                                    echo "<div id=".$j." class='subClass'>";
                                     echo "<p class='s-content s-p' >Select the date of booking</p>";
                                     ?>
                                         <form class="s-content" method="post" action="#">
@@ -323,6 +345,8 @@
 
                                         }
                                     }
+                                $i++;
+                                $j++;
                                 }
                             }else{
 
@@ -332,6 +356,7 @@
 
                             $name= filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
 
+                            $i=1;
                             $stmt->execute(["$sanitzeOption"]);
                             while ($row = $stmt->fetch()) {
                                 //<option disabled selected value> -- select an option --</option>
@@ -341,11 +366,11 @@
                                 echo "<p class='g-p'>" .$row['dtEmail']."</p>";
                                 echo "<form>";
                                 echo "<p class='a-p' >Book Me</p>" ;
-                                echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
+                                echo "<a href='#'> <img id=".$i." class='a-mg' src='../images/dropdown.png'>"."</a>";
                                 echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>"."</a>";
                                 echo "</form>";
                                 echo "</div>";
-                                echo "<div class='subClass'>";
+                                echo "<div id=".$j." class='subClass'>";
                                 echo "<p class='s-content s-p' >Select the date of booking</p>";
                                 ?>
                                     <form class="s-content" method="post" action="#">
@@ -377,14 +402,14 @@
                                 }
 
                                 $dbHandler = null;
+                            $i++;
+                            $j++;
                             }
-                            }
-
-
                         }
-
-
                     }
+
+
+                }
 
                     $dbHandler = null;
                     ?>
