@@ -20,6 +20,7 @@ if (isset($_POST["docUpload"])) {
     header("Location: private.php");
 }
 
+//double refresh is required apperantly at all new file uploads
 if (isset($_POST["deletePic"])) {
     header("Location: private.php");
 }
