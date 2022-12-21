@@ -1,8 +1,6 @@
    
    <?php
 
-    //Check for POST request by user
-
     //If The update profile pic button was pressed then...
     if (isset($_POST['newProfilePic'])) {
 
