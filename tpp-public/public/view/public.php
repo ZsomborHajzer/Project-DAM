@@ -7,12 +7,12 @@ There are a lot of placeholders such as name and email and other info that will 
 
 // variables needed for later
 $arrayofImages = [];
-$pictureHolder = "pictureholder/";
-$documentHolder = "documentholder/";
+$pictureHolder = "../img/pictureholder/";
+$documentHolder = "../img/documentholder/";
 $files = [];
 $sessionID = 12; // only temporarly. to be repalced with other variable like $_SESSION[ID];
 
-require "../components/dbConnect.php"
+require "../../components/dbConnect.php"
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +23,7 @@ require "../components/dbConnect.php"
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talent personal page</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -34,7 +34,7 @@ require "../components/dbConnect.php"
         </header>
 
         <div class="profileImage">
-            <img src="profileimg/img0.gif" alt="" width=200 height=200 />
+            <img src="../img/profileimg/img0.gif" alt="" width=200 height=200 />
         </div>
 
         <?php
@@ -60,7 +60,7 @@ require "../components/dbConnect.php"
         </div>
 
         <div class="email">
-            <p>Email address: <a href="mailto:testemail@adus.com"><?php echo $posts["dtEmail"]; ?></a></p>
+            <p>Email address: <a href="mailto:<?php echo $posts["dtEmail"] ?>"><?php echo $posts["dtEmail"]; ?></a></p>
         </div>
 
         <div class="photoTitle">
@@ -129,7 +129,7 @@ require "../components/dbConnect.php"
 
                     // html gibberish
                     echo "<div class='docPics'>";
-                    echo "<a href='documentholder/doc1.docx' download><img src='stockphotoholder/docxstockphoto.png'  height = 250  width = 200 /></a>";
+                    echo "<a href=' ../img/documentholder/doc1.docx' download><img src='../img/stockphotoholder/docxstockphoto.png'  height = 250  width = 200 /></a>";
                     echo "<figcaption>" . $arrayofDocs[$i] . "</figcaption>";
                     echo "</div>";
                 }
