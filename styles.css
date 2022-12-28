@@ -30,7 +30,7 @@ body{
 }
 .loginForm .inputField input::placeholder {
     text-transform: uppercase;
-    font-family: 'Inter', serif;
+    font-family: serif;
     font-style: normal;
     font-weight: 400;
     font-size: 1.5vw;
