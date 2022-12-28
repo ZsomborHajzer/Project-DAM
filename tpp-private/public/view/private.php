@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 /*
 This is the private talent page where seperate talents will have different seperate personal pages
 This is the area where they can upload images of themselfs and their own documnets. They are also able to 
@@ -25,6 +27,9 @@ if (isset($_POST["deletePic"])) {
     header("Location: private.php");
 }
 
+//Database connect
+require_once "../../components/dbConnect.php";
+
 $arrayofImages = [];
 $pictureHolder = "../img/pictureholder/";
 $documentHolder = "../img/documentholder/";
@@ -35,6 +40,10 @@ $stockDocumentLocation = "../img/stockphotoholder/";
 $files = [];
 $profileFiles = [];
 $fileSize = 4 * 1024 * 1024; //4MB
+
+//Session variables
+$sessionID = 12  //$_SESSION["ID"]; for now it is 12 but once log in page is done this can be dynamic
+
 ?>
 
 <!DOCTYPE html>
@@ -64,13 +73,28 @@ $fileSize = 4 * 1024 * 1024; //4MB
                         ?> alt="" width=200 height=200 />
         </div>
 
+        <?php
+        //This is query requesting information from user database 
+        $query = 'SELECT * FROM tblUser WHERE idUser= ' . $sessionID . ';';
+        $stmt = $dbHandler->prepare($query);
+        $stmt->execute();
+        $posts = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //This is to get the description based on the value get from fiSpecialty
+        $query2 = 'SELECT * FROM tblSpecialty WHERE idSpecialty = ' . $posts["fiSpecialty"] . '  ';
+        $stmt2 = $dbHandler->prepare($query2);
+        $stmt2->execute();
+        $talents = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+        ?>
+
         <div class="talentInfo">
-            <p>Insert talent fname/lname</p>
-            <p><b>Specialities: </b>Guitar, Singer, Songwriter, Actor </p>
+            <p><?php echo $posts["dtFirstName"] . "&nbsp" . $posts["dtLastName"]; ?></p>
+            <p><b>Speciality: </b> <?php echo $talents["dtDescription"]; ?></p>
         </div>
 
         <div class="email">
-            <p>Email address: <a href="mailto:testemail@adus.com">testemail@adus.com</a></p>
+            <p>Email address: <a href="mailto:testemail@adus.com"><?php echo $posts["dtEmail"]; ?></a></p>
         </div>
 
         <!-- This part should only allow one profile image, meaning if one is uploaded, the previous one is deleted-->
@@ -85,7 +109,7 @@ $fileSize = 4 * 1024 * 1024; //4MB
             <h1><b>Photos</b></h1>
         </div>
 
-        < <div class="photoHolder">
+        <div class="photoHolder">
 
             <!--  first img should be this one for talents so they can add more images later on to the project  -->
 
@@ -143,126 +167,126 @@ $fileSize = 4 * 1024 * 1024; //4MB
             }
 
             ?>
-    </div>
+        </div>
 
-    <div class="deletePhotoTitle">
-        <h1><b>Delete a photo</b></h1>
-    </div>
+        <div class="deletePhotoTitle">
+            <h1><b>Delete a photo</b></h1>
+        </div>
 
-    <div class="deletePhoto">
-        <form action="#" method="post" enctype="multipart/form-data">
-            <select name="deletePic" id="deletePic" value="Delete">
-                <?php
-                $arrayofImages = scandir($pictureHolder);
-                for ($i = 0; $i < count($arrayofImages); $i++) {
-                    if ($arrayofImages[$i] != '.' && $arrayofImages[$i] != '..') {
-                        echo '<option value="' . $arrayofImages[$i] . '">' . $arrayofImages[$i] . '</option>';
+        <div class="deletePhoto">
+            <form action="#" method="post" enctype="multipart/form-data">
+                <select name="deletePic" id="deletePic" value="Delete">
+                    <?php
+                    $arrayofImages = scandir($pictureHolder);
+                    for ($i = 0; $i < count($arrayofImages); $i++) {
+                        if ($arrayofImages[$i] != '.' && $arrayofImages[$i] != '..') {
+                            echo '<option value="' . $arrayofImages[$i] . '">' . $arrayofImages[$i] . '</option>';
+                        }
                     }
+
+                    ?>
+
+                </select>
+                <input type="submit" value="Delete" name="Delete">
+            </form>
+        </div>
+
+        <div class=" documentsTitle">
+            <h1>Documents</h1>
+        </div>
+
+        <div class="documents">
+
+            <?php
+
+            // check if documentholder location exists
+            if (is_dir($documentHolder)) {
+
+                // puts the name of the docs into the array $arrayofDocs
+                $arrayofDocs = scandir($documentHolder);
+
+                // count the number of docs in the array (starts at two because of the invisible docs '.' and '..')
+                for ($i = 2; $i < count($arrayofDocs); $i++) {
+
+                    // html gibberish
+                    echo '<div class="docPics">';
+                    echo "<a href='" . $documentHolder . $arrayofDocs[$i] . "' download><img src='" . $stockDocumentLocation . "/docxstockphoto.png'  height = 250  width = 200 /></a>";
+                    echo '<figcaption>' . $arrayofDocs[$i] . '</figcaption>';
+                    echo '</div>';
                 }
+            }
 
-                ?>
+            ?>
 
-            </select>
-            <input type="submit" value="Delete" name="Delete">
-        </form>
-    </div>
+            <!--  add doc image on the bottom -->
+            <div class="addDoc">
+                <form action="#" method="post" enctype="multipart/form-data">
+                    <label>
+                        <input type="file" name="uploadDoc" onchange="this.form.submit()" id="" style="display:none">
+                        <img src=<?php echo $addDocLocation; ?> alt="" height="200" width="200">
+                        <input type="hidden" name="docUpload" value="docUpload">
+                        <figcaption>
+                            <p>Add a new document</p>
+                        </figcaption>
+                    </label>
+            </div>
 
-    <div class=" documentsTitle">
-        <h1>Documents</h1>
-    </div>
+        </div>
+        <div class="deleteDocumentTitle">
+            <h1><b>Delete a Document</b></h1>
+        </div>
 
-    <div class="documents">
+        <div class="deleteDocument">
+            <form action="#" method="post" enctype="multipart/form-data">
+                <select name="deleteDoc" id="deleteDoc" value="Delete">
+                    <?php
+                    $arrayofDocs = scandir($documentHolder);
+                    for ($i = 2; $i < count($arrayofDocs); $i++) {
+                        echo '<option value="' . $arrayofDocs[$i] . '">' . $arrayofDocs[$i] . '</option>';
+                    }
+                    ?>
+                </select>
+                <input type="submit" value="Delete" name="deleteDocSubmit">
+            </form>
+        </div>
+
 
         <?php
-
-        // check if documentholder location exists
-        if (is_dir($documentHolder)) {
-
-            // puts the name of the docs into the array $arrayofDocs
-            $arrayofDocs = scandir($documentHolder);
-
-            // count the number of docs in the array (starts at two because of the invisible docs '.' and '..')
-            for ($i = 2; $i < count($arrayofDocs); $i++) {
-
-                // html gibberish
-                echo '<div class="docPics">';
-                echo "<a href='" . $documentHolder . $arrayofDocs[$i] . "' download><img src='" . $stockDocumentLocation . "/docxstockphoto.png'  height = 250  width = 200 /></a>";
-                echo '<figcaption>' . $arrayofDocs[$i] . '</figcaption>';
-                echo '</div>';
+        //Delete Picture part
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["deletePic"])) {
+                $deletePic = $_POST["deletePic"];
+                @(unlink("../img/pictureholder/" . $deletePic . ""));
             }
+
+            if (isset($_POST["deleteDocSubmit"])) {
+                print_r($_POST);
+                $deleteDoc = $_POST["deleteDoc"];
+                @(unlink("../img/documentholder/" . $deleteDoc . ""));
+            }
+        }
+
+
+
+
+        //Require files to lessen the amount of code in one page
+        if (isset($_POST["imgUpload"])) {
+            require "../../components/photoAdd.php";
+        }
+
+        if (isset($_POST["docUpload"])) {
+            require "../../components/documentAdd.php";
+        }
+
+        if (isset($_POST["newProfilePic"])) {
+            require "../../components/profileUpload.php";
         }
 
         ?>
 
-        <!--  add doc image on the bottom -->
-        <div class="addDoc">
-            <form action="#" method="post" enctype="multipart/form-data">
-                <label>
-                    <input type="file" name="uploadDoc" onchange="this.form.submit()" id="" style="display:none">
-                    <img src=<?php echo $addDocLocation; ?> alt="" height="200" width="200">
-                    <input type="hidden" name="docUpload" value="docUpload">
-                    <figcaption>
-                        <p>Add a new document</p>
-                    </figcaption>
-                </label>
-        </div>
-
-    </div>
-    <div class="deleteDocumentTitle">
-        <h1><b>Delete a Document</b></h1>
-    </div>
-
-    <div class="deleteDocument">
-        <form action="#" method="post" enctype="multipart/form-data">
-            <select name="deleteDoc" id="deleteDoc" value="Delete">
-                <?php
-                $arrayofDocs = scandir($documentHolder);
-                for ($i = 2; $i < count($arrayofDocs); $i++) {
-                    echo '<option value="' . $arrayofDocs[$i] . '">' . $arrayofDocs[$i] . '</option>';
-                }
-                ?>
-            </select>
-            <input type="submit" value="Delete" name="deleteDocSubmit">
-        </form>
-    </div>
-
-
-    <?php
-    //Delete Picture part
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST["deletePic"])) {
-            $deletePic = $_POST["deletePic"];
-            @(unlink("../img/pictureholder/" . $deletePic . ""));
-        }
-
-        if (isset($_POST["deleteDocSubmit"])) {
-            print_r($_POST);
-            $deleteDoc = $_POST["deleteDoc"];
-            @(unlink("../img/documentholder/" . $deleteDoc . ""));
-        }
-    }
-
-
-
-
-    //Require files to lessen the amount of code in one page
-    if (isset($_POST["imgUpload"])) {
-        require "../../components/photoAdd.php";
-    }
-
-    if (isset($_POST["docUpload"])) {
-        require "../../components/documentAdd.php";
-    }
-
-    if (isset($_POST["newProfilePic"])) {
-        require "../../components/profileUpload.php";
-    }
-
-    ?>
-
-    <footer>
-        <h1>Placeholder for actuall footer</h1>
-    </footer>
+        <footer>
+            <h1>Placeholder for actuall footer</h1>
+        </footer>
 
     </div>
 
