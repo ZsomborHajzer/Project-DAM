@@ -22,7 +22,7 @@ body{
     color: #1162AD;
 }
 .loginForm .content {
-    padding: 35px;
+    padding: 5vw;
     text-align: center;
 }
 .loginForm .inputField {
@@ -36,4 +36,29 @@ body{
     font-size: 1.5vw;
     text-align: center;
 }
+.loginForm .action {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+}
+.loginForm .action button {
+    width: 50%;
+    border: none;
+    padding: 2vw;
+    font-family: sans-serif;
+    cursor: pointer;
+    text-transform: uppercase;
+    background: #6FA8DC;
+    color: #000000;
+    letter-spacing: 0.2px;
+    outline: 0;
+    transition: all .3s;
+    aligns: center;
+    margin: auto;
+}
+.loginForm .action button:hover {
+    background: #4893d7;
+}
+
 
