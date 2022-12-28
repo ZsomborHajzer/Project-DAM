@@ -19,17 +19,12 @@ if ($_FILES[$uploadDoc]["error"] == 0) {
                 //move_uploaded_file is a function that checks if the file was uploaded a secure way and if it was it will move it to the designated place. The first parameter checks if it was uploaded using a post mechanism, the second parameter transfers it to the designated file holder. If this function passes, it returns a true. if it does not it returns a false.
                 if (move_uploaded_file($_FILES[$uploadDoc]["tmp_name"], $documentLocation . $_FILES[$uploadDoc]["name"])) {
                 } else {
-                    echo "Something went wrong";
                 }
             } else {
-                echo "IT is already there";
             }
         } else {
-            echo "Invalid file type. Must be gif, jpeg or jpg or png";
         }
     } else {
-        echo "File size too larg";
     }
 } else {
-    echo "There was an unexpected error try again";
 }

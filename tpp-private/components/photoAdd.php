@@ -23,11 +23,8 @@ if ($_FILES["uploadImg"]["error"] == 0) {
             } else {
             }
         } else {
-            echo "Invalid file type. Must be gif, jpeg or jpg or png";
         }
     } else {
-        echo "File size too larg";
     }
 } else {
-    echo "There was an unexpected error try again";
 }
