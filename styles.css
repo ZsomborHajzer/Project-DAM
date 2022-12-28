@@ -9,7 +9,7 @@ body{
 .loginForm {
     background: #fff;
     width: 50vw;
-    margin: 6vw auto;
+    margin: 4vw auto;
     display: flex;
     flex-direction: column;
     border-radius: 4px;
@@ -17,7 +17,7 @@ body{
 }
 .loginForm h1 {
     text-align: center;
-    padding: 5vw;
+    padding: 4vw;
     font-weight: 400;
     color: #1162AD;
 }
@@ -26,7 +26,7 @@ body{
     text-align: center;
 }
 .loginForm .inputField {
-    padding: 4vw 2vw;
+    padding: 2vw 2vw;
 }
 .loginForm .inputField input::placeholder {
     text-transform: uppercase;
@@ -45,7 +45,7 @@ body{
 .loginForm .action button {
     width: 50%;
     border: none;
-    padding: 2vw;
+    padding: 1vw;
     font-family: sans-serif;
     cursor: pointer;
     text-transform: uppercase;
