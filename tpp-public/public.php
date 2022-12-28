@@ -10,6 +10,9 @@ $arrayofImages = [];
 $pictureHolder = "pictureholder/";
 $documentHolder = "documentholder/";
 $files = [];
+$sessionID = 12; // only temporarly. to be repalced with other variable like $_SESSION[ID];
+
+require "../components/dbConnect.php"
 ?>
 
 <!DOCTYPE html>
@@ -34,13 +37,30 @@ $files = [];
             <img src="profileimg/img0.gif" alt="" width=200 height=200 />
         </div>
 
+        <?php
+        //This is query requesting information from user database 
+        $query = 'SELECT * FROM tblUser WHERE idUser= ' . $sessionID . ';';
+        $stmt = $dbHandler->prepare($query);
+        $stmt->execute();
+        $posts = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //This is to get the description based on the value get from fiSpecialty
+        $query2 = 'SELECT * FROM tblSpecialty WHERE idSpecialty = ' . $posts["fiSpecialty"] . '  ';
+        $stmt2 = $dbHandler->prepare($query2);
+        $stmt2->execute();
+        $talents = $stmt2->fetch(PDO::FETCH_ASSOC);
+        ?>
+
+
         <div class="talentInfo">
-            <p>fName lName</p>
-            <p><b>Specialities: </b>Guitar, Singer, Songwriter, Actor </p>
+            <?php
+            echo "<p>" . $posts["dtFirstName"] . "&nbsp" . $posts["dtLastName"] . "</p>";
+            echo " <p><b>Specialities: </b>" . $talents["dtDescription"] . "</p>";
+            ?>
         </div>
 
         <div class="email">
-            <p>Email address: <a href="mailto:testemail@adus.com">testemail@adus.com</a></p>
+            <p>Email address: <a href="mailto:testemail@adus.com"><?php echo $posts["dtEmail"]; ?></a></p>
         </div>
 
         <div class="photoTitle">
