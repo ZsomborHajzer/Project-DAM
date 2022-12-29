@@ -31,15 +31,21 @@
                 if($(".subClass").is(":visible")){
                     $(".subClass").hide();
 
-                    $(".a-mg", this).show();
+                    $(".dropDownImg", this).show();
 
                     $(".dropUpImg", this).hide();
-                }
 
+                }
+                // else if($(".subClass").is(":hidden")){
+
+                //     $(".dropDownImg", this).show();
+
+                //     $(".dropUpImg", this).hide();
+                // }
                 else{
                     
                     $(".g-item > .subClass").fadeOut();
-                    $(".a-mg", this).hide();
+                    $(".dropDownImg", this).hide();
                     $(".dropUpImg", this).show();
                     $(".subClass").prev()
                     $(this).next().fadeIn();
@@ -74,8 +80,8 @@
         <div class="nav-desktop">
 
             <ul>
-                <li class="active"><a href="index.html">Home</a></li>
-                <li><a href="Booking.php">Book here</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href="Booking.php">Book here</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">Login</a></li>
             </ul>
@@ -163,11 +169,11 @@
                     echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
                     echo "<form>";
                     echo "<p class='a-p' >Book Me</p>";
-                    echo "<a href='#'> <img id=" . "  class='a-mg' src='../images/dropdown.png'>" . "</a>";
+                    echo "<a href='#'> <img class='a-mg dropDownImg' src='../images/dropdown.png'>" . "</a>";
                     echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>" . "</a>";
                     echo "</form>";
                     echo "</div>";
-                    echo "<div id=" . " class='subClass'>";
+                    echo "<div class='subClass'>";
                     echo "<p class='s-content s-p'>Select the date of booking</p>";
                     ?>
 
@@ -227,11 +233,11 @@
                         echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
                         echo "<form>";
                         echo "<p class='a-p' >Book Me</p>";
-                        echo "<a href='#'> <img id=" . " class='a-mg'  src='../images/dropdown.png'>" . "</a>";
-                        echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>" . "</a>";
+                        echo "<a href='#'> <img class= 'a-mg dropDownImg'  src='../images/dropdown.png'>" . "</a>";
+                        echo "<a href='#'> <img class= 'a-mg dropUpImg' src='../images/dropUp.png'>" . "</a>";
                         echo "</form>";
                         echo "</div>";
-                        echo "<div id=" . " class='subClass'>";
+                        echo "<div class='subClass'>";
                         echo "<p class='s-content s-p'>Select the date of booking</p>";
                         ?>
 
@@ -333,12 +339,12 @@
                                     echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
                                     echo "<form>";
                                     echo "<p class='a-p' >Book Me</p>";
-                                    echo "<a href='#'> <img id=" . " class='a-mg' src='../images/dropdown.png'>" . "</a>";
+                                    echo "<a href='#'> <img class='a-mg dropDownImg' src='../images/dropdown.png'>" . "</a>";
                                     echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>" . "</a>";
                                     echo "</form>";
                                     echo "</div>";
-                                    echo "<div id=" . " class='subClass'>";
-                                    echo "<p class='s-content s-p' >Select the date of booking</p>";
+                                    echo "<div class= 'subClass'>";
+                                    echo "<p class= 's-content s-p' >Select the date of booking</p>";
                                     ?>
 
                                     <form class="s-content" method="post" class="s-content"
@@ -399,7 +405,7 @@
                             echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
                             echo "<form>";
                             echo "<p class='a-p' >Book Me</p>";
-                            echo "<a href='#'> <img id=" . " class='a-mg' src='../images/dropdown.png'>" . "</a>";
+                            echo "<a href='#'> <img class='a-mg dropDownImg' src='../images/dropdown.png'>" . "</a>";
                             echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>" . "</a>";
                             echo "</form>";
                             echo "</div>";
