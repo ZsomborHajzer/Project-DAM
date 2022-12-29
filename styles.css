@@ -14,27 +14,24 @@ body{
     flex-direction: column;
     border-radius: 4px;
     box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
+    padding-bottom: 5vw;
 }
 .loginForm h1 {
     text-align: center;
-    padding: 4vw;
+    padding-top: 6vw;
     font-weight: 400;
     color: #1162AD;
 }
 .loginForm .content {
     padding: 5vw;
-    text-align: center;
+
 }
 .loginForm .inputField {
     padding: 2vw 2vw;
 }
-.loginForm .inputField input::placeholder {
-    text-transform: uppercase;
-    font-family: serif;
-    font-style: normal;
+.loginForm .inputField label {
+    color: #464646;
     font-weight: 400;
-    font-size: 1.5vw;
-    text-align: center;
 }
 .loginForm .action {
     display: flex;
@@ -60,5 +57,16 @@ body{
 .loginForm .action button:hover {
     background: #4893d7;
 }
+#inputField1{
+    background: lightgray;
+    border: none;
+    height: 3vw;
+    width: 100%;
+}
+#inputField2{
+    background: lightgray;
+    border: none;
+    height: 3vw;
+    width: 100%;
 
-
+}
