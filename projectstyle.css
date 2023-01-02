@@ -1,0 +1,114 @@
+/*the Font used for the entire project*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    margin: 0;
+}
+
+/*-------------------------*/
+/*font for text in body*/
+/*-------------------------*/
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #E4EAFF;
+}
+
+/*-------------------------*/
+/*Main grid for the website*/
+/*-------------------------*/
+
+#mainBody {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-row-gap: 5vw;
+}
+
+#bannerTitle > h2 {
+    font-size: 1.2em;
+}
+
+#bannerTitle {
+    color: #464646;
+    grid-column: 2/6;
+    align-items: center;
+}
+
+#bannerTitle > h1 {
+    text-align: center;
+    color: #1162AD;
+    font-size: 4em !important;
+}
+
+/*-------------------------*/
+/*Style for the pictures and upper text*/
+/*-------------------------*/
+
+#pictures {
+    grid-column: 1/7;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 7vw;
+    padding-left: 7vw;
+}
+
+#pictures > img {
+    width: 25vw;
+}
+
+#leftText {
+    margin-left: 5vw;
+    grid-column: 1/3;
+    display: flex;
+}
+
+#leftText > p {
+    display: flex;
+}
+
+#rightPicture {
+    grid-column: 5/7;
+    max-height: 5vw;
+    padding-right: 5vw;
+}
+
+#rightPicture > img {
+    max-width: 100%;
+ }
+
+/*-------------------------*/
+/*graph bubble*/
+/*-------------------------*/
+
+#graph {
+    margin-left: 5vw;
+    background-color: #dee1ec;
+    color: #1162ad;
+    grid-column: 1/3;
+    border-radius: 3vw;
+    padding: 2vw;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+}
+
+#graph > p {
+    text-align: center;
+    align-self: center;
+}
+
+#rightText {
+    grid-column: 5/7;
+    padding-right: 5vw;
+}
+
+/*-------------------------*/
+/*bottom text location and style*/
+/*-------------------------*/
+
+#bottomText {
+    grid-column: 1/7;
+    padding-right: 3vw;
+    padding-left: 3vw;
+    margin-bottom: 2vw;
+}
