@@ -6,5 +6,37 @@ body{
 #emailSearch{
 	grid-column: 3/5;
 	width: 100%;
-	height: auto;
+	height: 5vw;
+}
+.profileBox{
+	grid-column: 3/5;
+	width: 100%;
+	height: 30vw;
+	background-color: white;
+}
+.talentProfile{
+	width: 100%;
+	height: 13vw;
+	margin: 1vw;
+}
+#talentProfilePicture {
+	width: 6vw;
+	height: 6vw;
+
+}
+
+#inactiveButton{
+	border: none;
+	width: 19vw;
+	height: 5vw;
+	margin-left: 6.5vw;
+	background: #6FA8DC;
+}
+#activeButton{
+	border: none;
+	width: 19vw;
+	height: 5vw;
+	margin-top: 3vw;
+	margin-left: 6.5vw;
+	background: #6FA8DC;
 }
