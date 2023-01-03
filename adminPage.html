@@ -2,22 +2,23 @@
 <html>
 	<head>
 
-
+		<link rel="stylesheet" href="css/adminPageCss.css" />
 	</head>
 
 	<body>
-		<form>
-			<label id="emailSearch" for="talentEmail">Search by email</label>
-			<input type="email" name="talentEmail">
-			<input type="submit" value="Enter">
+		<form id="emailSearch">
+			<label id="emailSearchLabel" for="talentEmail">Search by email</label>
+			<input id="searchBar" type="email" name="talentEmail" placeholder="Email">
+			<input id="submitTalentEmail" type="submit" value="Enter">
 		</form>
 
 		<div class="profileBox">
 			<div class="talentProfile">
+				<img id="talentProfilePicture" src="imagePlaceholder/placeholder.jpg" alt="placeholder">
 			</div>
 			
-		<input type="button" id="inactivButton" value="Make Inactiv">
-		<input type="button" id="activeButton" value="Make Active">
+			<input type="button" id="inactiveButton" value="Make Inactive">
+			<input type="button" id="activeButton" value="Make Active">
 		</div>
 	</body>
 

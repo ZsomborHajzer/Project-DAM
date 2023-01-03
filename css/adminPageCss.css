@@ -3,3 +3,8 @@ body{
 	grid-template-columns: repeat(6, 1fr);
 	background-color:#E4EAFF;
 }
+#emailSearch{
+	grid-column: 3/5;
+	width: 100%;
+	height: auto;
+}
