@@ -1,0 +1,55 @@
+body{
+	padding: 0;
+	margin: 0;
+	color: #464646;
+}
+
+#container{
+	display: grid;
+	grid-template-columns: repeat(6,1fr);
+	background-color: #E4EAFF;
+}
+
+header{
+	grid-column: 1/7;
+}
+
+#profileInfo{
+	grid-column: 1/6;
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+.addImg{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 50px;
+	
+	height: 150px;
+	width: 150px;
+	background-color: #D9D9D9;
+}
+
+#form{
+	margin-left: 50px;
+}
+
+.addPictures{
+	grid-column: 1/7;
+}
+
+.addPicturesTitle{
+	margin-left: 50px;
+	color: #1162AD;
+}
+
+.addPics{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 50px;
+	
+	height: 150px;
+	width: 200px;
+	background-color: #D9D9D9;
