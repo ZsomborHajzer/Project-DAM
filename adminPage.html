@@ -1,15 +1,17 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 	<head>
-
+		<title>AdminPage</title>
 		<link rel="stylesheet" href="css/adminPageCss.css" />
 	</head>
 
 	<body>
 		<form id="emailSearch">
-			<label id="emailSearchLabel" for="talentEmailInput">Search by email</label>
-			<input id="talentEmailInput" type="email" name="talentEmailInput" placeholder="Email">
-			<input id="submitTalentEmail" type="submit" value="Enter">
+			<div class="formBox">
+				<div id="emailSearchLabel"><label  for="talentEmailInput">Search by email</label></div>
+				<div id="talentEmailInputDiv"><input id="talentEmailInput"  type="email" name="talentEmailInput" placeholder=""></div>
+				<input id="submitTalentEmail"  type="submit" value="Enter">
+			</div>
 		</form>
 
 		<div class="profileBox">
@@ -17,12 +19,14 @@
 				<img id="talentProfilePicture" src="imagePlaceholder/placeholder.jpg" alt="placeholder">
 				<p id="talentName">Kratos</p>
 				<p id="talentEmail">GodOfWar@gmail.com</p>
-				<p id="talentPassword">Password:</p>
-				<p id="talentRating">Rating:</p>
+				<p id="talentPassword">Password</p>
+				<p id="talentRating">Rating:****</p>
+
 			</div>
-			
+			<div id="activityButtons">
 			<input type="button" id="inactiveButton" value="Make Inactive">
 			<input type="button" id="activeButton" value="Make Active">
+			</div>
 		</div>
 	</body>
 
