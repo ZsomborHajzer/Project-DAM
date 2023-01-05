@@ -1,0 +1,120 @@
+body{
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	background-color:#E4EAFF;
+}
+#emailSearch{
+	grid-column: 2/6;
+	width: 100%;
+	height: 5vw;
+	align-self: center;
+
+}
+#emailSearchLabel{
+	background-color: cornflowerblue;
+	height: 1.6vw;
+	width: 9vw;
+	text-align: center;
+	margin-right: 20vw;
+}
+#emailSearchLabel,label{
+	padding-top: 0.5vw;
+}
+#talentEmailInput{
+	background: cornflowerblue;
+	height: 1.9vw;
+	width: 9vw;
+	border-style: none;
+	margin-right: 20vw;
+}
+#submitTalentEmail{
+	background: cornflowerblue;
+	height: 2vw;
+	width: 9.2vw;
+	border-style: none;
+}
+.formBox{
+	display: flex;
+	flex-direction: row;
+	grid-column: 2/6;
+}
+.profileBox{
+	grid-column: 2/6;
+	width: 100%;
+	height: 30vw;
+	background-color: white;
+}
+.talentProfile{
+	/*
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	 */
+	display: flex;
+	flex-direction: column;
+	column-count: 3;
+	flex-wrap: wrap;
+	margin: 1vw;
+	width: 64vw;
+	height: 13vw;
+	align-self: center;
+	align-items: stretch;
+
+
+}
+
+#activityButtons{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+#inactiveButton{
+	border: none;
+	width: 19vw;
+	height: 5vw;
+
+	background: #6FA8DC;
+}
+#activeButton{
+	border: none;
+	width: 19vw;
+	height: 5vw;
+	margin-top: 3vw;
+
+	background: #6FA8DC;
+}
+#talentName {
+	width: 2.5vw;
+	height: 1vw;
+	/*grid-column:2/2;
+	grid-row:1/2;
+
+	 */
+}
+#talentEmail{
+	width: 8vw;
+	height: 1vw;
+	/*grid-column:2/2;*/
+}
+#talentPassword{
+	width: 5vw;
+	height: 1vw;
+/*grid-column:2/2;
+
+ */
+}
+#talentRating{
+	width: 2.5vw;
+	height: 1vw;
+/*grid-column:3/3;
+
+ */
+}
+#talentProfilePicture {
+	width: 6vw;
+	height: 6vw;
+
+/*grid-column:1/2;
+grid-row:1/2;
+
+ */
+}
