@@ -55,10 +55,10 @@
 
 				<?php
 
-					$dsn="mysql:host=127.0.0.1; dbname=dbprojectterm2";
+					$dsn="mysql:host=localhost;dbname=dbprojectterm2";
 					$user= "root";
 					$passwd = "";
-					$dbhandler = new PDO($dsn, $user, $passwd);
+					$dbHandler = new PDO($dsn, $user, $passwd);
 				
 				
 				if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -113,23 +113,30 @@
 							// echo "<b>debug1 line 109</b>";
 								//Make a query to add the data to tbluser
 								//first check if user email exists in the database
-					
+								echo "Entered email is ".$dtEmail;
 								try{ 
 							
-									$exist = $dbhandler ->prepare("SELECT 
-									COUNT(*) FROM tbluser (idUser, dtName, dtLastName, dtEmail, dtPassword, dtIsAdmin, dtActive, dtRating, dtImage, dtPrice, fiSpeciality, dtNumber)
-															WHERE dtEmail LIKE ?");
+									$stmt = $dbHandler-> prepare("SELECT dtEmail FROM tbluser WHERE dtEmail =:email");
+									
+									$stmt->bindParam("email", $dtEmail);
+
+									$stmt-> execute();
+									// $exist = $dbhandler ->prepare("SELECT 
+									// COUNT(*) FROM tbluser (idUser, dtName, dtLastName, dtEmail, dtPassword, dtIsAdmin, dtActive, dtRating, dtImage, dtPrice, fiSpeciality, dtNumber)
+									// 						WHERE dtEmail LIKE ?");
 
 									// $exist->bindParam("dtEmail", $dtEmail);
 
 									// echo "<b>debug1 line123</b>";
-									$exist-> execute(["$dtEmail"]);
+									// $exist-> execute(["$dtEmail"]);
 									// echo "<b>debug2</b>";
-									$res = $exist->fetchall();
-
-									if(empty($res["dtEmail"])){
+									// $res = $exist->fetchall();
+									// var_dump($stmt);
+									$res = $stmt-> fetchall();
+									var_dump($res);
+									if(empty($res)){
 										echo "<b>debug3</b>";
-										$add = $dbhandler -> prepare("INSERT INTO tbluser(dtName, dtLastName, dtEmail, dtPassword, dtIsAdmin, fiSpeciality, dtNumber)
+										$add = $dbHandler -> prepare("INSERT INTO tbluser(dtName, dtLastName, dtEmail, dtPassword, dtIsAdmin, fiSpeciality, dtNumber)
 																VALUES(:dtName, :dtLastName, :dtEmail, :dtPassword, :dtIsAdmin, :fiSpecialty :dtNumber)");
 										$add->bindParam("dtName", $fname);
 										$add->bindParam("dtLastName", $lname);
