@@ -136,7 +136,7 @@
                 <div class="gen-content">
                     <?php
 
-                    $dsn = "mysql:host=localhost;dbname=dbprojectterm2";
+                    $dsn = "mysql:host=localhost;dbname=databaseproject2";
                     $user = "root";
                     $passwd = "";
 
@@ -164,7 +164,7 @@
 
                     echo "<div class= 'g-item'>";
                     echo "<img class='g-img' src=" . $row['dtImage'] . ">";
-                    echo "<p class='g-p'>" . $row['dtName'] . " " . $row['dtLastName'] . "</p>";
+                    echo "<a class='g-p'><a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtName'] . " " . $row['dtLastName'] . "</a></p>";
                     echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
                     echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
                     echo "<form>";
@@ -228,7 +228,7 @@
 
                         echo "<div class= 'g-item'>";
                         echo "<img class='g-img' src=" . $row['dtImage'] . ">";
-                        echo "<p class='g-p'>" . $row['dtName'] . " " . $row['dtLastName'] . "</p>";
+                        echo "<p class='g-p'> <a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtName'] . " " . $row['dtLastName'] . "</a></p>";
                         echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
                         echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
                         echo "<form>";
@@ -334,7 +334,7 @@
 
                                     echo "<div class= 'g-item'>";
                                     echo "<img class='g-img' src=" . $row['dtImage'] . ">";
-                                    echo "<p class='g-p'>" . $row['dtName'] . " " . $row['dtLastName'] . "</p>";
+                                    echo "<p class='g-p'> <a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" .$row['dtName'] . " " . $row['dtLastName'] . "</a></p>";
                                     echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
                                     echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
                                     echo "<form>";
@@ -400,7 +400,7 @@
                             //<option disabled selected value> -- select an option --</option>
                             echo "<div class= 'g-item'>";
                             echo "<img class='g-img' src=" . $row['dtImage'] . ">";
-                            echo "<p class='g-p'>" . $row['dtName'] . " " . $row['dtLastName'] . "</p>";
+                            echo "<p class='g-p'><a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtName'] . " " . $row['dtLastName'] . "</a></p>";
                             echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
                             echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
                             echo "<form>";
