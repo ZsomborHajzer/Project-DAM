@@ -94,7 +94,7 @@
 					if(!$specialty = filter_input(INPUT_POST, "dataSpecialties", FILTER_SANITIZE_SPECIAL_CHARS)){
 						$err[] = "Enter a specialty";
 					}
-					// echo "<b>debug1 line 97</b>";	
+	
 					$password = filter_input(INPUT_POST, 'dataPassword') ;
 
 					$uppercase = preg_match('@[A-Z]@', $password);
@@ -102,94 +102,84 @@
                     $number = preg_match('@[0-9]@', $password);
 
 					
-						// echo "<b>debug1 line 108</b>";
-						// var_dump($err);
-						if(count($err) == 0){
+					if(count($err) == 0){
 
-							if(!$uppercase || !$lowercase || !$number || strlen($password)<8){
+						if(!$uppercase || !$lowercase || !$number || strlen($password)<8){
 								echo   "The password should be atleast 8 characters in length and 
 										contain atleast one uppercase, one lowercase, one number ";
-							}else{
-							// echo "<b>debug1 line 109</b>";
-								//Make a query to add the data to tbluser
-								//first check if user email exists in the database
-								echo "Entered email is ".$dtEmail;
-								try{ 
-							
-									$stmt = $dbHandler-> prepare("SELECT dtEmail FROM tbluser WHERE dtEmail =:email");
+						}else{
+								
+						echo "Entered email is ".$dtEmail;
+						try{ 
+									//Checks if an email exists
+								$stmt = $dbHandler-> prepare("SELECT dtEmail FROM tbluser WHERE dtEmail =:email");
 									
-									$stmt->bindParam("email", $dtEmail);
+								$stmt->bindParam("email", $dtEmail);
 
-									$stmt-> execute();
-									// $exist = $dbhandler ->prepare("SELECT 
-									// COUNT(*) FROM tbluser (idUser, dtName, dtLastName, dtEmail, dtPassword, dtIsAdmin, dtActive, dtRating, dtImage, dtPrice, fiSpeciality, dtNumber)
-									// 						WHERE dtEmail LIKE ?");
+								$stmt-> execute();
 
-									// $exist->bindParam("dtEmail", $dtEmail);
-
-									// echo "<b>debug1 line123</b>";
-									// $exist-> execute(["$dtEmail"]);
-									// echo "<b>debug2</b>";
-									// $res = $exist->fetchall();
-									// var_dump($stmt);
-									$res = $stmt-> fetchall();
-									var_dump($res);
-									if(empty($res)){
+								$res = $stmt-> fetchall();
+				
+								if(empty($res)){ //If email does not exist in db table
 
 										//PDO stmt to check if a description exists, if not insert into specialty table
 										//then identify the id of the description & enter it into 
-										//change fiSpecialty to reference description & make description primary key
+									
+									$stm = $dbHandler -> prepare("SELECT idSpecialty FROM tblSpecialty WHERE dtDescription LIKE ?");
 
-										$stm = $dbHandler -> prepare("SELECT idSpecialty FROM tblSpecialty WHERE dtDescription LIKE ?");
+									$stm->execute(["%$specialty%"]);
 
-										$stm->execute(["%$specialty%"]);
-										// input the id in stm to our $add
-										// var_dump($stm);	
+									// input the id in stm to our $add
 										
-										$row = $stm->fetch();
-										if(empty($row)){
-												
-											$stmt = $dbHandler-> prepare("INSERT INTO tblspecialty(dtDescription) VALUES(:Description)");
+									$row = $stm->fetch();
 
-											$stmt->bindParam("Description", $specialty);
+									if(empty($row)){	//If a description doesnt exist in tblspecialty, it is added here
+											
+										$stmt = $dbHandler-> prepare("INSERT INTO tblspecialty(dtDescription) VALUES(:Description)");
 
-											$stmt->execute();
-										}
+										$stmt->bindParam("Description", $specialty);
 
-										$querySpecId = $dbHandler-> prepare("SELECT idSpecialty FROM tblspecialty WHERE tblspecialty.dtDescription LIKE ?");
-
-										$querySpecId->execute(["%$specialty%"]);
-
-										$getSpecId =  $querySpecId -> fetch();
-										echo "<b>debug3</b>";
-										$add = $dbHandler -> prepare("INSERT INTO tbluser(dtFirstName, dtLastName, dtNumber,  dtEmail, dtPassword, dtIsAdmin, fiSpecialty)
-																VALUES(:FirstName, :LastName,:Number,:Email, :Password, :IsAdmin, :Specialty)");
-										$add->bindParam("FirstName", $fname);
-										$add->bindParam("LastName", $lname);
-										$add->bindParam("Number",$PhoneNo);
-										$add->bindParam("Email", $dtEmail);
-										$add->bindParam("Password", $password);
-										$add->bindParam("IsAdmin",$isAdmin);
-										$add->bindParam("Specialty", $getSpecId['idSpecialty']);
-	
-										echo "<b>debug4</b>";
-										$add-> execute();
-
-										echo "<b>Data was added successfully!</b>";
+										$stmt->execute();
 									}
-								}catch(Exception $ex){
-									echo $ex;
+
+										//query to get the specialtyid of the entered description
+									$querySpecId = $dbHandler-> prepare("SELECT idSpecialty FROM tblspecialty WHERE tblspecialty.dtDescription LIKE ?");
+
+									$querySpecId->execute(["%$specialty%"]);
+
+									$getSpecId =  $querySpecId -> fetch();
+									
+									//Final query to input all validated data into the tbluser db
+
+									$add = $dbHandler -> prepare("INSERT INTO tbluser(dtFirstName, dtLastName, dtNumber,  dtEmail, dtPassword, dtIsAdmin, fiSpecialty)
+																VALUES(:FirstName, :LastName,:Number,:Email, :Password, :IsAdmin, :Specialty)");
+									$add->bindParam("FirstName", $fname);
+									$add->bindParam("LastName", $lname);
+									$add->bindParam("Number",$PhoneNo);
+									$add->bindParam("Email", $dtEmail);
+									$add->bindParam("Password", $password);
+									$add->bindParam("IsAdmin",$isAdmin);
+									$add->bindParam("Specialty", $getSpecId['idSpecialty']);
+
+									echo "<b>debug4</b>";
+									$add-> execute();
+
+									echo "<b>Data was added successfully!</b>";
+								}else{
+									echo "This email address is taken";
+								}
+							}catch(Exception $ex){
+								echo $ex;
 								}
 							}
-							}else{
-								echo "<ul>";
-								foreach ($err as $error) {
-								echo "<li>$error</li>";
-								}
-								echo "</ul>";
-								}
-						
+					}else{
+						echo "<ul>";
+						foreach ($err as $error) {
+						echo "<li>$error</li>";
 						}
+						echo "</ul>";
+					}
+				}
 				
 				?>
 			</div>
