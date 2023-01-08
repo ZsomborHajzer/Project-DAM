@@ -16,7 +16,7 @@ session_start();
         <link rel="stylesheet" href="index.css">
         <!--Font Awesome script-->
         <script src="https://kit.fontawesome.com/08626bfbba.js" crossorigin="anonymous"></script>  
-        <title>E3T-Home</title>
+        <title>E3T</title>
     </head>
     <body>
         <?php 
@@ -65,7 +65,7 @@ session_start();
                     echo "<button class='fas fa-bars' id='hamburger-btn'></button>";
                     echo " <div class='nav-desktop'> ";
                         echo "<ul>";
-                            echo "<li class='active'><a href='index.php'>Home</a></li>";
+                            echo "<li class='active'><a href='startpage.php'>Home</a></li>";
                             echo "<li><a href='Booking.php'>Book here</a></li>";
                             echo "<li><a href='#'>Contact</a></li>";
                             echo "<li><a href='#'>Login</a></li>";
