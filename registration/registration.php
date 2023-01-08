@@ -135,18 +135,37 @@
 									$res = $stmt-> fetchall();
 									var_dump($res);
 									if(empty($res)){
+
+										//PDO stmt to check if a description exists, if not insert into specialty table
+										//then identify the id of the description & enter it into 
+										//change fiSpecialty to reference description & make description primary key
+
+										$stm = $dbHandler -> prepare("SELECT idSpecialty FROM tblSpecialty WHERE dtDescription LIKE ?");
+
+										$stm->execute(["%$specialty%"]);
+
+										var_dump($stm);	
+										
+										if(empty($row = $stm->fetch())){
+												
+											$stmt = $dbHandler-> prepare("INSERT INTO tblspecialty(dtDescription) VALUES(:Description)");
+											
+										}
+
+
 										echo "<b>debug3</b>";
-										$add = $dbHandler -> prepare("INSERT INTO tbluser(dtName, dtLastName, dtEmail, dtPassword, dtIsAdmin, fiSpeciality, dtNumber)
-																VALUES(:dtName, :dtLastName, :dtEmail, :dtPassword, :dtIsAdmin, :fiSpecialty :dtNumber)");
-										$add->bindParam("dtName", $fname);
-										$add->bindParam("dtLastName", $lname);
-										$add->bindParam("dtEmail", $dtEmail);
-										$add->bindParam("dtPassword", $password);
-										$add->bindParam("dtIsAdmin",$isAdmin);
-										$add->bindParam("fiSpecialty", $specialty);
-										$add->bindParam("dtNumber",$PhoneNo);
+										$add = $dbHandler -> prepare("INSERT INTO tbluser(dtFirstName, dtLastName, dtNumber,  dtEmail, dtPassword, dtIsAdmin, fiSpecialty)
+																VALUES(:FirstName, :LastName,:Number,:Email, :Password, :IsAdmin, :Specialty)");
+										$add->bindParam("FirstName", $fname);
+										$add->bindParam("LastName", $lname);
+										$add->bindParam("Number",$PhoneNo);
+										$add->bindParam("Email", $dtEmail);
+										$add->bindParam("Password", $password);
+										$add->bindParam("IsAdmin",$isAdmin);
+										$add->bindParam("Specialty", $specialty);
+	
 										echo "<b>debug4</b>";
-										$add-> execute();
+										// $add-> execute();
 
 										echo "<b>Data was added successfully!</b>";
 									}
