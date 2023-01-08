@@ -143,16 +143,24 @@
 										$stm = $dbHandler -> prepare("SELECT idSpecialty FROM tblSpecialty WHERE dtDescription LIKE ?");
 
 										$stm->execute(["%$specialty%"]);
-
-										var_dump($stm);	
+										// input the id in stm to our $add
+										// var_dump($stm);	
 										
-										if(empty($row = $stm->fetch())){
+										$row = $stm->fetch();
+										if(empty($row)){
 												
 											$stmt = $dbHandler-> prepare("INSERT INTO tblspecialty(dtDescription) VALUES(:Description)");
-											
+
+											$stmt->bindParam("Description", $specialty);
+
+											$stmt->execute();
 										}
 
+										$querySpecId = $dbHandler-> prepare("SELECT idSpecialty FROM tblspecialty WHERE tblspecialty.dtDescription LIKE ?");
 
+										$querySpecId->execute(["%$specialty%"]);
+
+										$getSpecId =  $querySpecId -> fetch();
 										echo "<b>debug3</b>";
 										$add = $dbHandler -> prepare("INSERT INTO tbluser(dtFirstName, dtLastName, dtNumber,  dtEmail, dtPassword, dtIsAdmin, fiSpecialty)
 																VALUES(:FirstName, :LastName,:Number,:Email, :Password, :IsAdmin, :Specialty)");
@@ -162,10 +170,10 @@
 										$add->bindParam("Email", $dtEmail);
 										$add->bindParam("Password", $password);
 										$add->bindParam("IsAdmin",$isAdmin);
-										$add->bindParam("Specialty", $specialty);
+										$add->bindParam("Specialty", $getSpecId['idSpecialty']);
 	
 										echo "<b>debug4</b>";
-										// $add-> execute();
+										$add-> execute();
 
 										echo "<b>Data was added successfully!</b>";
 									}
