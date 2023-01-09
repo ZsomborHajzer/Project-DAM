@@ -1,0 +1,110 @@
+<?php
+@ob_start();
+session_start();
+?>
+
+
+<!DOCTYPE html>
+
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Login E3T</title>
+        <link rel="stylesheet" href="styles.css"/>
+    </head>
+
+    <body>
+
+    <div class="loginForm">
+         <form action="logInPage.php" method="post">
+            <h1>Login</h1>
+            <div class="content">
+                <div class="inputField">
+                    <label for="inputField1">Email</label>
+                    <input id="inputField1" name="dataMail" type="email" required >
+                </div>
+                <div class="inputField">
+                    <label for="inputField2">Password</label>
+
+                    <input id="inputField2" name="dataPassword" type="password" required >
+                </div>
+                <div class="action">
+                    <button>Login</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    </body>
+</html>
+<?php
+
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $err = [];
+
+    if (empty($_POST["dataMail"])) {
+        $err[] = "Mail is missing";
+    }
+    if (empty($_POST["dataPassword"])) {
+        $err[] = "Password is missing";
+    }
+
+
+    if (empty($err)) {
+
+        if ($mail = filter_input(INPUT_POST, "dataMail", FILTER_VALIDATE_EMAIL)) {
+
+
+            $dsn = "mysql:host=mysql;dbname=dbprojectterm2";
+            $user = "root";
+            $passwd = "qwerty";
+
+            //Connecting to a database
+            $dbHandler = new PDO($dsn, $user, $passwd);
+
+            //$mail = filter_input(INPUT_POST, "dataMail", FILTER_VALIDATE_EMAIL);
+            $userPw = $_POST["dataPassword"];
+
+            $stmt = $dbHandler->prepare("SELECT * FROM tblUser WHERE  `dtEmail` = ?");
+
+            $stmt->execute([$mail]);
+            $dbPassWd= "";
+
+            while ($row = $stmt->fetch()) {
+                $dbPassWd = $row["dtPassword"];
+              //  $id = $row["idUser"];
+                $_SESSION["isAdmin"]=$row["dtIsAdmin"];
+                $_SESSION["userEmail"]=$row["dtEmail"];
+            }
+
+            var_dump($dbPassWd);
+
+            if ($userPw==$dbPassWd){
+                echo "You are logged in";
+                $_SESSION["id"] = $row["idUser"];
+               // header("Location: index.php?page=Add");
+            }else{
+                echo "not loged in";
+            }
+
+
+        } else {
+            echo "Invalid email";
+        }
+
+    } else {
+        echo "<ul>";
+        foreach ($err as $error) {
+            echo "<li>$error</li>";
+        }
+        echo "</ul>";
+    }
+}else {
+
+
+}
+ob_flush();
+?>
