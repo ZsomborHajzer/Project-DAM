@@ -9,7 +9,7 @@ global $dEmail;
 	</head>
 
 	<body>
-		<form id="emailSearch" action="adminpage.php" method="POST">
+		<form id="emailSearch" action="adminPage.php" method="POST">
 			<div class="formBox">
 				<div id="emailSearchLabel"><label  for="talentEmailInput">Search by email</label></div>
 				<div id="talentEmailInputDiv"><input id="talentEmailInput"  type="email" name="dataEmail" placeholder=""></div>
@@ -23,7 +23,7 @@ global $dEmail;
 		$err=[];
 		$dsn="mysql:host=localhost;dbname=dbprojectterm2";
 		$user="root";
-		$passwrd="";
+		$passwrd="qwerty";
 
 		$dbHandler = new PDO($dsn, $user, $passwrd);
 
