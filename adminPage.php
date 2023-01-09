@@ -21,7 +21,7 @@ global $dEmail;
 		<?php 
 		// Create retrieval of talent information from email entered, check if email entered exists
 		$err=[];
-		$dsn="mysql:host=localhost;dbname=dbprojectterm2";
+		$dsn="mysql:host=mysql;dbname=dbprojectterm2";
 		$user="root";
 		$passwrd="qwerty";
 
@@ -33,7 +33,7 @@ global $dEmail;
 				$err[] ="Invalid email";
 			}
 
-			$query= "SELECT * FROM tbluser WHERE dtEmail=:dtEmail";
+			$query= "SELECT * FROM tblUser WHERE dtEmail=:dtEmail";
 			$getinfo= $dbHandler-> prepare($query);
 			$getinfo->bindParam("dtEmail", $email);
 			$getinfo->execute();
