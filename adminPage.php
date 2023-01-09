@@ -7,10 +7,10 @@
 	</head>
 
 	<body>
-		<form id="emailSearch" action="adminpage.php" method="POST">
+		<form id="emailSearch" action="adminPage.php" method="POST">
 			<div class="formBox">
 				<div id="emailSearchLabel"><label  for="talentEmailInput">Search by email</label></div>
-				<div id="talentEmailInputDiv"><input id="talentEmailInput"  type="email" name="dataEmail" placeholder=""></div>
+				<div id="talentEmailInputDiv"><input id="talentEmailInput"  type="email" name="dataEmail" ></div>
 				<button id="submitTalentEmail" type=submit>Enter</button>
 			</div>
 		</form>
@@ -18,9 +18,9 @@
 		<?php 
 		// Create retrieval of talent information from email entered, check if email entered exists
 		
-		$dsn="mysql:host=localhost;dbname=dbprojectterm2";
+		$dsn="mysql:host=mysql;dbname=dbprojectterm2";
 		$user="root";
-		$passwrd="";
+		$passwrd="qwerty";
 
 		$dbHandler = new PDO($dsn, $user, $passwrd);
 		?>
@@ -37,14 +37,37 @@
 			</div>
 
 			<div id="activityButtons">
-			<form action="adminpage.php" method="POST">
-			<input type="button" id="inactiveButton" value="Make Inactive">
-			<input type="button" id="activeButton" value="Make Active">
+			<form action="adminPage.php" method="POST">
+                <button  id="inactiveButton" name="isActive" value="0">Inactive</button>
+                <button  id="activeButton" name="isActive" value="1"  >Active</button>
 			</div>
 			</form>
-			<?php
+
+			<?
+
+
+
 			//Create php to change user from active to inactive & vice versa
-			?>
+            if($_SERVER["REQUEST_METHOD"] == "POST") {
+                $dataEmail = $_POST["dataEmail"];
+                if ($_POST["isActive"] == 0) {
+
+                    $sql1 = "UPDATE tblUser SET dtActive = 1 WHERE 'dtEmail' like?";
+                    $stmt = $dbHandler->prepare($sql1);
+                    $stmt->execute([$dataEmail]);
+                } elseif($_POST["isActive"] == 1){
+
+                    $sql1 = "UPDATE tblUser SET dtActive = 1 WHERE 'dtEmail' like? ";
+                    $stmt = $dbHandler->prepare($sql1);
+                    $stmt->execute([$dataEmail]);
+                }else{
+                    echo "not working";
+                }
+
+
+
+}
+            ?>
 		</div>
 	</body>
 
