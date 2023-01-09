@@ -9,6 +9,7 @@ There are a lot of placeholders such as name and email and other info that will 
 $arrayofImages = [];
 $pictureHolder = "../img/pictureholder/";
 $documentHolder = "../img/documentholder/";
+$profileImgLocations = "../img/profileimg/";
 $files = [];
 $sessionID = 12; // $_GET["id"];
 
@@ -34,7 +35,10 @@ require "../../components/dbConnect.php"
         </header>
 
         <div class="profileImage">
-            <img src="../img/profileimg/img0.gif" alt="" width=200 height=200 />
+            <img src="<?php
+                        $printedProfile = scandir($profileImgLocations);
+                        echo $profileImgLocations . $printedProfile[2];
+                        ?>" alt="" width=200 height=200 />
         </div>
 
         <?php
