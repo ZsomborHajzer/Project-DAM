@@ -10,7 +10,7 @@ $arrayofImages = [];
 $pictureHolder = "../img/pictureholder/";
 $documentHolder = "../img/documentholder/";
 $files = [];
-$sessionID = 12; // only temporarly. to be repalced with other variable like $_SESSION[ID];
+$sessionID = 12; // $_GET["id"];
 
 require "../../components/dbConnect.php"
 ?>
