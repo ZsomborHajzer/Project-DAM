@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
@@ -6,13 +7,24 @@
 	</head>
 
 	<body>
-		<form id="emailSearch">
+		<form id="emailSearch" action="adminpage.php" method="POST">
 			<div class="formBox">
 				<div id="emailSearchLabel"><label  for="talentEmailInput">Search by email</label></div>
-				<div id="talentEmailInputDiv"><input id="talentEmailInput"  type="email" name="talentEmailInput" placeholder=""></div>
-				<input id="submitTalentEmail"  type="submit" value="Enter">
+				<div id="talentEmailInputDiv"><input id="talentEmailInput"  type="email" name="dataEmail" placeholder=""></div>
+				<button id="submitTalentEmail" type=submit>Enter</button>
 			</div>
 		</form>
+
+		<?php 
+		// Create retrieval of talent information from email entered, check if email entered exists
+		
+		$dsn="mysql:host=localhost;dbname=dbprojectterm2";
+		$user="root";
+		$passwrd="";
+
+		$dbHandler = new PDO($dsn, $user, $passwrd);
+		?>
+
 
 		<div class="profileBox">
 			<div class="talentProfile">
@@ -23,10 +35,16 @@
 				<p id="talentRating">Rating:****</p>
 
 			</div>
+
 			<div id="activityButtons">
+			<form action="adminpage.php" method="POST">
 			<input type="button" id="inactiveButton" value="Make Inactive">
 			<input type="button" id="activeButton" value="Make Active">
 			</div>
+			</form>
+			<?php
+			//Create php to change user from active to inactive & vice versa
+			?>
 		</div>
 	</body>
 
