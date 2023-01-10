@@ -1,6 +1,6 @@
 <?php
-@ob_start();
-session_start();
+    @ob_start();
+    session_start();
 ?>
 
 
@@ -77,14 +77,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $dbPassWd = $row["dtPassword"];
               //  $id = $row["idUser"];
                 $_SESSION["isAdmin"]=$row["dtIsAdmin"];
+                //saves the id and email in session.
                 $_SESSION["userEmail"]=$row["dtEmail"];
+                $_SESSION["id"] = $row["idUser"];
             }
 
             var_dump($dbPassWd);
 
             if ($userPw==$dbPassWd){
                 echo "You are logged in";
-                $_SESSION["id"] = $row["idUser"];
+
                // header("Location: index.php?page=Add");
             }else{
                 echo "not loged in";
