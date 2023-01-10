@@ -26,7 +26,7 @@
             $(".dropUpImg").hide();
 
 
-            $(".g-item").click(function (){
+            $(".mClass").click(function (){
          
                 if($(".subClass").is(":visible")){
                     $(".subClass").hide();
@@ -44,12 +44,12 @@
                 // }
                 else{
                     
-                    $(".g-item > .subClass").fadeOut();
+                    $(".mClass > .subClass").fadeOut();
                     $(".dropDownImg", this).hide();
                     $(".dropUpImg", this).show();
                     $(".subClass").prev()
                     $(this).next().fadeIn();
-                    $(".g-item > .subClass", this);
+                    $(".mClass > .subClass", this);
                     $(".subClass", this).hide();
                     
                 }

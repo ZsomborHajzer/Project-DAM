@@ -139,7 +139,7 @@ header{
 
 .gen-content{
     display: grid;
-    max-height: 220px;
+    /* max-height: 220px; */
     grid-column: 2/3;
     grid-row: 2/3;
     gap: 10px;
