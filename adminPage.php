@@ -1,5 +1,5 @@
 <?php 
-global $dEmail;
+    global $dEmail;
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -46,8 +46,6 @@ global $dEmail;
 				echo "<p id='talentName'>".$row["dtFirstName"]." ".$row["dtLastName"]."</p>";
 				echo "<p id='talentEmail'>".$row["dtEmail"]."</p>";
 				echo "<p id='talentPassword'>".$row["dtPassword"]."</p>";
-				echo "<p id='talentRating'>"."Rating: ***"."</p>";
-
 				
 			}else{
 				echo "email entered is not in database";
