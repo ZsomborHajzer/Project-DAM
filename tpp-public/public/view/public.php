@@ -65,6 +65,24 @@ require "../../components/dbConnect.php"
 
         <div class="email">
             <p>Email address: <a href="mailto:<?php echo $posts["dtEmail"] ?>"><?php echo $posts["dtEmail"]; ?></a></p>
+
+            <?php
+
+
+            $stmt = $dbHandler->prepare("SELECT * FROM tblavaible  WHERE fiUser = $sessionID");
+
+            $stmt->execute();
+            echo "<h3>On vacation during</h3>";
+            while ($row = $stmt->fetch()) {
+
+                echo $row["dtDateStart"] . " till " . $row["dtDateEnd"] ."</br>";
+            }
+
+
+
+            ?>
+
+
         </div>
 
         <div class="photoTitle">
