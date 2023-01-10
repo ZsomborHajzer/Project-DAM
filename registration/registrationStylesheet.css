@@ -26,6 +26,7 @@ header{
 
 #profileInfo> h1{
 	color: #1162AD;
+	font-size: 35px;
 }
 
 button{
@@ -33,6 +34,7 @@ button{
 	padding: 5px;
 	border: 1px solid black;
 	background-color: #6FA8DC;
+	color: #FFFFFF;
 }
 
 footer{
