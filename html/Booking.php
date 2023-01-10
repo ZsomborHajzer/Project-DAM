@@ -77,16 +77,6 @@
             });
         });
 
-
-        //     document.querySelectorAll("g-item").forEach(function(img)){
-        //         if(img.id == id){
-        //             div.style.display = div.style.display == "none" ? "block" : "none";
-        //         }else {
-        //             // Hide other DIVs
-        //             div.style.display = "none";
-        //         }
-        //     }
-        // });
     </script>
 </head>
 <body>
@@ -113,7 +103,7 @@
     <div class="nav-mobile" id="nav-mobile">
 
         <ul class="nav-list-mobile">
-            <li class="active"><a href="index.html">Home</a></li>
+            <li class="active"><a href="startpage.php">Home</a></li>
             <li><a href="#">Book here</a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="#">Login</a></li>
@@ -171,7 +161,7 @@
                     //if the email is correct then we will filter per Email
                     if (filter_input(INPUT_POST, "dataNameOrEmail", FILTER_VALIDATE_EMAIL)) {
 
-                    $stmt = $dbHandler->prepare("SELECT * FROM tbluser  INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty WHERE dtEmail LIkE ? ");
+                    $stmt = $dbHandler->prepare("SELECT * FROM tbluser  INNER JOIN tblspecialties ON fiSpecialty = tblspecialties.idSpecialty WHERE dtEmail LIkE ? ");
 
                     //$stmt->bind_param
 
@@ -181,11 +171,12 @@
 
                     while ($row = $stmt->fetch()) {
                     $id = $row['idUser'];
-                    $spec = $row['fiSpeciality'];
-
+                    $spec = $row['fiSpecialty'];
+                    
                     echo "<div class= 'g-item'>";
+                    echo "<div class= 'mClass'>";
                     echo "<img class='g-img' src=" . $row['dtImage'] . ">";
-                    echo "<a class='g-p'><a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtName'] . " " . $row['dtLastName'] . "</a></p>";
+                    echo "<a class='g-p'><a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtFirstName'] . " " . $row['dtLastName'] . "</a></p>";
                     echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
                     echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
                     echo "<form>";
@@ -197,8 +188,7 @@
                     echo "<div class='subClass'>";
                     echo "<p class='s-content s-p'>Select the date of booking</p>";
                     ?>
-
-                    <form class="s-content" method="post" action="insertIntoBooking.php?id=<?php echo $id ?>&spec=<?php echo $spec ?>">
+                        <form class="s-content" method="post" action="insertIntoBooking.php?id=<?php echo $id ?>&spec=<?php echo $spec ?>">
 
                         <div>
                             <label class="s-label" for="dataDate">Date: </label>
@@ -211,23 +201,16 @@
                         </div>
 
                         <input class="s-sub" type="submit" name="dataSendByMail" placeholder="Book">
+                        </form>
+                    <?php
+                    echo "</div>";
+                    echo "</div>";
 
-                        <!-- <form class="s-content" method="post" action="#">
-                            <div>
-                                <label class="s-label" for="dataDate">Date: </label>
-                                <input class="s-date" type="date" name="dataDate" id="dataDate">
-                            </div>
-                            <div>
-                                <label class="s-label" for="dataMail">Email: </label>
-                                <input class="s-email" type="email" name="dataMail" id="dataMail">
-                            </div>
-                            <input class="s-sub" type="submit" name="dataSendBooking" placeholder="Book">
-
-                        </form> -->
-
+                     ?>
+                  
                         <?php
 
-                        echo "</div>";
+                        
 
                         }
                        
@@ -235,7 +218,7 @@
                         //if that is not correct then we will filter per Name
                         }else if (filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS)){
 
-                        $stmt = $dbHandler->prepare("SELECT * FROM tbluser INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty  WHERE dtName LIkE ? ");
+                        $stmt = $dbHandler->prepare("SELECT * FROM tbluser INNER JOIN tblspecialties ON fiSpecialty = tblspecialties.idSpecialty  WHERE dtFirstName LIkE ? ");
 
                         //$stmt->bind_param
 
@@ -245,11 +228,12 @@
 
                         while ($row = $stmt->fetch()) {
                         $id = $row['idUser'];
-                        $spec = $row['fiSpeciality'];
+                        $spec = $row['fiSpecialty'];
 
                         echo "<div class= 'g-item'>";
+                        echo "<div class= 'mClass'>";
                         echo "<img class='g-img' src=" . $row['dtImage'] . ">";
-                        echo "<p class='g-p'> <a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtName'] . " " . $row['dtLastName'] . "</a></p>";
+                        echo "<p class='g-p'> <a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtFirstName'] . " " . $row['dtLastName'] . "</a></p>";
                         echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
                         echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
                         echo "<form>";
@@ -277,55 +261,12 @@
 
                             <input class="s-sub" type="submit" name="dataSendByName" placeholder="Book">
 
-
-                            <!-- <form class="s-content" method="post" action="#">
-                                <div>
-                                    <label class="s-label" for="dataDate">Date: </label>
-                                    <input class="s-date" type="date" name="dataDate" id="dataDate">
-                                </div>
-                                <div>
-                                    <label class="s-label" for="dataMail">Email: </label>
-                                    <input class="s-email" type="email" name="dataMail" id="dataMail">
-                                </div>
-                                <input class="s-sub" type="submit" name="dataSendBooking" placeholder="Book">
-
-                            </form> -->
-
                             <?php
                             echo "</div>";
-
+                            echo "</div>";
                             }
 
-                            
-
                             }
-
-
-
-                            //If it's a specialty
-                            // else if (filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS)){
-
-                            //     $stmt = $dbHandler-> prepare("SELECT * FROM tbluser
-                            //                                 INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty
-                            //                                 WHERE tblspecialties.dtDescription LIKE ?");
-
-                            //     $specialty = filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
-                            //     echo($specialty);
-                            //     $stmt -> execute(["%$specialty%"]);
-                            //     echo $stmt;
-                            //     while($row = $stmt-> fetch()){
-
-                            //         echo "<div class= 'g-item'>";
-                            //         echo "<img class='g-img' src=". $row['dtImage'].">";
-                            //         echo "<p class='g-p'>".$row['dtName']." ".$row['dtLastName']."</p>";
-                            //         echo "<p class='g-p'>" .$row['dtEmail']."</p>";
-                            //         echo "<form>";
-                            //         echo "<p class='a-p' >Book Me</p>" ;
-                            //         echo "<a href='#'> <img class='a-mg' src='../images/dropdown.png'>"."</a>";
-                            //         echo "</form>";
-                            //         echo "</div>";
-                            //     }
-                            // }
 
                             else {
 
@@ -341,7 +282,7 @@
 
                             if ($sanitzeOption == "Active") {
 
-                                $stmt = $dbHandler->prepare("SELECT * FROM tbluser INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty  WHERE dtActive = 1  ORDER BY  dtName ASC ");
+                                $stmt = $dbHandler->prepare("SELECT * FROM tbluser INNER JOIN tblspecialties ON fiSpecialty = tblspecialties.idSpecialty  WHERE dtActive = 1  ORDER BY  dtFirstName ASC ");
 
                                 //$stmt->bind_param
 
@@ -351,11 +292,12 @@
 
                                 while ($row = $stmt->fetch()) {
                                     $id = $row['idUser'];
-                                    $spec = $row['fiSpeciality'];
+                                    $spec = $row['fiSpecialty'];
 
                                     echo "<div class= 'g-item'>";
+                                    echo "<div class= 'mClass'>";
                                     echo "<img class='g-img' src=" . $row['dtImage'] . ">";
-                                    echo "<p class='g-p'> <a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" .$row['dtName'] . " " . $row['dtLastName'] . "</a></p>";
+                                    echo "<p class='g-p'> <a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" .$row['dtFirstName'] . " " . $row['dtLastName'] . "</a></p>";
                                     echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
                                     echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
                                     echo "<form>";
@@ -384,22 +326,9 @@
                                         <input class="s-sub" type="submit" name="dataSendByActive" placeholder="Book">
                                     </form>
 
-
-                                    <!-- <form class="s-content" method="post" action="#">
-                                        <div>
-                                            <label class="s-label" for="dataDate">Date: </label>
-                                            <input class="s-date" type="date" name="dataDate" id="dataDate">
-                                        </div>
-                                        <div>
-                                            <label class="s-label" for="dataMail">Email: </label>
-                                            <input class="s-email" type="email" name="dataMail" id="dataMail">
-                                        </div>
-                                        <input class="s-sub" type="submit" name="dataSendBooking" placeholder="Book">
-                                    </form> -->
-
                                     <?php
                                     echo "</div>";
-
+                                    echo "</div>";
                                 }
                              
 
@@ -407,7 +336,7 @@
                             }
                             else{
 
-                            $stmt = $dbHandler->prepare("SELECT * FROM tbluser  INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty ORDER BY ?  ASC");
+                            $stmt = $dbHandler->prepare("SELECT * FROM tbluser  INNER JOIN tblspecialties ON fiSpecialty = tblspecialties.idSpecialty ORDER BY ?  ASC");
 
                             //$stmt->bind_param
 
@@ -416,12 +345,13 @@
                             $stmt->execute(["$sanitzeOption"]);
                             while ($row = $stmt->fetch()) {
                             $id = $row['idUser'];
-                            $spec = $row['fiSpeciality'];
+                            $spec = $row['fiSpecialty'];
 
                             //<option disabled selected value> -- select an option --</option>
                             echo "<div class= 'g-item'>";
+                            echo "<div class= 'mClass'>";
                             echo "<img class='g-img' src=" . $row['dtImage'] . ">";
-                            echo "<p class='g-p'><a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtName'] . " " . $row['dtLastName'] . "</a></p>";
+                            echo "<p class='g-p'><a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtFirstName'] . " " . $row['dtLastName'] . "</a></p>";
                             echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
                             echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
                             echo "<form>";
@@ -430,10 +360,8 @@
                             echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>" . "</a>";
                             echo "</form>";
                             echo "</div>";
-
                             echo "<div class='subClass'>";
                             echo "<p class='s-content s-p' >Select the date of booking</p>";
-
                             ?>
 
                             <form class="s-content" method="post"
@@ -451,25 +379,9 @@
 
                                 <input class="s-sub" type="submit" name="dataSendByPrice" placeholder="Book">
                             </form>
-
-                            <!-- <div id=".$j." class='subClass'>
-                                <p class='s-content s-p'>Select the date of booking</p>
-                                <form class="s-content" method="post" action="#">
-                                    <div>
-                                        <label class="s-label" for="dataDate">Date: </label>
-                                        <input class="s-date" type="date" name="dataDate" id="dataDate">
-                                    </div>
-                                    <div>
-                                        <label class="s-label" for="dataMail">Email: </label>
-                                        <input class="s-email" type="email" name="dataMail" id="dataMail">
-                                    </div>
-                                    <input class="s-sub" type="submit" name="dataSendBooking" placeholder="Book">
-                                </form> -->
-
-
                                 <?php
                                 echo "</div>";
-
+                                echo "</div>";
                                 $dbHandler = null;
                                 }
                                 }

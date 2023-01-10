@@ -139,6 +139,7 @@ header{
 
 .gen-content{
     display: grid;
+    max-height: 220px;
     grid-column: 2/3;
     grid-row: 2/3;
     gap: 10px;
@@ -146,13 +147,42 @@ header{
 }
 
 .g-item{
+    /* display: flex; */
+    display: grid;
+    min-height: 100px;
+    /* gap: 10px; */
+    /* justify-content: space-evenly; */
+    background-color: #6FA8DC;
+    /* background-color: #6FA8DC; */
+    /* flex-wrap: wrap; */
+    align-content: center;
+    
+}
+
+.mClass{
+    /* background-color: orange; */
+    background-color: #6FA8DC;
     display: flex;
     min-height: 100px;
     gap: 20px;
     justify-content: space-evenly;
-    background-color: #6FA8DC;
     flex-wrap: wrap;
     align-content: center;
+    z-index: 2;
+}
+
+.subClass{
+    /* background-color: yellow; */
+    display: grid;
+    grid-template-rows: 9px 25px 39px 3px;  
+    grid-template-columns: 10px repeat(7, 1fr);
+    background-color: #98c1e6;
+    /* gap: 10px; */
+    min-height: 80px;
+    height: 100px;
+    z-index: 1;
+    position: relative;
+    box-shadow:inset 0px 2px 3px 0px black;
 }
 
 .g-img{
@@ -180,14 +210,7 @@ header{
     align-items: right;
 }
 
-.subClass{
-    background-color: #98c1e6;
-    display: grid;
-    grid-template-rows: 25px 45px;
-    grid-template-columns: 5px repeat(7, 1fr);
-    gap: 10px;
-    min-height: 80px;
-}
+
 
 .s-label{
     font-size: medium;
@@ -204,13 +227,13 @@ header{
 }
 
 .s-content:nth-child(1){
-    grid-row: 1/3;
-    grid-column: 1/9;
+    grid-row: 2/3;
+    grid-column: 2/9;
 }
 
 .s-content:nth-child(2){
-    grid-row: 2;
-    grid-column: 1/9;
+    grid-row: 3/4;
+    grid-column: 2/9;
     display: flex;
     gap: 60px;
   
