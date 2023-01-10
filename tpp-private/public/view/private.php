@@ -55,6 +55,50 @@ $sessionID = 12  //$_SESSION["ID"]; for now it is 12 but once log in page is don
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talent personal page</title>
     <link rel="stylesheet" href="../css/style.css">
+    <!-- jquery link -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="jquery-3.6.1.min.js"></script>
+    <script>
+
+        //jqurey script to not allow select of day before today
+        $(document).ready(function () {
+            $(function () {
+                let dtToday = new Date();
+
+                let month = dtToday.getMonth() + 1;
+                let day = dtToday.getDate();
+                let year = dtToday.getFullYear();
+                if (month < 10)
+                    month = '0' + month.toString();
+                if (day < 10)
+                    day = '0' + day.toString();
+
+                let maxDate = year + '-' + month + '-' + day;
+
+                // or instead:
+                // var maxDate = dtToday.toISOString().substr(0, 10);
+
+
+                $('#dataStartDate').attr('min', maxDate);
+
+            });
+
+
+
+            //don't allow select before the start of vacation
+
+            $('#dataStartDate').on('change', function() {
+
+                let selectedDate = this.value;
+
+
+                $('#dataEndDate').attr('min', selectedDate);
+            });
+
+        });
+
+
+    </script>
 </head>
 
 <body>
@@ -105,6 +149,56 @@ $sessionID = 12  //$_SESSION["ID"]; for now it is 12 but once log in page is don
             </form>
         </div>
 
+
+
+        <div class="vacation">
+            <h3>Add Vacation</h3>
+            <form method="post">
+                <input  id="dataStartDate" name="dataStartDate" type="date">
+                <input  id="dataEndDate" name="dataEndDate" type="date">
+                <input type="submit" id="dataSendVacation" name="dataSendVacation">
+            </form>
+        </div>
+
+        <?php
+
+        if (isset($_POST["dataSendVacation"])) {
+
+
+
+                if ($startDate = filter_input(INPUT_POST,"dataStartDate",FILTER_SANITIZE_NUMBER_INT) && $endDate = filter_input(INPUT_POST,"dataEndDate", FILTER_SANITIZE_NUMBER_INT)) {
+
+                    $date = $_POST["dataStartDate"];
+
+                    $query = $dbHandler->query("SELECT `dtDateStart`, `dtDateEnd` FROM tblavaible WHERE `dtDateStart` = '$startDate'   AND `dtDateEnd` ='$endDate'");
+                    $rows = $query->fetchAll();
+
+
+
+                    if ($rows  == null) {
+                        try {
+                            $sql = "INSERT INTO tblavaible (dtDateStart, dtDateEnd, fiUser, dtTrue) VALUES (?,?,?,?)";
+                            $stmt = $dbHandler->prepare($sql);
+                            $stmt->execute([$date, $endDate, $sessionID, 1]);
+                            header("Refresh:0");
+                            echo "Vacation was added";
+                        }catch (PDOException $e) {
+                            echo "You already have vacation on the selected date";
+                        }
+
+
+                    }else {
+                        echo "You already have vacation here";
+
+                    }
+
+                }else {
+                    echo "<script>alert('Please select a valid date')</script>";
+                }
+
+
+        }
+        ?>
         <div class="photoTitle">
             <h1><b>Photos</b></h1>
         </div>
@@ -189,7 +283,11 @@ $sessionID = 12  //$_SESSION["ID"]; for now it is 12 but once log in page is don
                 </select>
                 <input type="submit" value="Delete" name="Delete">
             </form>
+
         </div>
+
+
+
 
         <div class=" documentsTitle">
             <h1>Documents</h1>
