@@ -41,12 +41,17 @@
 			if(isset($getinfo)){
 				$row = $getinfo->fetch();
 				$dEmail=$row["dtEmail"];
-				echo "global email is ".$dEmail;
+				//echo "global email is ".$dEmail;
 				echo "<img id='talentProfilePicture' src=".$row["dtImage"].">";
 				echo "<p id='talentName'>".$row["dtFirstName"]." ".$row["dtLastName"]."</p>";
 				echo "<p id='talentEmail'>".$row["dtEmail"]."</p>";
-				echo "<p id='talentPassword'>".$row["dtPassword"]."</p>";
-				
+				echo "<p id='talentPassword'>".str_repeat("*", strlen($row["dtPassword"]))."</p>";
+				echo "<button id='changeEmailButton' name='changeEmail'>Change Email</button>";
+                echo "<form action='adminPage.php' method='post'><button id='changeEmailSubmit' type='submit'>submit Email</button>";//the button that submits the email
+                echo "<input id='newEmail' type='email' name='newEmail'><input type='hidden' name='action' value='newEmail'><input type='hidden' name='oldEmail' value='".$row["dtEmail"]."'> </form>";
+
+
+
 			}else{
 				echo "email entered is not in database";
 			}
@@ -56,8 +61,8 @@
 		
  	<div id="activityButtons">
 			<form method="POST" action="adminPage.php" >
-                <label for="inActive">inActive</label><input type="radio" name="active" value="0" <?php echo ($row["dtActive"] == 0 ? "checked" : ""); ?>>
-                <label for="active">Active</label><input  type="radio" name="active" value="1" <?php echo ($row["dtActive"] == 1 ? "checked" : ""); ?>>
+                <label for="Inactive">Inactive</label><input type="checkbox" name="active" value="0" <?php echo ($row["dtActive"] == 0 ? "checked" : ""); ?>>
+                <label for="active">Active</label><input  type="checkbox" name="active" value="1" <?php echo ($row["dtActive"] == 1 ? "checked" : ""); ?>>
 			</div>
 			<div>
 			<input type="hidden" name="action" value="change">
@@ -110,6 +115,36 @@
 
 				
 			}
+        //Create php to change user from active to inactive & vice versa
+        if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["action"] == "newEmail") {
+
+            $newEmail = $_POST["newEmail"];
+            $oldEmail=$_POST["oldEmail"];
+            if(!empty($newEmail)){
+
+                try {
+
+
+
+                    $sql1 = "UPDATE tblUser SET dtEmail = :email WHERE dtEmail like :oldEmail";
+                    $stmt = $dbHandler->prepare($sql1);
+                    $stmt->bindParam("email", $newEmail);
+                    $stmt->bindParam("oldEmail", $oldEmail);
+                    $stmt->execute();
+
+                    echo "Talent Email has been changed";
+
+                }catch (Exception $exception){
+                    echo "not success";
+                    echo $exception;
+                }
+            }
+            else {
+                echo "no email";
+            }
+
+
+        }
 			
             ?>
 	</div>
