@@ -186,7 +186,7 @@
                     //if the email is correct then we will filter per Email
                     if (filter_input(INPUT_POST, "dataNameOrEmail", FILTER_VALIDATE_EMAIL)) {
 
-                    $stmt = $dbHandler->prepare("SELECT * FROM tbluser  INNER JOIN tblspecialties ON fiSpeciality  = tblspecialties.idSpecialty WHERE dtEmail  LIkE ?  AND  dtIsAdmin = 0");
+                    $stmt = $dbHandler->prepare("SELECT * FROM tbluser  INNER JOIN tblspecialties ON fiSpecialty  = tblspecialties.idSpecialty WHERE dtEmail  LIkE ?  AND  dtIsAdmin = 0");
 
                     //$stmt->bind_param
 
@@ -196,12 +196,12 @@
 
                     while ($row = $stmt->fetch()) {
                     $id = $row['idUser'];
-                    $spec = $row['fiSpeciality'];
+                    $spec = $row['fiSpecialty'];
 
                     echo "<div class= 'g-item'>";
                     echo "<div class= 'mClass'>";
                     echo "<img class='g-img' src=" . $row['dtImage'] . ">";
-                    echo "<a class='g-p'><a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtName'] . " " . $row['dtLastName'] . "</a></p>";
+                    echo "<a class='g-p'><a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtFirstName'] . " " . $row['dtLastName'] . "</a></p>";
                     echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
                     echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
                     echo "<p class='g-p'>" . $row['dtPrice'] . "€</p>";
@@ -244,7 +244,7 @@
                         //if that is not correct then we will filter per Name
                         }else if (filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS)){
 
-                        $stmt = $dbHandler->prepare("SELECT * FROM tbluser INNER JOIN tblspecialties ON fiSpeciality  = tblspecialties.idSpecialty  WHERE dtName  LIkE ?  AND  dtIsAdmin = 0");
+                        $stmt = $dbHandler->prepare("SELECT * FROM tbluser INNER JOIN tblspecialties ON fiSpecialty  = tblspecialties.idSpecialty  WHERE dtFirstName  LIkE ?  AND  dtIsAdmin = 0");
 
                         //$stmt->bind_param
 
@@ -254,12 +254,12 @@
 
                         while ($row = $stmt->fetch()) {
                         $id = $row['idUser'];
-                        $spec = $row['fiSpeciality'];
+                        $spec = $row['fiSpecialty'];
 
                         echo "<div class= 'g-item'>";
                         echo "<div class= 'mClass'>";
                         echo "<img class='g-img' src=" . $row['dtImage'] . ">";
-                        echo "<p class='g-p'> <a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtName'] . " " . $row['dtLastName'] . "</a></p>";
+                        echo "<p class='g-p'> <a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtFirstName'] . " " . $row['dtLastName'] . "</a></p>";
                         echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
                         echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
                         echo "<p class='g-p'>" . $row['dtPrice'] . "€</p>";
@@ -315,7 +315,7 @@
 
                             if ($sanitzeOption == "Active") {
 
-                                $stmt = $dbHandler->prepare("SELECT * FROM tbluser INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty  WHERE dtActive = 1  AND  dtIsAdmin = 0   ORDER BY  dtName ASC ");
+                                $stmt = $dbHandler->prepare("SELECT * FROM tbluser INNER JOIN tblspecialties ON fiSpecialty = tblspecialties.idSpecialty  WHERE dtActive = 1  AND  dtIsAdmin = 0   ORDER BY  dtFirstName ASC ");
 
                                 //$stmt->bind_param
 
@@ -325,12 +325,12 @@
 
                                 while ($row = $stmt->fetch()) {
                                     $id = $row['idUser'];
-                                    $spec = $row['fiSpeciality'];
+                                    $spec = $row['fiSpecialty'];
 
                                     echo "<div class= 'g-item'>";
                                     echo "<div class= 'mClass'>";
                                     echo "<img class='g-img' src=" . $row['dtImage'] . ">";
-                                    echo "<p class='g-p'> <a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" .$row['dtName'] . " " . $row['dtLastName'] . "</a></p>";
+                                    echo "<p class='g-p'> <a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" .$row['dtFirstName'] . " " . $row['dtLastName'] . "</a></p>";
                                     echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
                                     echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
                                     echo "<p class='g-p'>" . $row['dtPrice'] . "€</p>";
@@ -370,25 +370,25 @@
                             }
                             else if ($sanitzeOption == "Pricing") {
 
-                                $stmt = $dbHandler->prepare("SELECT * FROM tbluser  INNER JOIN tblspecialties ON 	fiSpeciality  = tblspecialties.idSpecialty   WHERE dtIsAdmin = 0 ORDER BY dtPrice  ASC");
+                                $stmt = $dbHandler->prepare("SELECT * FROM tbluser  INNER JOIN tblspecialties ON 	fiSpecialty  = tblspecialties.idSpecialty   WHERE dtIsAdmin = 0 ORDER BY dtPrice  ASC");
 
                             //$stmt->bind_param
 
                             $name = filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
 
-                            $stmt->execute(["$sanitzeOption"]);
+                            $stmt->execute();
                             while ($row = $stmt->fetch()) {
                             $id = $row['idUser'];
-                            $spec = $row['fiSpeciality'];
+                            $spec = $row['fiSpecialty'];
 
                             //<option disabled selected value> -- select an option --</option>
                             echo "<div class= 'g-item'>";
                             echo "<div class= 'mClass'>";
                             echo "<img class='g-img' src=" . $row['dtImage'] . ">";
-                            echo "<p class='g-p'><a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtName'] . " " . $row['dtLastName'] . "</a></p>";
-                            echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
-                            echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
-                            echo "<p class='g-p'>" . $row['dtPrice'] . "€</p>";
+                            echo "<p class='g-p'><a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtFirstName'] . " " . $row['dtLastName'] . "</a></p>";
+                            echo "<p class='g-mail'>" . $row['dtEmail'] . "</p>";
+                            echo "<p class='g-descr'>" . $row['dtDescription'] . "</p>";
+                            echo "<p class='g-price'>" . $row['dtPrice'] . "€</p>";
                             echo "<form>";
                             echo "<p class='a-p' >Book Me</p>";
                             echo "<a href='#'> <img class='a-mg dropDownImg' src='../images/dropdown.png'>" . "</a>";
@@ -422,7 +422,7 @@
                                 }else {
 
 
-                                $stmt = $dbHandler->prepare("SELECT * FROM tbluser INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty WHERE dtIsAdmin = 0 AND tblspecialties.dtDescription = ? ORDER BY dtPrice ASC;");
+                                $stmt = $dbHandler->prepare("SELECT * FROM tbluser INNER JOIN tblspecialties ON fiSpecialty = tblspecialties.idSpecialty WHERE dtIsAdmin = 0 AND tblspecialties.dtDescription = ? ORDER BY dtPrice ASC;");
 
                                 //$stmt->bind_param
 
@@ -431,13 +431,13 @@
                                 $stmt->execute(["$sanitzeOption"]);
                                 while ($row = $stmt->fetch()) {
                                     $id = $row['idUser'];
-                                    $spec = $row['fiSpeciality'];
+                                    $spec = $row['fiSpecialty'];
 
                                     //<option disabled selected value> -- select an option --</option>
                                     echo "<div class= 'g-item'>";
                                     echo "<div class= 'mClass'>";
                                     echo "<img class='g-img' src=" . $row['dtImage'] . ">";
-                                    echo "<p class='g-p'><a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtName'] . " " . $row['dtLastName'] . "</a></p>";
+                                    echo "<p class='g-p'><a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtFirstName'] . " " . $row['dtLastName'] . "</a></p>";
                                     echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
                                     echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
                                     echo "<p class='g-p'>" . $row['dtPrice'] . "€</p>";
