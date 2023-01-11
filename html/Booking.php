@@ -145,7 +145,12 @@
                     }
 
                     foreach ($arrayFilter as $item) {
-                        echo "<option value='$item'>$item</option>";
+                        if($item == "Specialty"){
+                            echo "<option disabled>-------".$item."-------</option>";  
+                        }else{
+                            echo "<option value='$item'>$item</option>";
+                        }
+                    
                     }
 
 
