@@ -27,7 +27,7 @@
 
 
             $(".mClass").click(function (){
-         
+
                 if($(".subClass").is(":visible")){
                     $(".subClass").hide();
 
@@ -43,7 +43,7 @@
                 //     $(".dropUpImg", this).hide();
                 // }
                 else{
-                    
+
                     $(".mClass > .subClass").fadeOut();
                     $(".dropDownImg", this).hide();
                     $(".dropUpImg", this).show();
@@ -51,7 +51,7 @@
                     $(this).next().fadeIn();
                     $(".mClass > .subClass", this);
                     $(".subClass", this).hide();
-                    
+
                 }
             })
 
@@ -126,7 +126,7 @@
                 <select id="s_talent" name="dataTalents" id="dataTalents">
                     <option disabled selected value> -- select an option --</option>
                     <?php
-                    $dsn = "mysql:host=localhost;dbname=databaseproject2";
+                    $dsn = "mysql:host=localhost;dbname=dbprojectterm2";
                     $user = "root";
                     $passwd = "";
 
@@ -150,6 +150,10 @@
 
 
 
+                    foreach ($speciality as $value){
+                        array_push($arrayFilter,$value);
+                    }
+
 
 
 
@@ -166,24 +170,7 @@
                 <input type="submit" value="SearchByFilter" name="dataFilterSearch">
             </form>
 
-            <form method="post">
 
-                <select id="s_talent" name="dataSpec" id="dataSpec">
-                    <option disabled selected value> -- select an option --</option>
-
-                    <?php
-
-                    foreach ($speciality as $items) {
-                        echo "<option value='$items'>$items</option>";
-                    }
-
-                    ?>
-
-
-
-                </select>
-                <input type="submit" value="searchBySpec" name="searchBySpec">
-            </form>
             <div class="t-content">
                 <!-- Talent information to be injected using php -->
                 <div class="gen-content">
@@ -210,7 +197,7 @@
                     while ($row = $stmt->fetch()) {
                     $id = $row['idUser'];
                     $spec = $row['fiSpeciality'];
-                    
+
                     echo "<div class= 'g-item'>";
                     echo "<div class= 'mClass'>";
                     echo "<img class='g-img' src=" . $row['dtImage'] . ">";
@@ -246,13 +233,13 @@
                     echo "</div>";
 
                      ?>
-                  
+
                         <?php
 
-                        
+
 
                         }
-                       
+
 
                         //if that is not correct then we will filter per Name
                         }else if (filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS)){
@@ -377,13 +364,13 @@
                                     echo "</div>";
                                     echo "</div>";
                                 }
-                             
+
 
 
                             }
-                            else{
+                            else if ($sanitzeOption == "Pricing") {
 
-                                $stmt = $dbHandler->prepare("SELECT * FROM tbluser  INNER JOIN tblspecialties ON fiSpeciality  = tblspecialties.idSpecialty   WHERE dtIsAdmin = 0 ORDER BY dtPrice  ASC");
+                                $stmt = $dbHandler->prepare("SELECT * FROM tbluser  INNER JOIN tblspecialties ON 	fiSpeciality  = tblspecialties.idSpecialty   WHERE dtIsAdmin = 0 ORDER BY dtPrice  ASC");
 
                             //$stmt->bind_param
 
@@ -430,8 +417,66 @@
                                 <?php
                                 echo "</div>";
                                 echo "</div>";
-                                $dbHandler = null;
+
                                 }
+                                }else {
+
+
+                                $stmt = $dbHandler->prepare("SELECT * FROM tbluser INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty WHERE dtIsAdmin = 0 AND tblspecialties.dtDescription = ? ORDER BY dtPrice ASC;");
+
+                                //$stmt->bind_param
+
+                                $name = filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS);
+
+                                $stmt->execute(["$sanitzeOption"]);
+                                while ($row = $stmt->fetch()) {
+                                    $id = $row['idUser'];
+                                    $spec = $row['fiSpeciality'];
+
+                                    //<option disabled selected value> -- select an option --</option>
+                                    echo "<div class= 'g-item'>";
+                                    echo "<div class= 'mClass'>";
+                                    echo "<img class='g-img' src=" . $row['dtImage'] . ">";
+                                    echo "<p class='g-p'><a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtName'] . " " . $row['dtLastName'] . "</a></p>";
+                                    echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
+                                    echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
+                                    echo "<p class='g-p'>" . $row['dtPrice'] . "€</p>";
+                                    echo "<form>";
+                                    echo "<p class='a-p' >Book Me</p>";
+                                    echo "<a href='#'> <img class='a-mg dropDownImg' src='../images/dropdown.png'>" . "</a>";
+                                    echo "<a href='#'> <img class='a-mg dropUpImg' src='../images/dropUp.png'>" . "</a>";
+                                    echo "</form>";
+                                    echo "</div>";
+                                    echo "<div class='subClass'>";
+                                    echo "<p class='s-content s-p' >Select the date of booking</p>";
+                                    ?>
+
+                                    <form class="s-content" method="post"
+                                          action="insertIntoBooking.php?id=<?php echo $id ?>&spec=<?php echo $spec ?>">
+
+                                        <div>
+                                            <label class="s-label" for="dataDate">Date: </label>
+                                            <input class="s-date" type="date" name="dataDate" id="dataDate">
+                                        </div>
+
+                                        <div>
+                                            <label class="s-label" for="dataMail">Email: </label>
+                                            <input class="s-email" type="email" name="dataMail" id="dataMail">
+                                        </div>
+
+                                        <input class="s-sub" type="submit" name="dataSendByPrice" placeholder="Book">
+                                    </form>
+                                    <?php
+                                    echo "</div>";
+                                    echo "</div>";
+
+                                }
+
+
+
+
+
+
                                 }
 
 
