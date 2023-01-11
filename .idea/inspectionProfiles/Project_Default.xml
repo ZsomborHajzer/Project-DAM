@@ -6,9 +6,8 @@
       <option name="myIgnoreVendorSpecificProperties" value="false" />
       <option name="myCustomPropertiesList">
         <value>
-          <list size="2">
-            <item index="0" class="java.lang.String" itemvalue="aligns" />
-            <item index="1" class="java.lang.String" itemvalue="align" />
+          <list size="1">
+            <item index="0" class="java.lang.String" itemvalue="align" />
           </list>
         </value>
       </option>
