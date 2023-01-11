@@ -25,10 +25,14 @@ main{
 	display:flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
 	
 	background-color: white;
-	padding-left: 50px;
-	padding-right: 50px;
+	padding-left: 5vw;
+	padding-right: 5vw;
+	
+	height: 25vw;
+	margin-top: 7vw;
 }
 
 .labels{
@@ -54,7 +58,7 @@ main{
 
 .contact > h3{
 	color:#1162AD;
-	margin-bottom: 0px;
+	margin-bottom: 0vw;
 }
 
 #contactInfo{
@@ -67,32 +71,32 @@ main{
 	display: flex;
 	
 	background-color: white;
-	margin-top: 20px;
+	margin-top: 2vw;
 }
 
 .contactPicture{
-	margin: 15px;
+	margin: 1.5vw;
 }
 
 .contactPortrait{
-	height: 130px;
-	width: 100px;
+	width: 5vw;
 }
 
 .contactText{
 	text-align: center;
-	margin-right: 50px; 
-	margin-left: 50px; 
+	margin-right: 5vw; 
+	margin-left: 5vw;
+	margin-top: 1vw;
 }
 
 .mail{
-	margin-top: 25px;
-	margin-bottom:0px;
+	margin-top: 1vw;
+	margin-bottom:0vw;
 }
 
 .phone{
-	margin-top: 0px;
-	margin-bottom:0px;
+	margin-top: 0vw;
+	margin-bottom:0vw;
 }
 
 footer{
