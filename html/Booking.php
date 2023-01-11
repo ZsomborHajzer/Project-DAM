@@ -126,34 +126,72 @@
                 <select id="s_talent" name="dataTalents" id="dataTalents">
                     <option disabled selected value> -- select an option --</option>
                     <?php
-
-                    // getting the different filter option to search talents
-
-
-                    $arrayFilter = ["Pricing", "Active", "Specialty"];
-
-                    foreach ($arrayFilter as $item) {
-                        echo "<option value='$item'>$item</option>";
-                    }
-
-                    ?>
-
-                </select>
-
-                <input type="submit" value="SearchByFilter" name="dataFilterSearch">
-            </form>
-            <div class="t-content">
-                <!-- Talent information to be injected using php -->
-                <div class="gen-content">
-                    <?php
-
-                    $dsn = "mysql:host=localhost;dbname=dbprojectterm2";
+                    $dsn = "mysql:host=localhost;dbname=databaseproject2";
                     $user = "root";
                     $passwd = "";
 
                     //Connecting to a database
                     $dbHandler = new PDO($dsn, $user, $passwd);
 
+
+
+                    $stmtToGetSpecialites = $dbHandler->query("SELECT * FROM tblspecialties");
+
+
+                    $arrayFilter = ["Pricing", "Active", "Specialty"];
+
+                    $speciality = array();
+
+                    while ($row = $stmtToGetSpecialites->fetch()) {
+
+
+                        array_push($speciality,$row['dtDescription']);
+                    }
+
+
+
+
+
+
+                    foreach ($arrayFilter as $item) {
+                        echo "<option value='$item'>$item</option>";
+                    }
+
+
+                    ?>
+
+                </select>
+
+
+                <input type="submit" value="SearchByFilter" name="dataFilterSearch">
+            </form>
+
+            <form method="post">
+
+                <select id="s_talent" name="dataSpec" id="dataSpec">
+                    <option disabled selected value> -- select an option --</option>
+
+                    <?php
+
+                    foreach ($speciality as $items) {
+                        echo "<option value='$items'>$items</option>";
+                    }
+
+                    ?>
+
+
+
+                </select>
+                <input type="submit" value="searchBySpec" name="searchBySpec">
+            </form>
+            <div class="t-content">
+                <!-- Talent information to be injected using php -->
+                <div class="gen-content">
+                    <?php
+
+
+
+                    // getting the different filter option to search talents
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
@@ -161,7 +199,7 @@
                     //if the email is correct then we will filter per Email
                     if (filter_input(INPUT_POST, "dataNameOrEmail", FILTER_VALIDATE_EMAIL)) {
 
-                    $stmt = $dbHandler->prepare("SELECT * FROM tbluser  INNER JOIN tblspecialties ON fiSpecialty = tblspecialties.idSpecialty WHERE dtEmail LIkE ? ");
+                    $stmt = $dbHandler->prepare("SELECT * FROM tbluser  INNER JOIN tblspecialties ON fiSpeciality  = tblspecialties.idSpecialty WHERE dtEmail  LIkE ?  AND  dtIsAdmin = 0");
 
                     //$stmt->bind_param
 
@@ -171,14 +209,15 @@
 
                     while ($row = $stmt->fetch()) {
                     $id = $row['idUser'];
-                    $spec = $row['fiSpecialty'];
+                    $spec = $row['fiSpeciality'];
                     
                     echo "<div class= 'g-item'>";
                     echo "<div class= 'mClass'>";
                     echo "<img class='g-img' src=" . $row['dtImage'] . ">";
-                    echo "<a class='g-p'><a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtFirstName'] . " " . $row['dtLastName'] . "</a></p>";
+                    echo "<a class='g-p'><a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtName'] . " " . $row['dtLastName'] . "</a></p>";
                     echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
                     echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
+                    echo "<p class='g-p'>" . $row['dtPrice'] . "€</p>";
                     echo "<form>";
                     echo "<p class='a-p' >Book Me</p>";
                     echo "<a href='#'> <img class='a-mg dropDownImg' src='../images/dropdown.png'>" . "</a>";
@@ -218,7 +257,7 @@
                         //if that is not correct then we will filter per Name
                         }else if (filter_input(INPUT_POST, "dataNameOrEmail", FILTER_SANITIZE_SPECIAL_CHARS)){
 
-                        $stmt = $dbHandler->prepare("SELECT * FROM tbluser INNER JOIN tblspecialties ON fiSpecialty = tblspecialties.idSpecialty  WHERE dtFirstName LIkE ? ");
+                        $stmt = $dbHandler->prepare("SELECT * FROM tbluser INNER JOIN tblspecialties ON fiSpeciality  = tblspecialties.idSpecialty  WHERE dtName  LIkE ?  AND  dtIsAdmin = 0");
 
                         //$stmt->bind_param
 
@@ -228,14 +267,15 @@
 
                         while ($row = $stmt->fetch()) {
                         $id = $row['idUser'];
-                        $spec = $row['fiSpecialty'];
+                        $spec = $row['fiSpeciality'];
 
                         echo "<div class= 'g-item'>";
                         echo "<div class= 'mClass'>";
                         echo "<img class='g-img' src=" . $row['dtImage'] . ">";
-                        echo "<p class='g-p'> <a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtFirstName'] . " " . $row['dtLastName'] . "</a></p>";
+                        echo "<p class='g-p'> <a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtName'] . " " . $row['dtLastName'] . "</a></p>";
                         echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
                         echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
+                        echo "<p class='g-p'>" . $row['dtPrice'] . "€</p>";
                         echo "<form>";
                         echo "<p class='a-p' >Book Me</p>";
                         echo "<a href='#'> <img class= 'a-mg dropDownImg'  src='../images/dropdown.png'>" . "</a>";
@@ -273,7 +313,13 @@
                                 echo "<h3>Please enter a valid name or Email</h3>";
 
                             }
-                            }else {
+
+                    }
+                    else if (isset($_POST["searchBySpec"])) {
+                        $sanitzeValue = filter_input(INPUT_POST, "searchBySpec", FILTER_SANITIZE_SPECIAL_CHARS);
+
+                    }
+                    else {
                             //if none of the above is the case then a select option has been choosen
 
                             $sanitzeOption = filter_input(INPUT_POST, "dataTalents", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -282,7 +328,7 @@
 
                             if ($sanitzeOption == "Active") {
 
-                                $stmt = $dbHandler->prepare("SELECT * FROM tbluser INNER JOIN tblspecialties ON fiSpecialty = tblspecialties.idSpecialty  WHERE dtActive = 1  ORDER BY  dtFirstName ASC ");
+                                $stmt = $dbHandler->prepare("SELECT * FROM tbluser INNER JOIN tblspecialties ON fiSpeciality = tblspecialties.idSpecialty  WHERE dtActive = 1  AND  dtIsAdmin = 0   ORDER BY  dtName ASC ");
 
                                 //$stmt->bind_param
 
@@ -292,14 +338,15 @@
 
                                 while ($row = $stmt->fetch()) {
                                     $id = $row['idUser'];
-                                    $spec = $row['fiSpecialty'];
+                                    $spec = $row['fiSpeciality'];
 
                                     echo "<div class= 'g-item'>";
                                     echo "<div class= 'mClass'>";
                                     echo "<img class='g-img' src=" . $row['dtImage'] . ">";
-                                    echo "<p class='g-p'> <a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" .$row['dtFirstName'] . " " . $row['dtLastName'] . "</a></p>";
+                                    echo "<p class='g-p'> <a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" .$row['dtName'] . " " . $row['dtLastName'] . "</a></p>";
                                     echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
                                     echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
+                                    echo "<p class='g-p'>" . $row['dtPrice'] . "€</p>";
                                     echo "<form>";
                                     echo "<p class='a-p' >Book Me</p>";
                                     echo "<a href='#'> <img class='a-mg dropDownImg' src='../images/dropdown.png'>" . "</a>";
@@ -336,7 +383,7 @@
                             }
                             else{
 
-                            $stmt = $dbHandler->prepare("SELECT * FROM tbluser  INNER JOIN tblspecialties ON fiSpecialty = tblspecialties.idSpecialty ORDER BY ?  ASC");
+                                $stmt = $dbHandler->prepare("SELECT * FROM tbluser  INNER JOIN tblspecialties ON fiSpeciality  = tblspecialties.idSpecialty   WHERE dtIsAdmin = 0 ORDER BY dtPrice  ASC");
 
                             //$stmt->bind_param
 
@@ -345,15 +392,16 @@
                             $stmt->execute(["$sanitzeOption"]);
                             while ($row = $stmt->fetch()) {
                             $id = $row['idUser'];
-                            $spec = $row['fiSpecialty'];
+                            $spec = $row['fiSpeciality'];
 
                             //<option disabled selected value> -- select an option --</option>
                             echo "<div class= 'g-item'>";
                             echo "<div class= 'mClass'>";
                             echo "<img class='g-img' src=" . $row['dtImage'] . ">";
-                            echo "<p class='g-p'><a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtFirstName'] . " " . $row['dtLastName'] . "</a></p>";
+                            echo "<p class='g-p'><a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtName'] . " " . $row['dtLastName'] . "</a></p>";
                             echo "<p class='g-p'>" . $row['dtEmail'] . "</p>";
                             echo "<p class='g-p'>" . $row['dtDescription'] . "</p>";
+                            echo "<p class='g-p'>" . $row['dtPrice'] . "€</p>";
                             echo "<form>";
                             echo "<p class='a-p' >Book Me</p>";
                             echo "<a href='#'> <img class='a-mg dropDownImg' src='../images/dropdown.png'>" . "</a>";
