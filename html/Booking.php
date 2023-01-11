@@ -36,12 +36,7 @@
                     $(".dropUpImg", this).hide();
 
                 }
-                // else if($(".subClass").is(":hidden")){
-
-                //     $(".dropDownImg", this).show();
-
-                //     $(".dropUpImg", this).hide();
-                // }
+      
                 else{
 
                     $(".mClass > .subClass").fadeOut();
@@ -133,10 +128,7 @@
                     //Connecting to a database
                     $dbHandler = new PDO($dsn, $user, $passwd);
 
-
-
                     $stmtToGetSpecialites = $dbHandler->query("SELECT * FROM tblspecialties");
-
 
                     $arrayFilter = ["Pricing", "Active", "Specialty"];
 
@@ -148,14 +140,9 @@
                         array_push($speciality,$row['dtDescription']);
                     }
 
-
-
                     foreach ($speciality as $value){
                         array_push($arrayFilter,$value);
                     }
-
-
-
 
                     foreach ($arrayFilter as $item) {
                         echo "<option value='$item'>$item</option>";
@@ -175,8 +162,6 @@
                 <!-- Talent information to be injected using php -->
                 <div class="gen-content">
                     <?php
-
-
 
                     // getting the different filter option to search talents
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -235,8 +220,6 @@
                      ?>
 
                         <?php
-
-
 
                         }
 

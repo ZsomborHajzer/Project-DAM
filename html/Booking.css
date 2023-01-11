@@ -139,33 +139,24 @@ header{
 
 .gen-content{
     display: grid;
-    /* max-height: 220px; */
     grid-column: 2/3;
     grid-row: 2/3;
     gap: 10px;
-    /* background-color: red; */
 }
 
 .g-item{
-    /* display: flex; */
     display: grid;
     min-height: 100px;
-    /* gap: 10px; */
-    /* justify-content: space-evenly; */
+    max-height: 300px;
     background-color: #6FA8DC;
-    max-height:300px;
-    /* background-color: #6FA8DC; */
-    /* flex-wrap: wrap; */
     align-content: center;
     
 }
 
 .mClass{
-    /* background-color: orange; */
     background-color: #6FA8DC;
     display: flex;
     min-height: 100px;
-    /* gap: 20px; */
     justify-content: space-evenly;
     flex-wrap: wrap;
     align-content: center;
@@ -173,12 +164,10 @@ header{
 }
 
 .subClass{
-    /* background-color: yellow; */
     display: grid;
     grid-template-rows: 9px 25px 39px 3px;  
     grid-template-columns: 10px repeat(7, 1fr);
     background-color: #98c1e6;
-    /* gap: 10px; */
     min-height: 80px;
     height: 100px;
     z-index: 1;
@@ -277,7 +266,7 @@ header{
     height: auto;
 }
 
-footer{                    /* footer*/
+footer{                    
     grid-row: 3/4;
     width: 100%;
     display: grid;
@@ -292,7 +281,6 @@ footer{                    /* footer*/
     align-items:flex-end;
     justify-self: center;
     color: #FFFFFF;
-    /* display: none; */
 }
 
 .f-content:nth-child(1) ul{
@@ -302,7 +290,6 @@ footer{                    /* footer*/
 
 .f-content li{
     display: inline-block;  
-    /* Describe font in here */
 }
 
 
@@ -367,8 +354,6 @@ footer{                    /* footer*/
         text-align: center;
         background-color: #000000;
         transition: all .5s;
-        /* box-shadow: 0 0 100% 100% black; */
-        /* color: #EDE5BB; */
     }
 
     .nav-list-mobile li a {
