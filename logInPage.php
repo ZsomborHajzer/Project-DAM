@@ -82,19 +82,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["id"] = $row["idUser"];
             }
 
-            var_dump($dbPassWd);
-
             if ($userPw==$dbPassWd){
-                echo "You are logged in";
+                echo  '<script>alert("You are logged in")</script>';
 
                // header("Location: index.php?page=Add");
             }else{
-                echo "not loged in";
+                echo  '<script>alert("Not loged in")</script>';
             }
 
 
         } else {
-            echo "Invalid email";
+            echo '<script>alert("Invalid email")</script>';
         }
 
     } else {
