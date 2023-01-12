@@ -181,8 +181,18 @@ $sessionID = $_SESSION["id"];
         }
         ?>
 
+                <!-- always echo the first image in the folder "profileimg -->
+                <div class="profileImage">
+                     <img src=<?php
+                     $newPfrad = "/home/share/e3t/" . $sessionID . "";
+                        $printedProfile = scandir($newPfrad);
+                        echo $newPfrad . $printedProfile[2];
+                        ?> alt="" width=200 height=200 />
+        </div>
 
-<h3>Upload Pic </h3>
+
+
+<h3>Upload Profile </h3>
 
 
       <!--  first img should be this one for talents so they can add more images later on to the project  -->
@@ -298,7 +308,7 @@ $sessionID = $_SESSION["id"];
                     if (!file_exists($newPfrad . $_FILES["uploadImg"]["name"])) {
 
                         //move_uploaded_file is a function that checks if the file was uploaded a secure way and if it was it will move it to the designated place. The first parameter checks if it was uploaded using a post mechanism, the second parameter transfers it to the designated file holder. If this function passes, it returns a true. if it does not it returns a false.
-                        if (move_uploaded_file($_FILES["uploadImg"]["tmp_name"], $newPfrad . $_FILES["profileFile"]["name"])) {
+                        if (move_uploaded_file($_FILES["uploadImg"]["tmp_name"], $newPfrad . $_FILES["uploadImg"]["name"])) {
                             echo "ok";
                         } else {
                             echo "Something went wrong";
