@@ -194,7 +194,7 @@ $sessionID = $_SESSION["id"];
         $name = $_SESSION["name"];
 
 
-        $newPfrad = "/home/share/e3t/" . $sessionID;
+        $newPfrad = "/home/share/e3t/" . $sessionID . "/";
         $fileSize = (4 * 1024 * 1024);
 
 
