@@ -10,11 +10,10 @@
 	background-color: #E4EAFF;
 }
 
-header{
-	grid-column: 1/7;
-}
 
 #profileInfo{
+	margin-top: 3vw;
+	margin-bottom: 3vw;
 	grid-column: 3/5;
 	display: flex;
 	flex-direction: column;
