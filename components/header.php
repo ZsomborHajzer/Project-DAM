@@ -49,6 +49,17 @@ session_start();
             echo "<li class='active'><a href='registration.php'>Register</a></li>";
            // echo "<li><a href='#'>Talent</a></li>";
             echo "<li><a href='adminPage.php'>Admin Page</a></li>";
+            echo "<li>
+                    <form id='logout' action='header.php' method='POST'>
+                        <input type='hidden' name='action' value='logout'>
+                        <a href='javascript:$('logout').submit()'>Log Out</a>
+                    </form>
+                  </li>";
+                  if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["action"] == "logout"){
+
+                        session_destroy();
+                        header("Refresh:1, URL=logInPage.php");
+                  }
             echo "</ul>";
             echo "</div>";
             echo "</nav>";

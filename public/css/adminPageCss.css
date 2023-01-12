@@ -3,93 +3,200 @@
 	grid-template-columns: repeat(6, 1fr);
 	background-color:#E4EAFF;
 }
-#emailSearch{
+main{
+	grid-column: 2/6;
+}
+
+#inputSendButton {
+	display: flex;
+}
+
+#submitTalentEmail {
+	margin-left: 1vw;
+}
+
+#mainTalentInformation{
+	margin-top: 2vw;
+	background-color: ghostwhite;
+	border-style: solid;
+	border-color: black;
+	border-width: 2px;
+	overflow: scroll;
+}
+
+#talentProfilePicture {
+	width: 6vw;
+	height: 6vw;
+}
+
+#talentName{
+	margin-right: 1vw;
+	margin-left: 0.5vw;
+}
+
+#talentEmail{
+	margin-right: 1vw;
+}
+
+#talentPassword{
+	margin-right: 0.5vw;
+	margin-left: 2vw;
+	padding-top: 0.2vw;
+}
+
+#emailSearch {
 	grid-column: 2/6;
 	width: 100%;
 	height: 5vw;
 	align-self: center;
+}
 
-}
-#emailSearchLabel{
-	background-color: cornflowerblue;
-	height: 1.6vw;
-	width: 9vw;
-	text-align: center;
-	margin-right: 20vw;
-}
-#emailSearchLabel,label{
-	padding-top: 0.5vw;
-}
-#talentEmailInput{
-	background: cornflowerblue;
-	height: 1.9vw;
-	width: 9vw;
-	border-style: none;
-	margin-right: 20vw;
-}
-#submitTalentEmail{
-	background: cornflowerblue;
-	height: 2vw;
-	width: 9.2vw;
-	border-style: none;
-}
-.formBox{
+.talentProfile {
 	display: flex;
 	flex-direction: row;
-	grid-column: 2/6;
-}
-.profileBox{
-	grid-column: 2/6;
-	width: 100%;
-	height: 30vw;
-	background-color: white;
-}
-.talentProfile{
-	/*
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	 */
-	display: flex;
-	flex-direction: column;
-	column-count: 3;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
 	margin: 1vw;
 	width: 64vw;
-	height: 13vw;
+	height: auto;
 	align-self: center;
 	align-items: stretch;
-
-
 }
 
-#activityButtons{
+#talentInformation{
 	display: flex;
-	flex-direction: column;
-	align-items: center;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	height: auto;
+	width: auto;
 }
-#inactiveButton{
+
+#emailButton{
+	grid-column: 5/6;
+	align-self: center;
+}
+
+.d-none {
+	display: none;
+}
+
+.d-inline {
+	display: inline-block;
+}
+
+#changeEmailButton {
+	background-color: #6FA8DC;
+	padding: 0.5vw;
 	border: none;
-	width: 19vw;
-	height: 5vw;
-
-	background: #6FA8DC;
 }
-#activeButton{
+
+#submitEmailSearchBar {
+	align-self: center;
+	margin-right: 2vw;
+}
+
+#newEmail {
+	margin: 0.2vw;
+	/*background-color: #6FA8DC;*/
+	/*border: none;*/
+	/*border: 2px pink;*/
+	border-radius: 4px;
+}
+
+#changeEmailSubmit {
+	margin: 0.2vw;
+	background-color: #6FA8DC;
 	border: none;
-	width: 19vw;
-	height: 5vw;
-	margin-top: 3vw;
-
-	background: #6FA8DC;
+	padding: 0.5vw;
 }
-#talentName {
-	width: 2.5vw;
-	height: 1vw;
-	/*grid-column:2/2;
-	grid-row:1/2;
 
-	 */
+#submitChange {
+	margin-left: 1vw;
+	size: 1vw;
+	align-self: center;
 }
+
+#radioSubmitButton {
+	background-color: #6FA8DC;
+	border: none;
+	padding: 0.5vw;
+}
+
+#radioButtons {
+	grid-column: 4/5;
+	align-self: center;
+	background-color: #6FA8DC;
+	padding: 0.5vw;
+}
+
+#inactiveButton {
+
+}
+/*#emailSearchLabel{*/
+/*	background-color: cornflowerblue;*/
+/*	height: 1.6vw;*/
+/*	width: 9vw;*/
+/*	text-align: center;*/
+/*	margin-right: 20vw;*/
+/*}*/
+/*#emailSearchLabel,label{*/
+/*	padding-top: 0.5vw;*/
+/*}*/
+/*#talentEmailInput{*/
+/*	background: cornflowerblue;*/
+/*	height: 1.9vw;*/
+/*	width: 9vw;*/
+/*	border-style: none;*/
+/*	margin-right: 20vw;*/
+/*}*/
+/*#submitTalentEmail{*/
+/*	background: cornflowerblue;*/
+/*	height: 2vw;*/
+/*	width: 9.2vw;*/
+/*	border-style: none;*/
+/*}*/
+/*.formBox{*/
+/*	display: flex;*/
+/*	flex-direction: row;*/
+/*	grid-column: 2/6;*/
+/*}*/
+/*.profileBox{*/
+/*	grid-column: 2/6;*/
+/*	width: 100%;*/
+/*	height: 30vw;*/
+/*	background-color: white;*/
+/*}*/
+
+
+/*}*/
+
+/*#activityButtons{*/
+/*	display: flex;*/
+/*	flex-direction: column;*/
+/*	align-items: center;*/
+/*}*/
+/*#inactiveButton{*/
+/*	border: none;*/
+/*	width: 19vw;*/
+/*	height: 5vw;*/
+
+/*	background: #6FA8DC;*/
+/*}*/
+/*#activeButton{*/
+/*	border: none;*/
+/*	width: 19vw;*/
+/*	height: 5vw;*/
+/*	margin-top: 3vw;*/
+
+/*	background: #6FA8DC;*/
+/*}*/
+/*#talentName {*/
+/*	width: 2.5vw;*/
+/*	height: 1vw;*/
+/*	!*grid-column:2/2;*/
+/*	grid-row:1/2;*/
+
+/*	 *!*/
+/*}*/
 #talentEmail{
 	width: 8vw;
 	height: 1vw;
@@ -98,23 +205,21 @@
 #talentPassword{
 	width: 5vw;
 	height: 1vw;
-/*grid-column:2/2;
-
- */
+	grid-column:2/2;
 }
-#talentRating{
-	width: 2.5vw;
-	height: 1vw;
-/*grid-column:3/3;
+/* *!*/
+/*}*/
+/*#talentRating{*/
+/*	width: 2.5vw;*/
+/*	height: 1vw;*/
+/*!*grid-column:3/3;*/
 
- */
-}
-#talentProfilePicture {
-	width: 6vw;
-	height: 6vw;
+/* *!*/
+/*}*/
 
-/*grid-column:1/2;
-grid-row:1/2;
+/*!*grid-column:1/2;*/
+/*grid-row:1/2;*/
 
- */
-}
+/* *!*/
+/*}*/
+
