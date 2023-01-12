@@ -5,6 +5,7 @@ $cssFile = "stylesheet.css";
 include "/var/www/E3T/components/header.php";
 
 ?>
+<div id="container">
 	<div id="form">
 		<h2> contact us </h2>
 		<form method="POST" action="contact_page_e3t.php">
@@ -87,8 +88,9 @@ include "/var/www/E3T/components/header.php";
 			</div>
 		</div>
 	</div>
+	
 	</main>
-
+</div>
 	<?php
 
 include "/var/www/E3T/components/footer.html";
