@@ -1,6 +1,7 @@
 <?php
 
 $pageName = "E3T-Talents";
+$cssFile = "Booking.css";
 include "/var/www/E3T/components/header.php";
 
 ?>

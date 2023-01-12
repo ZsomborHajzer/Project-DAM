@@ -1,6 +1,7 @@
 <?php
 
 $pageName = "E3T-Talents";
+$cssFile = "stylesheet.css";
 include "/var/www/E3T/components/header.php";
 
 ?>
