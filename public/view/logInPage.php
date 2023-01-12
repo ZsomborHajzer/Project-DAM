@@ -1,17 +1,13 @@
 <?php
     @ob_start();
     session_start();
+    $pageName = "E3T-Talents";
+    $cssFile = "loginPage.css";
+    include "/var/www/E3T/components/header.php";
 ?>
 
 
-<!DOCTYPE html>
 
-<html lang="en" >
-    <head>
-        <meta charset="UTF-8">
-        <title>Login E3T</title>
-        <link rel="stylesheet" href="styles.css"/>
-    </head>
 
     <body>
 
@@ -107,4 +103,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 }
 ob_flush();
+
+
+
+
+include "/var/www/E3T/components/footer.html";
+
+
 ?>
