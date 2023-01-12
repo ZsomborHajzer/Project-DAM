@@ -70,7 +70,7 @@ session_start();
         echo "<ul>";
         echo "<li class='active'><a href='home.php'>Home</a></li>";
         echo "<li><a href='Booking.php'>Book here</a></li>";
-        echo "<li><a href='#'>Contact</a></li>";
+        echo "<li><a href='contactPage.php'>Contact</a></li>";
         echo "<li><a href='#'>Login</a></li>";
         echo "</ul>";
         echo "</div>";
