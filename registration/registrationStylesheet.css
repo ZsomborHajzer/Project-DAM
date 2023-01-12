@@ -1,0 +1,42 @@
+body{
+	padding: 0;
+	margin: 0;
+	color: #464646;
+}
+
+#container{
+	display: grid;
+	grid-template-columns: repeat(6,1fr);
+	background-color: #E4EAFF;
+}
+
+header{
+	grid-column: 1/7;
+}
+
+#profileInfo{
+	grid-column: 3/5;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-items: center;
+
+	background-color: #FFFFFF;
+}
+
+#profileInfo> h1{
+	color: #1162AD;
+	font-size: 35px;
+}
+
+button{
+	margin-left: 50px;
+	padding: 5px;
+	border: 1px solid black;
+	background-color: #6FA8DC;
+	color: #FFFFFF;
+}
+
+footer{
+	grid-column: 1/7;
+}
