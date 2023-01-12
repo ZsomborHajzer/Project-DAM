@@ -203,7 +203,7 @@ $sessionID = $_SESSION["id"];
 
         if (!is_dir($newPfrad)) {
             $oldMask = umask(0);
-            mkdir($folderName, 0777);
+            mkdir($newPfrad, 0777);
             umask($oldMask);
         }
 
