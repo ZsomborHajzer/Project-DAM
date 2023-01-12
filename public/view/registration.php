@@ -62,7 +62,7 @@
 				$err[] = "Enter talent's last name";
 			}
 
-			if(preg_match("/^[0-9]{10}/", $_POST["dataPhoneNo"])){
+			if(preg_match("/^[0-9]/", $_POST["dataPhoneNo"])){
 				$PhoneNo = $_POST["dataPhoneNo"];
 			}else{
 				$err[] = "Invalid Phone Number";
