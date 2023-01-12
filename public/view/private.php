@@ -221,7 +221,7 @@ $sessionID = $_SESSION["id"];
                     if (!file_exists($newPfrad . $_FILES["profileFile"]["name"])) {
 
                         //move_uploaded_file is a function that checks if the file was uploaded a secure way and if it was it will move it to the designated place. The first parameter checks if it was uploaded using a post mechanism, the second parameter transfers it to the designated file holder. If this function passes, it returns a true. if it does not it returns a false.
-                        if (move_uploaded_file($_FILES["profileFile"]["tmp_name"], $newPfrad . $_FILES["uploadImg"]["name"])) {
+                        if (move_uploaded_file($_FILES["profileFile"]["tmp_name"], $newPfrad . $_FILES["profileFile"]["name"])) {
                             echo "ok";
                         } else {
                             echo "Something went wrong";
