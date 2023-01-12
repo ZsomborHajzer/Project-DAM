@@ -9,7 +9,7 @@ body {
     font-family: 'inter';
     display: grid;
     gap: 30px;
-    grid-template-rows: 81px 550px 150px;
+    grid-template-rows: 10vh 75vh 15vh;
     background-color: #E4EAFF;
 
 }
@@ -131,6 +131,7 @@ header {
 }
 
 .t-content:nth-child(2) {
+    height: 412px;
     display: grid;
     grid-template-columns: 15px 1fr 15px;
     grid-template-rows: 15px 1fr 15px;
@@ -143,16 +144,37 @@ header {
     grid-column: 2/3;
     grid-row: 2/3;
     gap: 10px;
-    /* background-color: red; */
 }
 
 .g-item {
-    display: flex;
-    gap: 20px;
-    justify-content: space-evenly;
+    display: grid;
+    min-height: 100px;
+    max-height: 300px;
     background-color: #6FA8DC;
+    align-content: center;
+
+}
+
+.mClass {
+    background-color: #6FA8DC;
+    display: flex;
+    min-height: 100px;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     align-content: center;
+    z-index: 2;
+}
+
+.subClass {
+    display: grid;
+    grid-template-rows: 9px 25px 39px 3px;
+    grid-template-columns: 10px repeat(7, 1fr);
+    background-color: #98c1e6;
+    min-height: 80px;
+    height: 100px;
+    z-index: 1;
+    position: relative;
+    box-shadow: inset 0px 2px 3px 0px black;
 }
 
 .g-img {
@@ -162,6 +184,25 @@ header {
 
 .g-p {
     width: 160px;
+    padding-top: 30px;
+    text-align: start;
+}
+
+.g-mail {
+    width: 200px;
+    padding-top: 30px;
+    text-align: start;
+}
+
+.g-descr {
+    width: 120px;
+    padding-top: 30px;
+    text-align: start;
+
+}
+
+.g-price {
+    width: 80px;
     padding-top: 30px;
     text-align: start;
 }
@@ -182,6 +223,47 @@ header {
     align-items: right;
 }
 
+
+
+.s-label {
+    font-size: medium;
+}
+
+.s-date {
+    height: 30px;
+    width: 140px;
+}
+
+.s-email {
+    height: 30px;
+    width: 280px;
+}
+
+.s-content:nth-child(1) {
+    grid-row: 2/3;
+    grid-column: 2/9;
+}
+
+.s-content:nth-child(2) {
+    grid-row: 3/4;
+    grid-column: 2/9;
+    display: flex;
+    gap: 60px;
+
+}
+
+
+
+.s-p {
+    font-weight: bold;
+    font-size: large;
+}
+
+.s-sub {
+    height: 28px;
+    width: 100px;
+}
+
 /* Footer */
 .s-fix {
     width: 30px;
@@ -189,7 +271,6 @@ header {
 }
 
 footer {
-    /* footer*/
     grid-row: 3/4;
     width: 100%;
     display: grid;
@@ -204,7 +285,6 @@ footer {
     align-items: flex-end;
     justify-self: center;
     color: #FFFFFF;
-    /* display: none; */
 }
 
 .f-content:nth-child(1) ul {
@@ -214,7 +294,6 @@ footer {
 
 .f-content li {
     display: inline-block;
-    /* Describe font in here */
 }
 
 
@@ -280,8 +359,6 @@ footer {
         text-align: center;
         background-color: #000000;
         transition: all .5s;
-        /* box-shadow: 0 0 100% 100% black; */
-        /* color: #EDE5BB; */
     }
 
     .nav-list-mobile li a {

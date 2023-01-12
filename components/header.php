@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +38,7 @@
             echo "<ul>";
             echo "<li class='active'><a href='#'>Register</a></li>";
             echo "<li><a href='#'>Talent</a></li>";
-            echo "<li><a href='adminPage.html'>Admin Page</a></li>";
+            echo "<li><a href='#'>Admin Page</a></li>";
             echo "</ul>";
             echo "</div>";
             echo "</nav>";
@@ -62,24 +66,14 @@
         echo "<button class='fas fa-bars' id='hamburger-btn'></button>";
         echo " <div class='nav-desktop'> ";
         echo "<ul>";
-        echo "<li class='active'><a href='home.html'>Home</a></li>";
+        echo "<li class='active'><a href='startpage.php'>Home</a></li>";
         echo "<li><a href='Booking.php'>Book here</a></li>";
-        echo "<li><a href='contactPage.php'>Contact</a></li>";
+        echo "<li><a href='#'>Contact</a></li>";
         echo "<li><a href='#'>Login</a></li>";
         echo "</ul>";
         echo "</div>";
         echo "</nav>";
     }
 
-    //Commented out mobile navbar
-    // <div class="nav-mobile" id="nav-mobile" >
-
-    //     <ul  class="nav-list-mobile">
-    //         <li class="active"><a href="index.html">Home</a></li>
-    //         <li><a href="#">Book here</a></li>
-    //         <li><a href="#">Contact</a></li>
-    //         <li><a href="#">Login</a></li>
-    //     </ul>
-    // </div>
     echo "</header>";
     ?>
