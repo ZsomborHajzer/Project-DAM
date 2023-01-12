@@ -54,9 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($mail = filter_input(INPUT_POST, "dataMail", FILTER_VALIDATE_EMAIL)) {
 
 
-            $dsn = "mysql:host=mysql;dbname=dbprojectterm2";
+            $dsn = "mysql:host=localhost;dbname=E3T";
             $user = "root";
-            $passwd = "qwerty";
+            $passwd = "!User_12";
 
             //Connecting to a database
             $dbHandler = new PDO($dsn, $user, $passwd);
