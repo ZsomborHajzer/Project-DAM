@@ -2,7 +2,7 @@
     @ob_start();
     session_start();
     $pageName = "E3T-Talents";
-    $cssFile = "loginPage.css";
+    $cssFile = "logInPage.css";
     include "/var/www/E3T/components/header.php";
 ?>
 
