@@ -1,14 +1,10 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>home page</title>
-    <link href="projectstyle.css" rel="stylesheet">
-    <link href="normalize.css" rel="stylesheet">
-</head>
+<?php
+
+$pageName = "E3T-Talents";
+$cssFile = "homePage.css";
+include "/var/www/E3T/components/header.php";
+
+?>
 <body>
     <div id="mainBody">
         <div id="bannerTitle">
@@ -37,4 +33,8 @@
         </div>
     </div>
 </body>
-</html>
+<?php
+
+include "/var/www/E3T/components/footer.html";
+
+?>

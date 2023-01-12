@@ -49,11 +49,11 @@ main{
 	background-color: #6FA8DC;
 }
 
-.contact > h2{
+ h2{
 	color:#1162AD;
 }
 
-.contact > h3{
+h3{
 	color:#1162AD;
 	margin-bottom: 0vw;
 }
@@ -96,6 +96,3 @@ main{
 	margin-bottom:0vw;
 }
 
-footer{
-	grid-column: 1/7;
-}
