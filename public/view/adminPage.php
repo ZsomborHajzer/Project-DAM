@@ -30,12 +30,8 @@
 
                 <?php
                 // Create retrieval of talent information from email entered, check if email entered exists
-                $err=[];
-                $dsn="mysql:host=mysql;dbname=dbprojectterm2";
-                $user="root";
-                $passwrd="qwerty";
-
-                $dbHandler = new PDO($dsn, $user, $passwrd);
+				
+				include "/var/www/E3T/components/dbConnect.php";
 
                 //Create php to change user from active to inactive & vice versa
                 if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["action"] == "change") {
