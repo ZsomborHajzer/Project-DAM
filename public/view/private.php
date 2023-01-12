@@ -36,10 +36,10 @@ include "/var/www/E3T/components/dbConnect.php";
 $arrayofImages = [];
 $pictureHolder = "../img/pictureholder/";
 $documentHolder = "../img/documentholder/";
-$profileImgLocations = "../img/profileimg/";
-$stockPhotoLocation = "../img/stockphotoholder/addimg.png";
-$addDocLocation = "../img/stockphotoholder/adddoc.png";
-$stockDocumentLocation = "../img/stockphotoholder/";
+$profileImgLocations = "images/profileimg/";
+$stockPhotoLocation = "images/stockphotoholder/addimg.png";
+$addDocLocation = "img/stockphotoholder/adddoc.png";
+$stockDocumentLocation = "img/stockphotoholder/";
 $files = [];
 $profileFiles = [];
 $fileSize = 4 * 1024 * 1024; //4MB
