@@ -69,7 +69,7 @@ for ($day = 1; $day <= $end_day; $day++) {
             </tr>
         </thead>
         <tbody>
-            <?
+            <?php
             foreach ($weeks as $week) {
                 echo "<tr>" . PHP_EOL;
                 foreach ($week as $day) {

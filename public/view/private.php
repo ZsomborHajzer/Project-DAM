@@ -370,9 +370,7 @@ $_SESSION["id"];
 
         ?>
 
-        <footer>
-            <h1>Placeholder for actuall footer</h1>
-        </footer>
+
 
     </div>
 
