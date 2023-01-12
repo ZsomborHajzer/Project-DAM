@@ -1,7 +1,7 @@
 <?php
 include "/var/www/E3T/components/dbConnect.php";
 //Connecting to a database
-$dbHandler = new PDO($dsn, $user, $passwd);
+
 if (isset ($_POST["dataSendByPrice"])) {
 
     if ($mailClient = filter_input(INPUT_POST, "dataMail", FILTER_VALIDATE_EMAIL) && $date = filter_input(INPUT_POST, "dataDate", FILTER_SANITIZE_NUMBER_INT)) {
