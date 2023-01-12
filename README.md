@@ -6,7 +6,7 @@ Project 2 Team A
 	- Bernardo: Backend
 	- Ege: Frontend
 	- Caterina: Frontend
-	- Zsombor: Frontend
+	- Zsombor: Fullstack
 	- Rares: Backend
 	- Ayomide: Frontend
 	- Pull request done by: Paul and Bernardo
