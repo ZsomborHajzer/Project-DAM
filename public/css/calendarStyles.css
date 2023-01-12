@@ -15,12 +15,12 @@
 body > #calendarTitle {
     margin-left: 7vw;
     font-family: 'Roboto', sans-serif;
-    color: #1162AD ;
+    color: #1162AD;
 }
 
 body {
     margin: 0;
-    background-color: #E4EAFF ;
+    background-color: #E4EAFF;
 }
 
 /*-------------------------*/
@@ -30,7 +30,7 @@ body {
 #calenderMain {
     grid-template-columns: repeat(6, 1fr);
     display: grid;
-    background-color: #E4EAFF ;
+    background-color: #E4EAFF;
 }
 
 /*-------------------------*/
@@ -40,16 +40,16 @@ body {
 #calenderTable {
     border-collapse: collapse;
     grid-column: 1/7;
-    margin-left:7vw;
-    margin-right:7vw;
+    margin-left: 7vw;
+    margin-right: 7vw;
     background-color: white;
-    color: #464646 ;
- }
+    color: #464646;
+}
 
-#calenderTable  td,
+#calenderTable td,
 th {
     border: 0.2vw solid black;
-    height:3vw;
+    height: 3vw;
     width: calc(100%/7);
     vertical-align: middle;
     text-align: center;
@@ -60,6 +60,7 @@ th {
     text-align: left;
     padding-left: 3vw;
 }
+
 /*-------------------------*/
 /*availability indicators */
 /*-------------------------*/
@@ -95,10 +96,10 @@ th {
     align-self: center;
 }
 
-/*-------------------------*/
+/* -------------------------
 /*Color indicators*/
 /*-------------------------*/
-
+/* 
 .red {
     background-color: #FF8080;
 }
@@ -109,4 +110,4 @@ th {
 
 .green {
     background-color: #74D980;
-}
+} */
