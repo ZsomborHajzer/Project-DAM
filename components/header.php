@@ -25,7 +25,7 @@ session_start();
     <?php
     echo "<header>";
 
-    if (isset($_SESSION["Login"])) {
+    if (isset($_SESSION["idUser"])) {
 
         if ($_SESSION["isAdmin"] == 1) {  //If Admin
 
