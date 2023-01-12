@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head> 
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="stylesheet.css">
-	<title> E3T Contact us </title>
-</head>
-<body> 
-<div id="container">
-	<header>
-		<h1> header </h1>
-	</header>
-	<main>
-	
+<?php
+
+$pageName = "E3T-Talents";
+include "/var/www/E3T/components/header.php";
+
+?>
 	<div id="form">
 		<h2> contact us </h2>
 		<form method="POST" action="contact_page_e3t.php">
@@ -95,9 +87,9 @@
 		</div>
 	</div>
 	</main>
-	<footer>
-		<h1> footer </h1>
-	</footer>
-</div>
-</body>
-</html>
+
+	<?php
+
+include "/var/www/E3T/components/footer.html";
+
+?>
