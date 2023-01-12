@@ -1,15 +1,13 @@
 <?php 
     global $dEmail;
 
+    $pageName = "E3T-Talents";
+    $cssFile = "adminPageCss.css";
+    include "/var/www/E3T/components/header.php";
 
 
 ?>
-<!DOCTYPE HTML>
-<html lang="en">
-	<head>
-		<title>AdminPage</title>
-		 <link rel="stylesheet" href="css/adminPageCss.css">
-	</head>
+
     <script>
             function showmore(id) {
                 var submitEmailForm = document.getElementById("submitEmailForm" + id)
@@ -22,7 +20,7 @@
                 }
             }
     </script>
-	<body>
+	
         <main>
 
 
@@ -30,7 +28,7 @@
 
                 <?php
                 // Create retrieval of talent information from email entered, check if email entered exists
-				
+
 				include "/var/www/E3T/components/dbConnect.php";
 
                 //Create php to change user from active to inactive & vice versa
@@ -168,7 +166,10 @@
             </div>
         </div>
         </main>
-    </body>
+    
+
+	<?php
+include "/var/www/E3T/components/footer.html";
 
 
-</html>
+?>
