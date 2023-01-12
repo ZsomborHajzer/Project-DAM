@@ -75,12 +75,8 @@ include "/var/www/E3T/components/header.php";
                     <select id="s_talent" name="dataTalents" id="dataTalents">
                         <option disabled selected value> -- select an option --</option>
                         <?php
-                        $dsn = "mysql:host=localhost;dbname=dbprojectterm2";
-                        $user = "root";
-                        $passwd = "";
 
-                        //Connecting to a database
-                        $dbHandler = new PDO($dsn, $user, $passwd);
+                        include "/var/www/E3T/components/dbConnect.php";
 
                         $stmtToGetSpecialites = $dbHandler->query("SELECT * FROM tblspecialties");
 
