@@ -2,13 +2,14 @@
 include "/var/www/E3T/components/dbConnect.php";
 //Connecting to a database
 
+$mail = $_POST["dataMail"];
+$submitId = $_GET['id'];
+$speciality = $_GET['spec'];
 if (isset ($_POST["dataSendByPrice"])) {
 
     if ($mailClient = filter_input(INPUT_POST, "dataMail", FILTER_VALIDATE_EMAIL) && $date = filter_input(INPUT_POST, "dataDate", FILTER_SANITIZE_NUMBER_INT)) {
 
-        $mail = $_POST["dataMail"];
-        $submitId = $_GET['id'];
-        $speciality = $_GET['spec'];
+   
 
 
         $query = $dbHandler->query("SELECT `dtDate`, `fiUser` FROM tblBooking WHERE `dtDate` = '$date'   AND `fiUser` ='$submitId'");
@@ -46,7 +47,7 @@ if (isset ($_POST["dataSendByActive"])) {
 
     if ($mailClient = filter_input(INPUT_POST, "dataMail", FILTER_VALIDATE_EMAIL) && $date = filter_input(INPUT_POST, "dataDate", FILTER_SANITIZE_NUMBER_INT)) {
 
-        $query = $dbHandler->query("SELECT `dtDate`, `fiUSer` FROM tblBooking");
+        $query = $dbHandler->query("SELECT `dtDate`, `fiUser` FROM tblBooking WHERE `dtDate` = '$date'   AND `fiUser` ='$submitId'");
         $rows = $query->fetchAll();
         $mail = $_POST["dataMail"];
         $submitId = $_GET['id'];
@@ -81,7 +82,7 @@ if (isset ($_POST["dataSendByName"])) {
 
     if ($mailClient = filter_input(INPUT_POST, "dataMail", FILTER_VALIDATE_EMAIL) && $date = filter_input(INPUT_POST, "dataDate", FILTER_SANITIZE_NUMBER_INT)) {
 
-        $query = $dbHandler->query("SELECT `dtDate`, `fiUSer` FROM tblBooking");
+        $query = $dbHandler->query("SELECT `dtDate`, `fiUser` FROM tblBooking WHERE `dtDate` = '$date'   AND `fiUser` ='$submitId'");
         $rows = $query->fetchAll();
         $mail = $_POST["dataMail"];
         $submitId = $_GET['id'];
@@ -117,7 +118,7 @@ if (isset ($_POST["dataSendByMail"])) {
 
     if ($mailClient = filter_input(INPUT_POST, "dataMail", FILTER_VALIDATE_EMAIL) && $date = filter_input(INPUT_POST, "dataDate", FILTER_SANITIZE_NUMBER_INT)) {
 
-        $query = $dbHandler->query("SELECT `dtDate`, `fiUSer` FROM tblBooking");
+        $query = $dbHandler->query("SELECT `dtDate`, `fiUser` FROM tblBooking WHERE `dtDate` = '$date'   AND `fiUser` ='$submitId'");
         $rows = $query->fetchAll();
         $mail = $_POST["dataMail"];
         $submitId = $_GET['id'];
