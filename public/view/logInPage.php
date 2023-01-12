@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo  '<script>alert("You are logged in")</script>';
          
                 //refreshing
-                header("Location: adminPage.html");
+                header("Location: adminPage.php");
                 
 
             }else{
