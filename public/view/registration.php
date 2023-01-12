@@ -101,7 +101,7 @@
 				echo "Entered email is ".$dtEmail;
 				try{ 
 							//Checks if an email exists
-						$stmt = $dbHandler-> prepare("SELECT dtEmail FROM tbluser WHERE dtEmail =:email");
+						$stmt = $dbHandler-> prepare("SELECT dtEmail FROM tblUser WHERE dtEmail =:email");
 							
 						$stmt->bindParam("email", $dtEmail);
 
@@ -124,7 +124,7 @@
 
 							if(empty($row)){	//If a description doesnt exist in tblspecialty, it is added here
 									
-								$stmt = $dbHandler-> prepare("INSERT INTO tblspecialty(dtDescription) VALUES(:Description)");
+								$stmt = $dbHandler-> prepare("INSERT INTO tblSpecialty(dtDescription) VALUES(:Description)");
 
 								$stmt->bindParam("Description", $specialty);
 
