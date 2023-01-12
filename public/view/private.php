@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 
 /*
 This is the private talent page where seperate talents will have different seperate personal pages
@@ -12,6 +12,24 @@ The aim of this page is customization.
 if (isset($_POST["newProfilePic"])) {
     header("Location: private.php");
 }
+
+//double refresh is required apperantly at all new file uploads
+if (isset($_POST["imgUpload"])) {
+    header("Location: private.php");
+}
+//double refresh is required apperantly at all new file uploads
+if (isset($_POST["docUpload"])) {
+    header("Location: private.php");
+}
+
+//double refresh is required apperantly at all new file uploads
+if (isset($_POST["deletePic"])) {
+    header("Location: private.php");
+}
+
+//Database connect
+require_once "../../components/dbConnect.php";
+
 $arrayofImages = [];
 $pictureHolder = "../img/pictureholder/";
 $documentHolder = "../img/documentholder/";
@@ -19,12 +37,13 @@ $profileImgLocations = "../img/profileimg/";
 $stockPhotoLocation = "../img/stockphotoholder/addimg.png";
 $addDocLocation = "../img/stockphotoholder/adddoc.png";
 $stockDocumentLocation = "../img/stockphotoholder/";
-
-
-// ../../public/view
 $files = [];
 $profileFiles = [];
 $fileSize = 4 * 1024 * 1024; //4MB
+
+//Session variables
+$sessionID = 12  //$_SESSION["ID"]; for now it is 12 but once log in page is done this can be dynamic
+
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +55,50 @@ $fileSize = 4 * 1024 * 1024; //4MB
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talent personal page</title>
     <link rel="stylesheet" href="../css/style.css">
+    <!-- jquery link -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="jquery-3.6.1.min.js"></script>
+    <script>
+
+        //jqurey script to not allow select of day before today
+        $(document).ready(function () {
+            $(function () {
+                let dtToday = new Date();
+
+                let month = dtToday.getMonth() + 1;
+                let day = dtToday.getDate();
+                let year = dtToday.getFullYear();
+                if (month < 10)
+                    month = '0' + month.toString();
+                if (day < 10)
+                    day = '0' + day.toString();
+
+                let maxDate = year + '-' + month + '-' + day;
+
+                // or instead:
+                // var maxDate = dtToday.toISOString().substr(0, 10);
+
+
+                $('#dataStartDate').attr('min', maxDate);
+
+            });
+
+
+
+            //don't allow select before the start of vacation
+
+            $('#dataStartDate').on('change', function() {
+
+                let selectedDate = this.value;
+
+
+                $('#dataEndDate').attr('min', selectedDate);
+            });
+
+        });
+
+
+    </script>
 </head>
 
 <body>
@@ -46,7 +109,6 @@ $fileSize = 4 * 1024 * 1024; //4MB
             <h1>Placeholder for actual header</h1>
         </header>
 
-
         <!-- always echo the first image in the folder "profileimg -->
         <div class="profileImage">
             <img src=<?php
@@ -55,13 +117,28 @@ $fileSize = 4 * 1024 * 1024; //4MB
                         ?> alt="" width=200 height=200 />
         </div>
 
+        <?php
+        //This is query requesting information from user database 
+        $query = 'SELECT * FROM tblUser WHERE idUser= ' . $sessionID . ';';
+        $stmt = $dbHandler->prepare($query);
+        $stmt->execute();
+        $posts = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //This is to get the description based on the value get from fiSpecialty
+        $query2 = 'SELECT * FROM tblSpecialty WHERE idSpecialty = ' . $posts["fiSpecialty"] . '  ';
+        $stmt2 = $dbHandler->prepare($query2);
+        $stmt2->execute();
+        $talents = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+        ?>
+
         <div class="talentInfo">
-            <p>Insert talent fname/lname</p>
-            <p><b>Specialities: </b>Guitar, Singer, Songwriter, Actor </p>
+            <p><?php echo $posts["dtFirstName"] . "&nbsp" . $posts["dtLastName"]; ?></p>
+            <p><b>Speciality: </b> <?php echo $talents["dtDescription"]; ?></p>
         </div>
 
         <div class="email">
-            <p>Email address: <a href="mailto:testemail@adus.com">testemail@adus.com</a></p>
+            <p>Email address: <a href="mailto:testemail@adus.com"><?php echo $posts["dtEmail"]; ?></a></p>
         </div>
 
         <!-- This part should only allow one profile image, meaning if one is uploaded, the previous one is deleted-->
@@ -72,12 +149,56 @@ $fileSize = 4 * 1024 * 1024; //4MB
             </form>
         </div>
 
+
+
+        <div class="vacation">
+            <h3>Add Vacation</h3>
+            <form method="post">
+                <input  id="dataStartDate" name="dataStartDate" type="date">
+                <input  id="dataEndDate" name="dataEndDate" type="date">
+                <input type="submit" id="dataSendVacation" name="dataSendVacation">
+            </form>
+        </div>
+
         <?php
 
-        require "../../components/profileUpload.php";
+        if (isset($_POST["dataSendVacation"])) {
 
+
+
+                if ($startDate = filter_input(INPUT_POST,"dataStartDate",FILTER_SANITIZE_NUMBER_INT) && $endDate = filter_input(INPUT_POST,"dataEndDate", FILTER_SANITIZE_NUMBER_INT)) {
+
+                    $date = $_POST["dataStartDate"];
+
+                    $query = $dbHandler->query("SELECT `dtDateStart`, `dtDateEnd` FROM tblavaible WHERE `dtDateStart` = '$startDate'   AND `dtDateEnd` ='$endDate'");
+                    $rows = $query->fetchAll();
+
+
+
+                    if ($rows  == null) {
+                        try {
+                            $sql = "INSERT INTO tblavaible (dtDateStart, dtDateEnd, fiUser, dtTrue) VALUES (?,?,?,?)";
+                            $stmt = $dbHandler->prepare($sql);
+                            $stmt->execute([$date, $endDate, $sessionID, 1]);
+                            header("Refresh:0");
+                            echo "Vacation was added";
+                        }catch (PDOException $e) {
+                            echo "You already have vacation on the selected date";
+                        }
+
+
+                    }else {
+                        echo "You already have vacation here";
+
+                    }
+
+                }else {
+                    echo "<script>alert('Please select a valid date')</script>";
+                }
+
+
+        }
         ?>
-
         <div class="photoTitle">
             <h1><b>Photos</b></h1>
         </div>
@@ -85,16 +206,19 @@ $fileSize = 4 * 1024 * 1024; //4MB
         <div class="photoHolder">
 
             <!--  first img should be this one for talents so they can add more images later on to the project  -->
-            <div class="addImg">
-                <form action="#" method="post" enctype="multipart/form-data">
+
+            <form action="" method="POST" enctype="multipart/form-data" name="yes">
+
+                <div class="addImg">
                     <label>
-                        <input type="file" name="uploadImg" id="" style="display:none">
+                        <input type="file" name="uploadImg" onchange="this.form.submit()" style=" display:none">
                         <img src=<?php echo $stockPhotoLocation; ?> alt="addimg" id="stockphotoAddImg">
+                        <input type="hidden" name="imgUpload" value="imgUpload">
                         <figcaption>
                             <p>Add a new image</p>
                         </figcaption>
                     </label>
-            </div>
+                </div>
 
             </form>
 
@@ -137,11 +261,36 @@ $fileSize = 4 * 1024 * 1024; //4MB
             }
 
             ?>
+        </div>
+
+        <div class="deletePhotoTitle">
+            <h1><b>Delete a photo</b></h1>
+        </div>
+
+        <div class="deletePhoto">
+            <form action="#" method="post" enctype="multipart/form-data">
+                <select name="deletePic" id="deletePic" value="Delete">
+                    <?php
+                    $arrayofImages = scandir($pictureHolder);
+                    for ($i = 0; $i < count($arrayofImages); $i++) {
+                        if ($arrayofImages[$i] != '.' && $arrayofImages[$i] != '..') {
+                            echo '<option value="' . $arrayofImages[$i] . '">' . $arrayofImages[$i] . '</option>';
+                        }
+                    }
+
+                    ?>
+
+                </select>
+                <input type="submit" value="Delete" name="Delete">
+            </form>
 
         </div>
 
-        <div class="documentsTitle">
-            <h2>Documents</h2>
+
+
+
+        <div class=" documentsTitle">
+            <h1>Documents</h1>
         </div>
 
         <div class="documents">
@@ -171,8 +320,9 @@ $fileSize = 4 * 1024 * 1024; //4MB
             <div class="addDoc">
                 <form action="#" method="post" enctype="multipart/form-data">
                     <label>
-                        <input type="file" name="uploadDoc" id="" style="display:none">
+                        <input type="file" name="uploadDoc" onchange="this.form.submit()" id="" style="display:none">
                         <img src=<?php echo $addDocLocation; ?> alt="" height="200" width="200">
+                        <input type="hidden" name="docUpload" value="docUpload">
                         <figcaption>
                             <p>Add a new document</p>
                         </figcaption>
@@ -180,6 +330,57 @@ $fileSize = 4 * 1024 * 1024; //4MB
             </div>
 
         </div>
+        <div class="deleteDocumentTitle">
+            <h1><b>Delete a Document</b></h1>
+        </div>
+
+        <div class="deleteDocument">
+            <form action="#" method="post" enctype="multipart/form-data">
+                <select name="deleteDoc" id="deleteDoc" value="Delete">
+                    <?php
+                    $arrayofDocs = scandir($documentHolder);
+                    for ($i = 2; $i < count($arrayofDocs); $i++) {
+                        echo '<option value="' . $arrayofDocs[$i] . '">' . $arrayofDocs[$i] . '</option>';
+                    }
+                    ?>
+                </select>
+                <input type="submit" value="Delete" name="deleteDocSubmit">
+            </form>
+        </div>
+
+
+        <?php
+        //Delete Picture part
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["deletePic"])) {
+                $deletePic = $_POST["deletePic"];
+                @(unlink("../img/pictureholder/" . $deletePic . ""));
+            }
+
+            if (isset($_POST["deleteDocSubmit"])) {
+                print_r($_POST);
+                $deleteDoc = $_POST["deleteDoc"];
+                @(unlink("../img/documentholder/" . $deleteDoc . ""));
+            }
+        }
+
+
+
+
+        //Require files to lessen the amount of code in one page
+        if (isset($_POST["imgUpload"])) {
+            require "../../components/photoAdd.php";
+        }
+
+        if (isset($_POST["docUpload"])) {
+            require "../../components/documentAdd.php";
+        }
+
+        if (isset($_POST["newProfilePic"])) {
+            require "../../components/profileUpload.php";
+        }
+
+        ?>
 
         <footer>
             <h1>Placeholder for actuall footer</h1>
