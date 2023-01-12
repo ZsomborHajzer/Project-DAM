@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap"
-        rel="stylesheet">
+          rel="stylesheet">
     <!-- My css -->
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/Booking.css">
@@ -19,33 +19,71 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="Lholder">
-                <img class="logo" src="/images/blogo.png">
-            </div>
+<?php
+echo "<header>";
 
-            <button class="fas fa-bars" id="hamburger-btn"></button>
+if (isset($_SESSION["Login"])) {
 
-            <div class="nav-desktop">
+    if ($_SESSION["isAdmin"] == 1) {  //If Admin
 
-                <ul>
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="Booking.php">Book here</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Login</a></li>
-                </ul>
-            </div>
+        echo "<nav class='navbar'>";
+        echo "<div class='Lholder'>";
+        echo "<img class='logo' src='/images/blogo.png'>";
+        echo "</div>";
+        echo "<button class='fas fa-bars' id='hamburger-btn'></button>";
+        echo " <div class='nav-desktop'> ";
+        echo "<ul>";
+        echo "<li class='active'><a href='#'>Register</a></li>";
+        echo "<li><a href='#'>Talent</a></li>";
+        echo "<li><a href='#'>Admin Page</a></li>";
+        echo "</ul>";
+        echo "</div>";
+        echo "</nav>";
 
-        </nav>
+    } else if ($_SESSION["isAdmin"] == 0) {    //If Talent
 
-        <div class="nav-mobile" id="nav-mobile">
+        echo "<nav class='navbar'>";
+        echo "<div class='Lholder'>";
+        echo "<img class='logo' src='/images/blogo.png'>";
+        echo "</div>";
+        echo "<button class='fas fa-bars' id='hamburger-btn'></button>";
+        echo " <div class='nav-desktop'> ";
+        echo "<ul>";
+        echo "<li><a href='#'>My Calendar</a></li>";
+        echo "<li class='active'><a href='#'>My Profile</a></li>";
+        echo "</ul>";
+        echo "</div>";
+        echo "</nav>";
 
-            <ul class="nav-list-mobile">
-                <li class="active"><a href="index.html">Home</a></li>
-                <li><a href="#">Book here</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Login</a></li>
-            </ul>
-        </div>
-    </header>
+    }
+} else {     //If Guest
+
+    echo "<nav class='navbar'>";
+    echo "<div class='Lholder'>";
+    echo "<img class='logo' src='/images/blogo.png'>";
+    echo "</div>";
+    echo "<button class='fas fa-bars' id='hamburger-btn'></button>";
+    echo " <div class='nav-desktop'> ";
+    echo "<ul>";
+    echo "<li class='active'><a href='startpage.php'>Home</a></li>";
+    echo "<li><a href='Booking.php'>Book here</a></li>";
+    echo "<li><a href='#'>Contact</a></li>";
+    echo "<li><a href='#'>Login</a></li>";
+    echo "</ul>";
+    echo "</div>";
+    echo "</nav>";
+}
+
+//Commented out mobile navbar
+// <div class="nav-mobile" id="nav-mobile" >
+
+//     <ul  class="nav-list-mobile">
+//         <li class="active"><a href="index.html">Home</a></li>
+//         <li><a href="#">Book here</a></li>
+//         <li><a href="#">Contact</a></li>
+//         <li><a href="#">Login</a></li>
+//     </ul>
+// </div>
+echo "</header>";
+?>
+
