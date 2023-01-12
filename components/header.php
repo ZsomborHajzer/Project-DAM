@@ -28,6 +28,7 @@ session_start();
     if (isset($_SESSION["idUser"])) {
 
         if ($_SESSION["isAdmin"] == 1) {  //If Admin
+            var_dump($_SESSION["isAdmin"]);
 
             echo "<nav class='navbar'>";
             echo "<div class='Lholder'>";
