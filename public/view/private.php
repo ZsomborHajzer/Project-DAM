@@ -45,7 +45,7 @@ $profileFiles = [];
 $fileSize = 4 * 1024 * 1024; //4MB
 */
 //Session variables
-$_SESSION["id"];
+$sessionID = $_SESSION["id"];
 
 ?>
 
