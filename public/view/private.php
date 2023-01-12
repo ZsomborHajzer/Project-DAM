@@ -124,7 +124,7 @@ $sessionID = $_SESSION["id"];
 
         <!-- This part should only allow one profile image, meaning if one is uploaded, the previous one is deleted-->
         <div class="profileButtons">
-            <form action="private.php" method="post" enctype="multipart/form-data">
+            <form action="#" method="post" enctype="multipart/form-data">
                 <input type="file" name="profileFile" id="profileFile">
                 <input type="submit" value="Update profile pic" name="newProfilePic">
             </form>
@@ -187,21 +187,54 @@ $sessionID = $_SESSION["id"];
 
       <!--  first img should be this one for talents so they can add more images later on to the project  -->
 
-      <form action="/var/www/E3T/components/photoAdd.php" method="POST" enctype="multipart/form-data" name="yes">
 
-    <div class="addImg">
-        <label>
-            <input type="file" name="uploadImg" onchange="this.form.submit()" style=" display:none">
-            <img src=<?php echo $stockPhotoLocation; ?> alt="addimg" id="stockphotoAddImg">
-            <input type="hidden" name="imgUpload" value="imgUpload">
-            <figcaption>
-                <p>Add a new image</p>
-            </figcaption>
-        </label>
-    </div>
+    <?php
+    if (isset($_POST["newProfilePic"])) {
+        $sessionID = $_SESSION["id"];
+        $name = $_SESSION["name"];
 
-    </form>
 
+        $newPfrad = "/home/share/e3t/" . $sessionID;
+        $fileSize = (4 * 1024 * 1024);
+
+
+        $config["upload_path"] = $newPfrad;
+
+
+        if (!is_dir($newPfrad)) {
+            $oldMask = umask(0);
+            mkdir($folderName, 0777);
+            umask($oldMask);
+        }
+
+
+        if ($_FILES["uploadImg"]["error"] == 0) {
+
+            if ($_FILES["uploadImg"]["size"] < $fileSize) {
+
+                $acceptedFileTypes = ["image/gif", "image/jpg", "image/jpeg", "image/png"];
+
+                $fileinfo = finfo_open(FILEINFO_MIME_TYPE);
+                $uploadedFileType = finfo_file($fileinfo, $_FILES["uploadImg"]["tmp_name"]);
+
+                if (in_array($uploadedFileType, $acceptedFileTypes)) {
+                    if (!file_exists($newPfrad . $_FILES["uploadImg"]["name"])) {
+
+                        //move_uploaded_file is a function that checks if the file was uploaded a secure way and if it was it will move it to the designated place. The first parameter checks if it was uploaded using a post mechanism, the second parameter transfers it to the designated file holder. If this function passes, it returns a true. if it does not it returns a false.
+                        if (move_uploaded_file($_FILES["uploadImg"]["tmp_name"], $newPfrad . $_FILES["uploadImg"]["name"])) {
+                            echo "ok";
+                        } else {
+                            echo "Something went wrong";
+                        }
+                    } else {
+                    }
+                } else {
+                }
+            } else {
+            }
+        }
+    }
+?>
 
     </div>
 
