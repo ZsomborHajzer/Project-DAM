@@ -17,7 +17,7 @@ if (isset ($_POST["dataSendByPrice"])) {
 
 
         if ($rows  == null) {
-            $sql = "INSERT INTO tblBooking (dtDate, dtEmail, fiUser,fiSpeciality) VALUES (?,?,?,?)";
+            $sql = "INSERT INTO tblBooking (dtDate, dtEmail, fiUser,fiSpecialty) VALUES (?,?,?,?)";
             $stmt = $dbHandler->prepare($sql);
             $stmt->execute([$date, $mail, $submitId, $speciality]);
             echo "<script>alert('Booking was added thanks for trusting us')
@@ -56,7 +56,7 @@ if (isset ($_POST["dataSendByActive"])) {
         $submitId = $_GET['id'];
        
         if ($rows  == null) {
-            $sql = "INSERT INTO tblBooking (dtDate, dtEmail, fiUser,fiSpeciality) VALUES (?,?,?,?)";
+            $sql = "INSERT INTO tblBooking (dtDate, dtEmail, fiUser,fiSpecialty) VALUES (?,?,?,?)";
             $stmt = $dbHandler->prepare($sql);
             $stmt->execute([$date, $mail, $submitId, $speciality]);
             echo "<script>alert('Booking was added thanks for trusting us')
@@ -90,7 +90,7 @@ if (isset ($_POST["dataSendByName"])) {
 
 
         if ($rows  == null) {
-            $sql = "INSERT INTO tblbooking (dtDate, dtEmail, fiUser,fiSpeciality) VALUES (?,?,?,?)";
+            $sql = "INSERT INTO tblbooking (dtDate, dtEmail, fiUser,fiSpecialty) VALUES (?,?,?,?)";
             $stmt = $dbHandler->prepare($sql);
             $stmt->execute([$date, $mail, $submitId, $speciality]);
             echo "<script>alert('Booking was added thanks for trusting us')
@@ -125,7 +125,7 @@ if (isset ($_POST["dataSendByMail"])) {
         $speciality = $_GET['spec'];
 
         if ($rows  == null) {
-            $sql = "INSERT INTO tblbooking (dtDate, dtEmail, fiUser,fiSpeciality) VALUES (?,?,?,?)";
+            $sql = "INSERT INTO tblbooking (dtDate, dtEmail, fiUser,fiSpecialty) VALUES (?,?,?,?)";
             $stmt = $dbHandler->prepare($sql);
             $stmt->execute([$date, $mail, $submitId, $speciality]);
             echo "<script>alert('Booking was added thanks for trusting us')
