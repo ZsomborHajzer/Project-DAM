@@ -34,12 +34,12 @@ if (isset($_POST["deletePic"])) {
 include "/var/www/E3T/components/dbConnect.php";
 
 $arrayofImages = [];
-$pictureHolder = "../img/pictureholder/";
-$documentHolder = "../img/documentholder/";
-$profileImgLocations = "../img/profileimg/";
-$stockPhotoLocation = "../img/stockphotoholder/addimg.png";
-$addDocLocation = "../img/stockphotoholder/adddoc.png";
-$stockDocumentLocation = "../img/stockphotoholder/";
+$pictureHolder = "images/pictureholder/";
+$documentHolder = "images/documentholder/";
+$profileImgLocations = "images/profileimg/";
+$stockPhotoLocation = "images/stockphotoholder/addimg.png";
+$addDocLocation = "images/stockphotoholder/adddoc.png";
+$stockDocumentLocation = "images/stockphotoholder/";
 $files = [];
 $profileFiles = [];
 $fileSize = 4 * 1024 * 1024; //4MB
@@ -49,18 +49,6 @@ $_SESSION["id"];
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talent personal page</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <!-- jquery link -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="jquery-3.6.1.min.js"></script>
     <script>
 
         //jqurey script to not allow select of day before today
@@ -104,7 +92,6 @@ $_SESSION["id"];
     </script>
 </head>
 
-<body>
 
     <div class="container">
 
@@ -391,6 +378,8 @@ $_SESSION["id"];
 
     </div>
 
-</body>
+    <?php
 
-</html>
+include "/var/www/E3T/components/footer.html";
+
+?
