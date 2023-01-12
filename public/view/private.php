@@ -1,5 +1,8 @@
 <?php
-session_start();
+
+$pageName = "E3T-Talents";
+$cssFile = "tttPrivate.css";
+include "/var/www/E3T/components/header.php";
 
 /*
 This is the private talent page where seperate talents will have different seperate personal pages
@@ -28,7 +31,7 @@ if (isset($_POST["deletePic"])) {
 }
 
 //Database connect
-require_once "../../components/dbConnect.php";
+include "/var/www/E3T/components/dbConnect.php";
 
 $arrayofImages = [];
 $pictureHolder = "../img/pictureholder/";
@@ -42,7 +45,7 @@ $profileFiles = [];
 $fileSize = 4 * 1024 * 1024; //4MB
 
 //Session variables
-$sessionID = 12  //$_SESSION["ID"]; for now it is 12 but once log in page is done this can be dynamic
+$_SESSION["id"];
 
 ?>
 
