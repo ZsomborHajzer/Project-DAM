@@ -132,7 +132,7 @@
 							}
 
 								//query to get the specialtyid of the entered description
-							$querySpecId = $dbHandler-> prepare("SELECT idSpecialty FROM tblspecialty WHERE tblspecialty.dtDescription LIKE ?");
+							$querySpecId = $dbHandler-> prepare("SELECT idSpecialty FROM tblSpecialty WHERE tblspecialty.dtDescription LIKE ?");
 
 							$querySpecId->execute(["%$specialty%"]);
 
