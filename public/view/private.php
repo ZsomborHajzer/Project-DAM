@@ -184,7 +184,7 @@ $sessionID = $_SESSION["id"];
                 <!-- always echo the first image in the folder "profileimg -->
                 <div class="profileImage">
                      <img src=<?php
-                     $newPfrad = "/home/share/e3t/" . $sessionID . "";
+                     $newPfrad = "/home/share/e3t/" . $sessionID;
                         $printedProfile = scandir($newPfrad);
                         echo $newPfrad . $printedProfile[2];
                         ?> alt="" width=200 height=200 />
@@ -281,17 +281,17 @@ $sessionID = $_SESSION["id"];
         $name = $_SESSION["name"];
 
 
-        $newPfrad = "/home/share/e3t/" . $sessionID . "/Images";
+        $picturesFolder = "/home/share/e3t/" . $sessionID . "/images/";
         $fileSize = (4 * 1024 * 1024);
 
 
-        $config["upload_path"] = $newPfrad;
+        $config["upload_path"] = $picturesFolder;
 
 
-        if (!is_dir($newPfrad)) {
+        if (!is_dir($picturesFolder)) {
             $oldMask = umask(0);
-            mkdir($newPfrad, 0777);
-            umask($oldMask);
+            mkdir($picturesFolder, 0777);
+            umask($picturesFolder);
         }
 
 
@@ -305,10 +305,10 @@ $sessionID = $_SESSION["id"];
                 $uploadedFileType = finfo_file($fileinfo, $_FILES["uploadImg"]["tmp_name"]);
 
                 if (in_array($uploadedFileType, $acceptedFileTypes)) {
-                    if (!file_exists($newPfrad . $_FILES["uploadImg"]["name"])) {
+                    if (!file_exists($picturesFolder . $_FILES["uploadImg"]["name"])) {
 
                         //move_uploaded_file is a function that checks if the file was uploaded a secure way and if it was it will move it to the designated place. The first parameter checks if it was uploaded using a post mechanism, the second parameter transfers it to the designated file holder. If this function passes, it returns a true. if it does not it returns a false.
-                        if (move_uploaded_file($_FILES["uploadImg"]["tmp_name"], $newPfrad . $_FILES["uploadImg"]["name"])) {
+                        if (move_uploaded_file($_FILES["uploadImg"]["tmp_name"], $npicturesFolderewPfrad . $_FILES["uploadImg"]["name"])) {
                             echo "ok";
                         } else {
                             echo "Something went wrong";
@@ -326,10 +326,10 @@ $sessionID = $_SESSION["id"];
     //reading the image
 
     // checks if there is a directory in that address or not
-    if (is_dir($newPfrad)) {
+    if (is_dir($picturesFolder)) {
 
         // if there is a directory, scan the names of the files in that directory and put it in a array called $array of images
-        $arrayofImages = scandir($newPfrad);
+        $arrayofImages = scandir($picturesFolder);
 
         // count the number of pictures in the array
         // exclude the ones called '.' and '..' cuz those are invisible for the user
@@ -337,7 +337,7 @@ $sessionID = $_SESSION["id"];
         for ($i = 0; $i < count($arrayofImages); $i++) {
             if ($arrayofImages[$i] != '.' && $arrayofImages[$i] != '..') {
 
-                array_push($files, $newPfrad . $arrayofImages[$i]);
+                array_push($files, $picturesFolder . $arrayofImages[$i]);
             }
         }
 
