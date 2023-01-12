@@ -63,12 +63,12 @@ session_start();
             echo "<ul>";
             echo "<li class='active'><a href='home.php'>Home</a></li>";
             echo "<li><a href='agenda.php'>My Calendar</a></li>";
-            echo "<li class='active'><a href='#'>My Profile</a></li>";
+            echo "<li class='active'><a href='private.php'>My Profile</a></li>";
             echo "</ul>";
             echo "</div>";
             echo "</nav>";
         }
-    } else {     //If Guest
+    } else if (!isset($_SESSION["isAdmin"])) {     //If Guest
 
         echo "<nav class='navbar'>";
         echo "<div class='Lholder'>";
