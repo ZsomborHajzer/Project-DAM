@@ -81,7 +81,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($userPw==$dbPassWd){
                 echo  '<script>alert("You are logged in")</script>';
 
-               // header("Location: index.php?page=Add");
             }else{
                 echo  '<script>alert("Not loged in")</script>';
             }
