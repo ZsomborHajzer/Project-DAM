@@ -32,6 +32,7 @@
             echo "<button class='fas fa-bars' id='hamburger-btn'></button>";
             echo " <div class='nav-desktop'> ";
             echo "<ul>";
+            echo "<li class='active'><a href='home.php'>Home</a></li>";
             echo "<li class='active'><a href='#'>Register</a></li>";
             echo "<li><a href='#'>Talent</a></li>";
             echo "<li><a href='adminPage.html'>Admin Page</a></li>";
@@ -47,6 +48,7 @@
             echo "<button class='fas fa-bars' id='hamburger-btn'></button>";
             echo " <div class='nav-desktop'> ";
             echo "<ul>";
+            echo "<li class='active'><a href='home.php'>Home</a></li>";
             echo "<li><a href='#'>My Calendar</a></li>";
             echo "<li class='active'><a href='#'>My Profile</a></li>";
             echo "</ul>";
@@ -62,7 +64,7 @@
         echo "<button class='fas fa-bars' id='hamburger-btn'></button>";
         echo " <div class='nav-desktop'> ";
         echo "<ul>";
-        echo "<li class='active'><a href='home.html'>Home</a></li>";
+        echo "<li class='active'><a href='home.php'>Home</a></li>";
         echo "<li><a href='Booking.php'>Book here</a></li>";
         echo "<li><a href='contactPage.php'>Contact</a></li>";
         echo "<li><a href='#'>Login</a></li>";
