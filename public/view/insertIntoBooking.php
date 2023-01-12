@@ -1,8 +1,5 @@
 <?php
-$dsn = "mysql:host=localhost;dbname=databaseproject2";
-$user = "root";
-$passwd = "";
-
+include "/var/www/E3T/components/dbConnect.php";
 //Connecting to a database
 $dbHandler = new PDO($dsn, $user, $passwd);
 if (isset ($_POST["dataSendByPrice"])) {
