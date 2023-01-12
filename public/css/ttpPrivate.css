@@ -18,12 +18,6 @@ body {
 }
 
 
-header {
-    grid-column: 1/7;
-    background-color: #E4EAFF;
-    display: flex;
-    justify-content: center;
-}
 
 
 .profileImage {
@@ -201,10 +195,3 @@ figcaption {
 
 }
 
-footer {
-    display: flex;
-    grid-column: 1/7;
-    justify-content: center;
-    background-color: black;
-    color: white;
-}
