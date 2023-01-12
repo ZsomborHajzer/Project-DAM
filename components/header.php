@@ -49,7 +49,7 @@ session_start();
             echo "<li class='active'><a href='registration.php'>Register</a></li>";
            // echo "<li><a href='#'>Talent</a></li>";
             echo "<li><a href='adminPage.php'>Admin Page</a></li>";
-            echo "<li>
+          /*  echo "<li>
                     <form id='logout' action='header.php' method='POST'>
                         <input type='hidden' name='action' value='logout'>
                         <a href='javascript:$('logout').submit()'>Log Out</a>
@@ -61,6 +61,7 @@ session_start();
                         header("Refresh:1, URL=logInPage.php");
                   }
             echo "</ul>";
+            */
             echo "</div>";
             echo "</nav>";
         } else if ($_SESSION["isAdmin"] == 0) {    //If Talent
