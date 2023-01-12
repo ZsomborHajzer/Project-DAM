@@ -182,6 +182,27 @@ $sessionID = $_SESSION["id"];
         ?>
 
 
+<h3>Upload Pic </h3>
+
+
+      <!--  first img should be this one for talents so they can add more images later on to the project  -->
+
+      <form action="/var/www/E3T/components/photoAdd.php" method="POST" enctype="multipart/form-data" name="yes">
+
+    <div class="addImg">
+        <label>
+            <input type="file" name="uploadImg" onchange="this.form.submit()" style=" display:none">
+            <img src=<?php echo $stockPhotoLocation; ?> alt="addimg" id="stockphotoAddImg">
+            <input type="hidden" name="imgUpload" value="imgUpload">
+            <figcaption>
+                <p>Add a new image</p>
+            </figcaption>
+        </label>
+    </div>
+
+    </form>
+
+
     </div>
 
     <?php
