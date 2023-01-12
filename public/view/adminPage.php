@@ -21,6 +21,7 @@
             }
     </script>
 	
+	<section class="adminPage">
         <main>
 
 
@@ -166,7 +167,7 @@
             </div>
         </div>
         </main>
-    
+</section> 
 
 	<?php
 include "/var/www/E3T/components/footer.html";
