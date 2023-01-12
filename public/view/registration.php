@@ -147,13 +147,17 @@
 							
 							//Final query to input all validated data into the tbluser db
 
+							//hatching passwd
+		
+							$hashPass = password_hash($password, PASSWORD_BCRYPT);
+
 							$add = $dbHandler -> prepare("INSERT INTO tblUser(dtFirstName, dtLastName, dtNumber,  dtEmail, dtPassword, dtIsAdmin, dtPrice,fiSpecialty)
 														VALUES(:FirstName, :LastName,:Number,:Email, :Password, :IsAdmin, :Price,  :Specialty)");
 							$add->bindParam("FirstName", $fname);
 							$add->bindParam("LastName", $lname);
 							$add->bindParam("Number",$PhoneNo);
 							$add->bindParam("Email", $dtEmail);
-							$add->bindParam("Password", $password);
+							$add->bindParam("Password", $hashPass);
 							$add->bindParam("IsAdmin",$isAdmin);
 							$add->bindParam("Price",$price);
 							$add->bindParam("Specialty", $getSpecId['idSpecialty']);
