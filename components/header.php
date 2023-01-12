@@ -47,7 +47,7 @@ session_start();
             echo "<ul>";
             echo "<li class='active'><a href='home.php'>Home</a></li>";
             echo "<li class='active'><a href='registration.php'>Register</a></li>";
-            echo "<li><a href='#'>Talent</a></li>";
+           // echo "<li><a href='#'>Talent</a></li>";
             echo "<li><a href='adminPage.php'>Admin Page</a></li>";
             echo "</ul>";
             echo "</div>";

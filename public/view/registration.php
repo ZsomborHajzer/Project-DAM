@@ -5,6 +5,7 @@
     include "/var/www/E3T/components/header.php";
 ?>
 <section class='register'>
+
 	<article id="profileInfo">
 		<h1> Register </h1>
 		<div id="form">
@@ -139,7 +140,7 @@
 							
 							//Final query to input all validated data into the tbluser db
 
-							$add = $dbHandler -> prepare("INSERT INTO tbluser(dtFirstName, dtLastName, dtNumber,  dtEmail, dtPassword, dtIsAdmin, fiSpecialty)
+							$add = $dbHandler -> prepare("INSERT INTO tblUser(dtFirstName, dtLastName, dtNumber,  dtEmail, dtPassword, dtIsAdmin, fiSpecialty)
 														VALUES(:FirstName, :LastName,:Number,:Email, :Password, :IsAdmin, :Specialty)");
 							$add->bindParam("FirstName", $fname);
 							$add->bindParam("LastName", $lname);
