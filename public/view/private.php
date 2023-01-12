@@ -34,7 +34,7 @@ if (isset($_POST["deletePic"])) {
 include "/var/www/E3T/components/dbConnect.php";
 /*-
 $arrayofImages = [];
-$pictureHolder = "../img/pictureholder/";
+$newPfrad = "../img/newPfrad/";
 $documentHolder = "../img/documentholder/";
 $profileImgLocations = "../img/profileimg/";
 $stockPhotoLocation = "images/stockphotoholder/addimg.png";
@@ -236,7 +236,122 @@ $sessionID = $_SESSION["id"];
     }
 ?>
 
+<div class="photoTitle">
+            <h1><b>Photos</b></h1>
+        </div>
+
+        <div class="photoHolder">
+
+            <!--  first img should be this one for talents so they can add more images later on to the project  -->
+
+            <form action="" method="POST" enctype="multipart/form-data" name="yes">
+
+                <div class="addImg">
+                    <label>
+                        <input type="file" name="uploadImg" onchange="this.form.submit()" style=" display:none">
+                        <img src=<?php echo $stockPhotoLocation; ?> alt="addimg" id="stockphotoAddImg">
+                        <input type="hidden" name="imgUpload" value="imgUpload">
+                        <figcaption>
+                            <p>Add a new image</p>
+                        </figcaption>
+                    </label>
+                </div>
+
+            </form>
+
+
     </div>
+    </div>
+
+    <?php
+
+    //uploading the image
+    if (isset($_POST["imgUpload"])) {
+        $sessionID = $_SESSION["id"];
+        $name = $_SESSION["name"];
+
+
+        $newPfrad = "/home/share/e3t/" . $sessionID . "/Images";
+        $fileSize = (4 * 1024 * 1024);
+
+
+        $config["upload_path"] = $newPfrad;
+
+
+        if (!is_dir($newPfrad)) {
+            $oldMask = umask(0);
+            mkdir($newPfrad, 0777);
+            umask($oldMask);
+        }
+
+
+        if ($_FILES["uploadImg"]["error"] == 0) {
+
+            if ($_FILES["uploadImg"]["size"] < $fileSize) {
+
+                $acceptedFileTypes = ["image/gif", "image/jpg", "image/jpeg", "image/png"];
+
+                $fileinfo = finfo_open(FILEINFO_MIME_TYPE);
+                $uploadedFileType = finfo_file($fileinfo, $_FILES["uploadImg"]["tmp_name"]);
+
+                if (in_array($uploadedFileType, $acceptedFileTypes)) {
+                    if (!file_exists($newPfrad . $_FILES["uploadImg"]["name"])) {
+
+                        //move_uploaded_file is a function that checks if the file was uploaded a secure way and if it was it will move it to the designated place. The first parameter checks if it was uploaded using a post mechanism, the second parameter transfers it to the designated file holder. If this function passes, it returns a true. if it does not it returns a false.
+                        if (move_uploaded_file($_FILES["uploadImg"]["tmp_name"], $newPfrad . $_FILES["profileFile"]["name"])) {
+                            echo "ok";
+                        } else {
+                            echo "Something went wrong";
+                        }
+                    } else {
+                    }
+                } else {
+                }
+            } else {
+            }
+        }
+    }
+
+
+    //reading the image
+
+    // checks if there is a directory in that address or not
+    if (is_dir($newPfrad)) {
+
+        // if there is a directory, scan the names of the files in that directory and put it in a array called $array of images
+        $arrayofImages = scandir($newPfrad);
+
+        // count the number of pictures in the array
+        // exclude the ones called '.' and '..' cuz those are invisible for the user
+        // push the names of the files with  complete location this time to another array called $files
+        for ($i = 0; $i < count($arrayofImages); $i++) {
+            if ($arrayofImages[$i] != '.' && $arrayofImages[$i] != '..') {
+
+                array_push($files, $newPfrad . $arrayofImages[$i]);
+            }
+        }
+
+        // sort files by last modified date
+        // orders them by most recently modified on top and last modified on bottom
+        // renaming files does not count as modification apperantly
+
+        usort(
+            $files,
+            function ($x, $y) {
+                return filemtime($y) <=> filemtime($x);
+            }
+        );
+
+        // echo the html script with file locations
+        foreach ($files as $item) {
+            echo "<div class='pic'>";
+            echo "<img src=" . $item . " alt='images' id='images' height='200' width='200' />";
+            echo "<figcaption> <p>Variable input from </br> user limited to a few words</p> </figcaption>";
+            echo "</div>";
+        }
+    }
+
+?>
 
     <?php
 
