@@ -1,4 +1,4 @@
-body{
+.adminPage{
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
 	background-color:#E4EAFF;

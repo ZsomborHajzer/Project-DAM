@@ -6,6 +6,7 @@
     include "/var/www/E3T/components/header.php";
 ?>
 	<body>
+		<section class="adminPage">
 		<form id="emailSearch">
 			<div class="formBox">
 				<div id="emailSearchLabel"><label  for="talentEmailInput">Search by email</label></div>
@@ -28,6 +29,7 @@
 			<input type="button" id="activeButton" value="Make Active">
 			</div>
 		</div>
+		</section>
 	</body>
 
 
