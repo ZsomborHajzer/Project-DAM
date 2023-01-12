@@ -1,6 +1,19 @@
 <?php
-$fileholder = "../img/pictureholder/";
+
+$sessionID = $_SESSION["id"];
+$name = $_SESSION["name"];
+
+
+$newPfrad = "/home/share/" . $sessionID . "/";
 $fileSize = (4 * 1024 * 1024);
+
+
+$config["upload_path"] = $newPfrad;
+
+
+if (!is_dir($folderName)) {
+    mkdir($folderName, 0777);
+}
 
 
 if ($_FILES["uploadImg"]["error"] == 0) {
