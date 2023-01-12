@@ -36,7 +36,7 @@ src/ - | (the website itself, files are available to everybody)
     favicon.ico
 components/ - | (this is not accessible from a browser)
     header.php
-    footer.php
+    footer.php
 ```
 
 
@@ -51,6 +51,3 @@ Our page has been build with
 
 ## Copyright
 Copyright to E3T and PECZARB
-
-
-

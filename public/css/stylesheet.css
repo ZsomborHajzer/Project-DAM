@@ -1,0 +1,99 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+#container{
+	display: grid;
+	grid-template-columns: repeat(6,1fr);
+	background-color: #E4EAFF;
+}
+
+
+main{
+	grid-column: 1/7;
+	display:flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+#form{
+	grid-column: 2/4;
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	
+	background-color: white;
+	padding-left: 5vw;
+	padding-right: 5vw;
+	
+	height: 25vw;
+	margin-top: 7vw;
+}
+
+.labels{
+	margin: 0;
+}
+
+.texts{
+	margin-top: 0;
+}
+
+#submit{
+	display: flex;
+	justify-content: center;
+}
+
+#submit2{
+	background-color: #6FA8DC;
+}
+
+ h2{
+	color:#1162AD;
+}
+
+h3{
+	color:#1162AD;
+	margin-bottom: 0vw;
+}
+
+#contactInfo{
+	grid-column: 5/7;
+	display:flex;
+	flex-direction: column;
+}
+
+.contactBox{
+	display: flex;
+	
+	background-color: white;
+	margin-top: 2vw;
+}
+
+.contactPicture{
+	margin: 1.5vw;
+}
+
+.contactPortrait{
+	width: 5vw;
+}
+
+.contactText{
+	text-align: center;
+	margin-right: 5vw; 
+	margin-left: 5vw;
+	margin-top: 1vw;
+	margin-bottom: 2vw;
+}
+
+.mail{
+	margin-top: 1vw;
+	margin-bottom:0vw;
+}
+
+.phone{
+	margin-top: 0vw;
+	margin-bottom:0vw;
+}
+
