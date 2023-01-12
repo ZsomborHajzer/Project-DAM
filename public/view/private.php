@@ -100,13 +100,13 @@ $_SESSION["id"];
 
         <?php
         //This is query requesting information from user database 
-        $query = 'SELECT * FROM tblUser WHERE idUser= ' . $sessionID . ';';
+        $query = "SELECT * FROM tblUser WHERE idUser= $sessionID";
         $stmt = $dbHandler->prepare($query);
         $stmt->execute();
         $posts = $stmt->fetch(PDO::FETCH_ASSOC);
 
         //This is to get the description based on the value get from fiSpecialty
-        $query2 = 'SELECT * FROM tblSpecialty WHERE idSpecialty = ' . $posts["fiSpecialty"] . '  ';
+        $query2 = 'SELECT * FROM tblSpecialty WHERE idSpecialty = ' . $posts["fiSpecialty"];
         $stmt2 = $dbHandler->prepare($query2);
         $stmt2->execute();
         $talents = $stmt2->fetch(PDO::FETCH_ASSOC);
