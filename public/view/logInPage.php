@@ -81,7 +81,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($userPw==$dbPassWd){
                 echo  '<script>alert("You are logged in")
                 </script>';
-
+                var_dump($_SESSION["isAdmin"]);
+                die();
                 //refreshing
                 header("Refresh: 0");
                 
