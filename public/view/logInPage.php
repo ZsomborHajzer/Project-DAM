@@ -53,13 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($mail = filter_input(INPUT_POST, "dataMail", FILTER_VALIDATE_EMAIL)) {
 
-
-            $dsn = "mysql:host=localhost;dbname=E3T";
-            $user = "root";
-            $passwd = "!User_12";
-
-            //Connecting to a database
-            $dbHandler = new PDO($dsn, $user, $passwd);
+            include "/var/www/E3T/components/dbConnect.php";
 
             //$mail = filter_input(INPUT_POST, "dataMail", FILTER_VALIDATE_EMAIL);
             $userPw = $_POST["dataPassword"];
@@ -79,12 +73,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             if ($userPw==$dbPassWd){
-                echo  '<script>alert("You are logged in")
-                </script>';
-                var_dump($_SESSION["isAdmin"]);
-                die();
+                echo  '<script>alert("You are logged in")</script>';
+         
                 //refreshing
-                header("Refresh: 0");
+                header("Location: adminPage.html");
                 
 
             }else{
