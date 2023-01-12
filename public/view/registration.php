@@ -39,6 +39,10 @@
 					<input name="false" type="checkbox" value="0">
 				</div>
 				<div>
+					<p><label for="dataPrice"> Price </label></p>
+					<input type="text" name="dataPrice">
+				</div>
+				<div>
 					<p><label for="dataSpecialties"> Specialties </label></p>
 					<input type="text" name="dataSpecialties">
 				</div>
@@ -60,6 +64,9 @@
 
 			if(!$lname = filter_input(INPUT_POST, "dataLastName", FILTER_SANITIZE_SPECIAL_CHARS)){
 				$err[] = "Enter talent's last name";
+			}
+			if(!$price = filter_input(INPUT_POST, "dataPrice", FILTER_SANITIZE_NUMBER_INT)){
+				$err[] = "Enter talent's Price per hour";
 			}
 
 			if(preg_match("/^[0-9]/", $_POST["dataPhoneNo"])){
@@ -140,14 +147,15 @@
 							
 							//Final query to input all validated data into the tbluser db
 
-							$add = $dbHandler -> prepare("INSERT INTO tblUser(dtFirstName, dtLastName, dtNumber,  dtEmail, dtPassword, dtIsAdmin, fiSpecialty)
-														VALUES(:FirstName, :LastName,:Number,:Email, :Password, :IsAdmin, :Specialty)");
+							$add = $dbHandler -> prepare("INSERT INTO tblUser(dtFirstName, dtLastName, dtNumber,  dtEmail, dtPassword, dtIsAdmin, dtPrice,fiSpecialty)
+														VALUES(:FirstName, :LastName,:Number,:Email, :Password, :IsAdmin, :Price,  :Specialty)");
 							$add->bindParam("FirstName", $fname);
 							$add->bindParam("LastName", $lname);
 							$add->bindParam("Number",$PhoneNo);
 							$add->bindParam("Email", $dtEmail);
 							$add->bindParam("Password", $password);
 							$add->bindParam("IsAdmin",$isAdmin);
+							$add->bindParam("Price",$price);
 							$add->bindParam("Specialty", $getSpecId['idSpecialty']);
 
 							echo "<b>debug4</b>";
