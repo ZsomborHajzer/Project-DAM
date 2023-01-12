@@ -4,6 +4,7 @@
     $cssFile = "registrationStylesheet.css";
     include "/var/www/E3T/components/header.php";
 ?>
+<section class='register'>
 	<article id="profileInfo">
 		<h1> Register </h1>
 		<div id="form">
@@ -42,7 +43,7 @@
 				</div>
 				<p><button type="submit">Register</button></p>
 			</form>
-
+</section>
 		<?php
 
 		include "/var/www/E3T/components/dbConnect.php";
