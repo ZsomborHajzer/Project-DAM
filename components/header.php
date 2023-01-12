@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap" rel="stylesheet">
     <!-- My css -->
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/Booking.css">
+    <link rel="stylesheet" href="css/<?= $cssFile; ?>">
     <!--Font Awesome script-->
     <script src="https://kit.fontawesome.com/08626bfbba.js" crossorigin="anonymous"></script>
     <title><?= $pageName; ?></title>
