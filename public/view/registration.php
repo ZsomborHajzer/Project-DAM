@@ -45,10 +45,7 @@
 
 		<?php
 
-			$dsn="mysql:host=mysql;dbname=dbprojectterm2";
-			$user= "root";
-			$passwd = "qwerty";
-			$dbHandler = new PDO($dsn, $user, $passwd);
+		include "/var/www/E3T/components/dbConnect.php";
 		
 		
 		if($_SERVER["REQUEST_METHOD"] == "POST"){
