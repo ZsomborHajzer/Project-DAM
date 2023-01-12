@@ -1,7 +1,7 @@
 <?php
 
 $pageName = "E3T-Talents";
-$cssFile = "tttPrivate.css";
+$cssFile = "ttpPrivate.css";
 include "/var/www/E3T/components/header.php";
 
 /*
@@ -34,12 +34,12 @@ if (isset($_POST["deletePic"])) {
 include "/var/www/E3T/components/dbConnect.php";
 
 $arrayofImages = [];
-$pictureHolder = "images/pictureholder/";
-$documentHolder = "images/documentholder/";
-$profileImgLocations = "images/profileimg/";
-$stockPhotoLocation = "images/stockphotoholder/addimg.png";
-$addDocLocation = "images/stockphotoholder/adddoc.png";
-$stockDocumentLocation = "images/stockphotoholder/";
+$pictureHolder = "../img/pictureholder/";
+$documentHolder = "../img/documentholder/";
+$profileImgLocations = "../img/profileimg/";
+$stockPhotoLocation = "../img/stockphotoholder/addimg.png";
+$addDocLocation = "../img/stockphotoholder/adddoc.png";
+$stockDocumentLocation = "../img/stockphotoholder/";
 $files = [];
 $profileFiles = [];
 $fileSize = 4 * 1024 * 1024; //4MB
@@ -90,14 +90,12 @@ $_SESSION["id"];
 
 
     </script>
-</head>
+
 
 
     <div class="container">
 
-        <header>
-            <h1>Placeholder for actual header</h1>
-        </header>
+
 
         <!-- always echo the first image in the folder "profileimg -->
         <div class="profileImage">
@@ -359,15 +357,15 @@ $_SESSION["id"];
 
         //Require files to lessen the amount of code in one page
         if (isset($_POST["imgUpload"])) {
-            require "../../components/photoAdd.php";
+            require "/var/www/E3T/components/photoAdd.php";
         }
 
         if (isset($_POST["docUpload"])) {
-            require "../../components/documentAdd.php";
+            require "/var/www/E3T/components/documentAdd.php";
         }
 
         if (isset($_POST["newProfilePic"])) {
-            require "../../components/profileUpload.php";
+            require "/var/www/E3T/components/profileUpload.php";
         }
 
         ?>
@@ -382,4 +380,4 @@ $_SESSION["id"];
 
 include "/var/www/E3T/components/footer.html";
 
-?
+?>

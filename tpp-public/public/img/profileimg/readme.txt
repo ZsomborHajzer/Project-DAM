@@ -1,1 +1,0 @@
-Should only countain one picture in profileimg folder

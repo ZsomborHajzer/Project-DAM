@@ -6,7 +6,7 @@ include "/var/www/E3T/components/header.php";
 
 ?>
 
-<?
+<?php
 // $month = 12;
 // $year = 2022;
 
