@@ -1,23 +1,6 @@
-*{
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    box-sizing: border-box;
-}
-
-body{
-    font-family:'inter';
-    display: grid;
-    gap: 30px;
-    grid-template-rows: 81px 550px 150px;
-    background-color: #E4EAFF;
-    
-}
-
-header{
+header {
     grid-row: 1;
 }
-
 
 
 /* Desktop Nav bar */
@@ -30,84 +13,85 @@ header{
     background-color: #000000;
 }
 
-.Lholder{
+.Lholder {
     display: flex;
     align-items: center;
     width: auto;
-    margin: 0; 
+    margin: 0;
 }
 
-.logo{
+.logo {
     width: 142px;
     height: 60px;
 }
 
 
-.nav-desktop{
+.nav-desktop {
     display: flex;
 
-    
+
 }
 
-.nav-desktop ul{
+.nav-desktop ul {
     display: flex;
     align-items: center;
 
 }
 
-.nav-desktop li{
+.nav-desktop li {
     width: 200px;
 }
 
-.nav-desktop li a{
+.nav-desktop li a {
     display: block;
-    padding:31px;
+    padding: 31px;
     color: #E4EAFF;
     text-align: center;
     text-transform: uppercase;
     text-decoration: none;
-   
+
 }
 
-.nav-desktop li:hover{
+.nav-desktop li:hover {
     transition: 0.5s all;
     background-color: #3e5360;
 }
 
-#hamburger-btn{
+#hamburger-btn {
     display: none;
 }
 
 
-.nav-mobile{
+.nav-mobile {
     display: none;
 }
 
-.nav-list-mobile{
+.nav-list-mobile {
     display: none;
-    
+
 }
 
-.active{
-     background-color:#202b32;
-     
-}   
+.active {
+    background-color: #202b32;
 
-.main-bdy{
+}
+
+.main-bdy {
     grid-row: 2/3;
-    display: grid;  
-    grid-template-columns: repeat(3,40px);
+    display: grid;
+    grid-template-columns: repeat(3, 40px);
     /* background-color: #EDE5BB; */
 }
 
 
 /* Footer */
-.s-fix{
+.s-fix {
     width: 30px;
     height: auto;
 }
 
-footer{                    /* footer*/
+footer {
+    /* footer*/
     grid-row: 3/4;
     width: 100%;
     display: grid;
@@ -116,39 +100,39 @@ footer{                    /* footer*/
     background-color: #000000;
 }
 
-.f-content:nth-child(1){
+.f-content:nth-child(1) {
     grid-row: 1;
     display: flex;
-    align-items:flex-end;
+    align-items: flex-end;
     justify-self: center;
     color: #FFFFFF;
     /* display: none; */
 }
 
-.f-content:nth-child(1) ul{
+.f-content:nth-child(1) ul {
     display: flex;
     gap: 90px;
 }
 
-.f-content li{
-    display: inline-block;  
+.f-content li {
+    display: inline-block;
     /* Describe font in here */
 }
 
 
-.f-content:nth-child(2){
+.f-content:nth-child(2) {
     grid-row: 2/3;
     display: flex;
     gap: 90px;
     justify-self: center;
 }
 
-.f-content:nth-child(2) img{
+.f-content:nth-child(2) img {
     width: 25px;
     height: auto;
 }
 
-.f-content:nth-child(3){
+.f-content:nth-child(3) {
     grid-row: 3/4;
     color: #FFFFFF;
     display: flex;
@@ -162,11 +146,12 @@ footer{                    /* footer*/
 
 /* Mobile navbar */
 @media screen and (max-width: 900px) {
-    
-    .nav-desktop{
+
+    .nav-desktop {
         display: none;
     }
-    #hamburger-btn{
+
+    #hamburger-btn {
         display: block;
         width: 70px;
         height: 40px;
@@ -177,12 +162,12 @@ footer{                    /* footer*/
         font-size: 35px;
     }
 
-    .nav-list-mobile{
+    .nav-list-mobile {
         display: block;
     }
 
-    .nav-mobile{
-        width: 55% ;
+    .nav-mobile {
+        width: 55%;
         position: relative;
         height: 0px;
         justify-content: flex-end;
@@ -190,7 +175,7 @@ footer{                    /* footer*/
         flex-shrink: 1;
     }
 
-    .nav-list-mobile li{
+    .nav-list-mobile li {
         height: 70px;
         line-height: 70px;
         align-items: center;
@@ -206,19 +191,19 @@ footer{                    /* footer*/
         font-size: 31px;
         text-transform: uppercase;
         text-decoration: none;
-    
+
     }
 
-    .nav-list-mobile li:hover{
+    .nav-list-mobile li:hover {
         transition: 0.5s;
         background-color: #3e5360;
-    } 
-
-    li.active{
-        background-color:#202b32;
     }
 
-    .f-content:nth-child(1) ul{ 
+    li.active {
+        background-color: #202b32;
+    }
+
+    .f-content:nth-child(1) ul {
         display: flex;
         gap: 60px;
     }
@@ -226,23 +211,22 @@ footer{                    /* footer*/
 
 
 /* Mobile body */
-@media screen and (max-width: 900px){
+@media screen and (max-width: 900px) {
 
-    body{
+    body {
         grid-template-rows: 81px 600px 200px;
         gap: 46px;
     }
 
-    header{
+    header {
         grid-row: 1;
     }
 
-    .main-bdy{
+    .main-bdy {
         grid-row: 2/3;
     }
 
-    footer{
+    footer {
         grid-row: 3/4;
     }
 }
-
