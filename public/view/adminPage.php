@@ -1,10 +1,10 @@
-<!DOCTYPE HTML>
-<html lang="en">
-	<head>
-		<title>AdminPage</title>
-		<link rel="stylesheet" href="css/adminPageCss.css" />
-	</head>
-
+<?php
+    @ob_start();
+    session_start();
+    $pageName = "E3T-Talents";
+    $cssFile = "logInPage.css";
+    include "/var/www/E3T/components/header.php";
+?>
 	<body>
 		<form id="emailSearch">
 			<div class="formBox">
@@ -31,4 +31,9 @@
 	</body>
 
 
-</html>
+<?php
+
+	include "/var/www/E3T/components/footer.html";
+
+
+?>
