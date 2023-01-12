@@ -253,21 +253,12 @@ $sessionID = $_SESSION["id"];
         <div class="photoHolder">
 
             <!--  first img should be this one for talents so they can add more images later on to the project  -->
-
-            <form action="" method="POST" enctype="multipart/form-data" name="yes">
-
-                <div class="addImg">
-                    <label>
-                        <input type="file" name="uploadImg" onchange="this.form.submit()" style=" display:none">
-                        <img src=<?php echo $stockPhotoLocation; ?> alt="addimg" id="stockphotoAddImg">
-                        <input type="hidden" name="imgUpload" value="imgUpload">
-                        <figcaption>
-                            <p>Add a new image</p>
-                        </figcaption>
-                    </label>
-                </div>
-
+            <div class="profileButtons">
+            <form action="#" method="post" enctype="multipart/form-data">
+                <input type="file" name="uploadImg" id="profileFile">
+                <input type="submit" value="Add pictures" name="imgUpload">
             </form>
+        </div>
 
 
     </div>
