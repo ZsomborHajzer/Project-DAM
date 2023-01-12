@@ -55,7 +55,7 @@ include "/var/www/E3T/components/header.php";
 	<div id="contactInfo">
 		<div class="contactBox">
 			<div class="contactPicture">
-				<img src="pictures/contact1.jpg" class="contactPortrait">
+				<img src="img/profilePictures/contact1.jpg" class="contactPortrait">
 			</div>
 			<div class="contactText">
 				<h3> FirstName LastName </h3>
@@ -66,7 +66,7 @@ include "/var/www/E3T/components/header.php";
 		</div>
 		<div class="contactBox">
 			<div class="contactPicture">
-				<img src="pictures/contact2.jpg" class="contactPortrait">
+				<img src="img/profilePictures/contact2.jpg" class="contactPortrait">
 			</div>
 			<div class="contactText">
 				<h3> FirstName LastName </h3>
@@ -77,7 +77,7 @@ include "/var/www/E3T/components/header.php";
 		</div>
 		<div class="contactBox">
 			<div class="contactPicture">
-				<img src="pictures/contact4.jpg" class="contactPortrait">
+				<img src="img/profilePictures/contact4.jpg" class="contactPortrait">
 			</div>
 			<div class="contactText">
 				<h3> FirstName LastName </h3>

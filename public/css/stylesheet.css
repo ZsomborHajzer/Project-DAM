@@ -1,4 +1,4 @@
-body{
+*{
 	padding: 0;
 	margin: 0;
 }
@@ -9,9 +9,6 @@ body{
 	background-color: #E4EAFF;
 }
 
-header{
-	grid-column: 1/7;
-}
 
 main{
 	grid-column: 1/7;
