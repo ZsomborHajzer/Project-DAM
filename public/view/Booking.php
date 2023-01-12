@@ -384,7 +384,7 @@ include "/var/www/E3T/components/header.php";
                                                 <input class="s-email" type="email" name="dataMail" id="dataMail">
                                             </div>
 
-                                            <input class="s-sub" type="submit" name="dataSendByPrice" placeholder="Book">
+                                            <input class="s-sub" type="submit" name="dataSendBySpec" placeholder="Book">
                                         </form>
                         <?php
                                     echo "</div>";

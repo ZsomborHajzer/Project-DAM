@@ -20,14 +20,8 @@ if (isset ($_POST["dataSendByPrice"])) {
             $sql = "INSERT INTO tblBooking (dtDate, dtEmail, fiUser,fiSpecialty) VALUES (?,?,?,?)";
             $stmt = $dbHandler->prepare($sql);
             $stmt->execute([$date, $mail, $submitId, $speciality]);
-            echo "<script>alert('Booking was added thanks for trusting us')
-            if (window.confirm('Really go to another page?'))
-            {'";
-                header("Location: Booking.php");
-                echo "'
-            }
-                
-                </script>";
+            echo "<script>alert('Booking added')</script>";
+            header("Location: Booking.php");
         }else {
             echo "<script>alert('Date is already taken')</script>";
             header("Location: Booking.php");
@@ -41,6 +35,41 @@ if (isset ($_POST["dataSendByPrice"])) {
 
     }
 }
+
+if (isset ($_POST["dataSendBySpec"])) {
+
+    if ($mailClient = filter_input(INPUT_POST, "dataMail", FILTER_VALIDATE_EMAIL) && $date = filter_input(INPUT_POST, "dataDate", FILTER_SANITIZE_NUMBER_INT)) {
+
+   
+
+
+        $query = $dbHandler->query("SELECT `dtDate`, `fiUser` FROM tblBooking WHERE `dtDate` = '$date'   AND `fiUser` ='$submitId'");
+        $rows = $query->fetchAll();
+
+
+        if ($rows  == null) {
+            $sql = "INSERT INTO tblBooking (dtDate, dtEmail, fiUser,fiSpecialty) VALUES (?,?,?,?)";
+            $stmt = $dbHandler->prepare($sql);
+            $stmt->execute([$date, $mail, $submitId, $speciality]);
+                echo "<script>alert('Booking added')</script>";
+                header("Location: Booking.php");
+                
+            }
+                
+               
+        }else {
+            echo "<script>alert('Date is already taken')</script>";
+            header("Location: Booking.php");
+        }
+
+
+    } else {
+        echo '<script>   alert("email or data wrong");
+                                                     window.location = "booking.php?reloaded=yes";
+                                                  </script>';
+
+    }
+
 
 
 if (isset ($_POST["dataSendByActive"])) {
@@ -59,14 +88,8 @@ if (isset ($_POST["dataSendByActive"])) {
             $sql = "INSERT INTO tblBooking (dtDate, dtEmail, fiUser,fiSpecialty) VALUES (?,?,?,?)";
             $stmt = $dbHandler->prepare($sql);
             $stmt->execute([$date, $mail, $submitId, $speciality]);
-            echo "<script>alert('Booking was added thanks for trusting us')
-            if (window.confirm('Really go to another page?'))
-            {'";
+            echo "<script>alert('Booking added')</script>";
             header("Location: Booking.php");
-            echo "'
-            }
-                
-                </script>";
         }else {
             echo "<script>alert('Date is already taken')</script>";
             header("Location: Booking.php");
@@ -93,14 +116,8 @@ if (isset ($_POST["dataSendByName"])) {
             $sql = "INSERT INTO tblbooking (dtDate, dtEmail, fiUser,fiSpecialty) VALUES (?,?,?,?)";
             $stmt = $dbHandler->prepare($sql);
             $stmt->execute([$date, $mail, $submitId, $speciality]);
-            echo "<script>alert('Booking was added thanks for trusting us')
-            if (window.confirm('Really go to another page?'))
-            {'";
+            echo "<script>alert('Booking added')</script>";
             header("Location: Booking.php");
-            echo "'
-            }
-                
-                </script>";
         }else {
             echo "<script>alert('Date is already taken')</script>";
             header("Location: Booking.php");
@@ -128,14 +145,8 @@ if (isset ($_POST["dataSendByMail"])) {
             $sql = "INSERT INTO tblbooking (dtDate, dtEmail, fiUser,fiSpecialty) VALUES (?,?,?,?)";
             $stmt = $dbHandler->prepare($sql);
             $stmt->execute([$date, $mail, $submitId, $speciality]);
-            echo "<script>alert('Booking was added thanks for trusting us')
-            if (window.confirm('Really go to another page?'))
-            {'";
+            echo "<script>alert('Booking added')</script>";
             header("Location: Booking.php");
-            echo "'
-            }
-                
-                </script>";
         }else {
             echo "<script>alert('Date is already taken')</script>";
             header("Location: Booking.php");
