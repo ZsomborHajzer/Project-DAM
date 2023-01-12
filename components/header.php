@@ -35,7 +35,7 @@ if (isset($_SESSION["Login"])) {
         echo "<ul>";
         echo "<li class='active'><a href='#'>Register</a></li>";
         echo "<li><a href='#'>Talent</a></li>";
-        echo "<li><a href='#'>Admin Page</a></li>";
+        echo "<li><a href='adminPage.html'>Admin Page</a></li>";
         echo "</ul>";
         echo "</div>";
         echo "</nav>";
@@ -65,9 +65,9 @@ if (isset($_SESSION["Login"])) {
     echo "<button class='fas fa-bars' id='hamburger-btn'></button>";
     echo " <div class='nav-desktop'> ";
     echo "<ul>";
-    echo "<li class='active'><a href='startpage.php'>Home</a></li>";
+    echo "<li class='active'><a href='home.html'>Home</a></li>";
     echo "<li><a href='Booking.php'>Book here</a></li>";
-    echo "<li><a href='#'>Contact</a></li>";
+    echo "<li><a href='contactPage.php'>Contact</a></li>";
     echo "<li><a href='#'>Login</a></li>";
     echo "</ul>";
     echo "</div>";
