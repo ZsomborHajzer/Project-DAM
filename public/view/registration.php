@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head> 
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="registrationStylesheet.css">
-<title> E3T - Registration page </title>
-</head>
-<body> 
-<div id="container">
-	<header>
-		<h1> header </h1>
-	</header>
+<?php
 
+    $pageName = "E3T-Talents";
+    $cssFile = "registrationStylesheet.css";
+    include "/var/www/E3T/components/header.php";
+?>
 	<article id="profileInfo">
 		<h1> Register </h1>
 		<div id="form">
@@ -180,11 +173,10 @@
 		
 		?>
 		</div>
-	</article>
-	
-	<footer>
-		<h1> footer </h1>
-	</footer>
-</div>
-</body>
-</html>
+
+
+		<?php
+include "/var/www/E3T/components/footer.html";
+
+
+?>
