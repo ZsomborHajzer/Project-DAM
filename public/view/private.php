@@ -1,5 +1,10 @@
 <?php
 session_start();
+$pageName = "E3T-Talents";
+$cssFile = "ttpPrivate.css";
+include "/var/www/E3T/components/header.php";
+include "/var/www/E3T/components/dbConnect.php";
+
 
 /*
 This is the private talent page where seperate talents will have different seperate personal pages
@@ -28,54 +33,26 @@ if (isset($_POST["deletePic"])) {
 }
 
 //Database connect
-<<<<<<< HEAD
-require_once "../../components/dbConnect.php";
 
-$arrayofImages = [];
-$pictureHolder = "../img/pictureholder/";
-$documentHolder = "../img/documentholder/";
-$profileImgLocations = "../img/profileimg/";
-$stockPhotoLocation = "../img/stockphotoholder/addimg.png";
-$addDocLocation = "../img/stockphotoholder/adddoc.png";
-$stockDocumentLocation = "../img/stockphotoholder/";
-$files = [];
-$profileFiles = [];
-$fileSize = 4 * 1024 * 1024; //4MB
-
-//Session variables
-$sessionID = 12  //$_SESSION["ID"]; for now it is 12 but once log in page is done this can be dynamic
-=======
-include "/var/www/E3T/components/dbConnect.php";
 $sessionID = $_SESSION["id"];
 $arrayofImages = [];
-$pictureHolder  = "/home/share/e3t/" . $sessionID . "/images/" ;
+$pictureHolder = "/home/share/e3t/" . $sessionID . "/images/";
 $documentHolder = "/home/share/e3t/" . $sessionID . "/docs/" ;
-$profileImgLocations = "/home/share/e3t/" . $sessionID ;
-$stockPhotoLocation = "/home/share/e3t/stockphotoholder/addimg.png";
+$profileImgLocations = "/home/share/e3t/" . $sessionID;
+$stockPhotoLocation = "/home/share/e3t/addimg.png";
 $addDocLocation = "/home/share/e3t/stockphotoholder/adddoc.png";
 $stockDocumentLocation = "/home/share/e3t/stockphotoholder/";
 $files = [];
 $profileFiles = [];
 $fileSize = 4 * 1024 * 1024; //4MB
-*
+
 //Session variables
 
->>>>>>> 4bbfc5427bc89864fa12dd18e8008ea9dd6fa7fe
+
+
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talent personal page</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <!-- jquery link -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="jquery-3.6.1.min.js"></script>
     <script>
         //jqurey script to not allow select of day before today
         $(document).ready(function() {
@@ -120,21 +97,13 @@ $fileSize = 4 * 1024 * 1024; //4MB
 
     <div class="container">
 
-<<<<<<< HEAD
-        <header>
-            <h1>Placeholder for actual header</h1>
-        </header>
 
         <!-- always echo the first image in the folder "profileimg -->
         <div class="profileImage">
             <img src=<?php
-=======
-                        <!-- always echo the first image in the folder "profileimg -->
-                        <div class="profileImage">
-                     <img src=<?php
                      $newPfrad = "/home/share/e3t/" . $sessionID."/";
->>>>>>> 4bbfc5427bc89864fa12dd18e8008ea9dd6fa7fe
-                        $printedProfile = scandir($profileImgLocations);
+
+                        $printedProfile   = scandir($profileImgLocations);
                         echo $profileImgLocations . $printedProfile[2];
                         ?> alt="" width=200 height=200 />
         </div>
@@ -197,7 +166,6 @@ $fileSize = 4 * 1024 * 1024; //4MB
 
 
 
-<<<<<<< HEAD
                 if ($rows  == null) {
                     try {
                         $sql = "INSERT INTO tblavaible (dtDateStart, dtDateEnd, fiUser, dtTrue) VALUES (?,?,?,?)";
@@ -207,84 +175,6 @@ $fileSize = 4 * 1024 * 1024; //4MB
                         echo "Vacation was added";
                     } catch (PDOException $e) {
                         echo "You already have vacation on the selected date";
-=======
-                    if ($rows  == null) {
-                        try {
-                            $sql = "INSERT INTO tblavaible (dtDateStart, dtDateEnd, fiUser, dtTrue) VALUES (?,?,?,?)";
-                            $stmt = $dbHandler->prepare($sql);
-                            $stmt->execute([$date, $endDate, $sessionID, 1]);
-                            header("Refresh:0");
-                            echo "Vacation was added";
-                        }catch (PDOException $e) {
-                            echo "You already have vacation on the selected date";
-                        }
-
-
-                    }else {
-                        echo "You already have vacation here";
-
-                    }
-
-                }else {
-                    echo "<script>alert('Please select a valid date')</script>";
-                }
-
-
-        }
-        ?>
-
-
-
-
-<div class="photoTitle">
-            <h1><b>Photos</b></h1>
-</div>
-
-<div class="photoHolder">
-
-      <!--  first img should be this one for talents so they can add more images later on to the project  -->
-
-
-    <?php
-    if (isset($_POST["newProfilePic"])) {
-        $sessionID = $_SESSION["id"];
-        $name = $_SESSION["name"];
-
-
-        $newPfrad = "/home/share/e3t/" . $sessionID . "/";
-        $fileSize = (4 * 1024 * 1024);
-
-
-        $config["upload_path"] = $newPfrad;
-
-
-        if (!is_dir($newPfrad)) {
-            $oldMask = umask(0);
-            mkdir($newPfrad, 0777);
-            umask($oldMask);
-        }
-
-
-        if ($_FILES["profileFile"]["error"] == 0) {
-
-            if ($_FILES["profileFile"]["size"] < $fileSize) {
-
-                $acceptedFileTypes = ["image/gif", "image/jpg", "image/jpeg", "image/png"];
-
-                $fileinfo = finfo_open(FILEINFO_MIME_TYPE);
-                $uploadedFileType = finfo_file($fileinfo, $_FILES["profileFile"]["tmp_name"]);
-
-                if (in_array($uploadedFileType, $acceptedFileTypes)) {
-                    if (!file_exists($newPfrad . $_FILES["profileFile"]["name"])) {
-
-                        //move_uploaded_file is a function that checks if the file was uploaded a secure way and if it was it will move it to the designated place. The first parameter checks if it was uploaded using a post mechanism, the second parameter transfers it to the designated file holder. If this function passes, it returns a true. if it does not it returns a false.
-                        if (move_uploaded_file($_FILES["profileFile"]["tmp_name"], $newPfrad . $_FILES["profileFile"]["name"])) {
-                            echo "ok";
-                        } else {
-                            echo "Something went wrong";
-                        }
-                    } else {
->>>>>>> 4bbfc5427bc89864fa12dd18e8008ea9dd6fa7fe
                     }
                 } else {
                     echo "You already have vacation here";
@@ -293,39 +183,8 @@ $fileSize = 4 * 1024 * 1024; //4MB
                 echo "<script>alert('Please select a valid date')</script>";
             }
         }
-<<<<<<< HEAD
         ?>
         <div class="photoTitle">
-=======
-    }
-?>
-</div>
-<div class="deletePhotoTitle">
-            <h1><b>Delete a photo</b></h1>
-        </div>
-
-        <div class="deletePhoto">
-            <form action="#" method="post" enctype="multipart/form-data">
-                <select name="deletePic" id="deletePic" value="Delete">
-                    <?php
-                    $arrayofImages = scandir($pictureHolder);
-                    for ($i = 0; $i < count($arrayofImages); $i++) {
-                        if ($arrayofImages[$i] != '.' && $arrayofImages[$i] != '..') {
-                            echo '<option value="' . $arrayofImages[$i] . '">' . $arrayofImages[$i] . '</option>';
-                        }
-                    }
-
-                    ?>
-
-                </select>
-                <input type="submit" value="Delete" name="Delete">
-            </form>
-
-        </div>
-<div class="photoTitle">
-
-
->>>>>>> 4bbfc5427bc89864fa12dd18e8008ea9dd6fa7fe
             <h1><b>Photos</b></h1>
         </div>
 
