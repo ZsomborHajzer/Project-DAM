@@ -1,8 +1,5 @@
 <?php
-
-$pageName = "E3T-Talents";
-$cssFile = "ttpPrivate.css";
-include "/var/www/E3T/components/header.php";
+session_start();
 
 /*
 This is the private talent page where seperate talents will have different seperate personal pages
@@ -10,7 +7,7 @@ This is the area where they can upload images of themselfs and their own documne
 delete these documents.  Profile Image will aslo be changeable. Styling for this page is not a focus. 
 The aim of this page is customization.
 */
-/*
+
 //Double refresh the page in order to update the profile picture correctly
 if (isset($_POST["newProfilePic"])) {
     header("Location: private.php");
@@ -29,31 +26,42 @@ if (isset($_POST["docUpload"])) {
 if (isset($_POST["deletePic"])) {
     header("Location: private.php");
 }
-*/
+
 //Database connect
-include "/var/www/E3T/components/dbConnect.php";
-/*-
+require_once "../../components/dbConnect.php";
+
 $arrayofImages = [];
-$newPfrad = "../img/newPfrad/";
+$pictureHolder = "../img/pictureholder/";
 $documentHolder = "../img/documentholder/";
 $profileImgLocations = "../img/profileimg/";
-$stockPhotoLocation = "images/stockphotoholder/addimg.png";
-$addDocLocation = "img/stockphotoholder/adddoc.png";
-$stockDocumentLocation = "img/stockphotoholder/";
+$stockPhotoLocation = "../img/stockphotoholder/addimg.png";
+$addDocLocation = "../img/stockphotoholder/adddoc.png";
+$stockDocumentLocation = "../img/stockphotoholder/";
 $files = [];
 $profileFiles = [];
 $fileSize = 4 * 1024 * 1024; //4MB
-*/
+
 //Session variables
-$sessionID = $_SESSION["id"];
+$sessionID = 12  //$_SESSION["ID"]; for now it is 12 but once log in page is done this can be dynamic
 
 ?>
 
-    <script>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talent personal page</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- jquery link -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="jquery-3.6.1.min.js"></script>
+    <script>
         //jqurey script to not allow select of day before today
-        $(document).ready(function () {
-            $(function () {
+        $(document).ready(function() {
+            $(function() {
                 let dtToday = new Date();
 
                 let month = dtToday.getMonth() + 1;
@@ -87,34 +95,34 @@ $sessionID = $_SESSION["id"];
             });
 
         });
-
-
     </script>
+</head>
 
+<body>
 
     <div class="container">
 
-                        <!-- always echo the first image in the folder "profileimg -->
-                        <div class="profileImage">
-                     <img src=<?php
-                     $newPfrad = "/home/share/e3t/" . $sessionID."/";
-                        $printedProfile = scandir($newPfrad);
-                        echo $newPfrad . $printedProfile[0];
+        <header>
+            <h1>Placeholder for actual header</h1>
+        </header>
+
+        <!-- always echo the first image in the folder "profileimg -->
+        <div class="profileImage">
+            <img src=<?php
+                        $printedProfile = scandir($profileImgLocations);
+                        echo $profileImgLocations . $printedProfile[2];
                         ?> alt="" width=200 height=200 />
         </div>
 
-
-   
-
         <?php
         //This is query requesting information from user database 
-        $query = "SELECT * FROM tblUser WHERE idUser= $sessionID";
+        $query = 'SELECT * FROM tblUser WHERE idUser= ' . $sessionID . ';';
         $stmt = $dbHandler->prepare($query);
         $stmt->execute();
         $posts = $stmt->fetch(PDO::FETCH_ASSOC);
 
         //This is to get the description based on the value get from fiSpecialty
-        $query2 = 'SELECT * FROM tblSpecialty WHERE idSpecialty = ' . $posts["fiSpecialty"];
+        $query2 = 'SELECT * FROM tblSpecialty WHERE idSpecialty = ' . $posts["fiSpecialty"] . '  ';
         $stmt2 = $dbHandler->prepare($query2);
         $stmt2->execute();
         $talents = $stmt2->fetch(PDO::FETCH_ASSOC);
@@ -132,7 +140,7 @@ $sessionID = $_SESSION["id"];
 
         <!-- This part should only allow one profile image, meaning if one is uploaded, the previous one is deleted-->
         <div class="profileButtons">
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form action="private.php" method="post" enctype="multipart/form-data">
                 <input type="file" name="profileFile" id="profileFile">
                 <input type="submit" value="Update profile pic" name="newProfilePic">
             </form>
@@ -143,8 +151,8 @@ $sessionID = $_SESSION["id"];
         <div class="vacation">
             <h3>Add Vacation</h3>
             <form method="post">
-                <input  id="dataStartDate" name="dataStartDate" type="date">
-                <input  id="dataEndDate" name="dataEndDate" type="date">
+                <input id="dataStartDate" name="dataStartDate" type="date">
+                <input id="dataEndDate" name="dataEndDate" type="date">
                 <input type="submit" id="dataSendVacation" name="dataSendVacation">
             </form>
         </div>
@@ -155,267 +163,222 @@ $sessionID = $_SESSION["id"];
 
 
 
-                if ($startDate = filter_input(INPUT_POST,"dataStartDate",FILTER_SANITIZE_NUMBER_INT) && $endDate = filter_input(INPUT_POST,"dataEndDate", FILTER_SANITIZE_NUMBER_INT)) {
+            if ($startDate = filter_input(INPUT_POST, "dataStartDate", FILTER_SANITIZE_NUMBER_INT) && $endDate = filter_input(INPUT_POST, "dataEndDate", FILTER_SANITIZE_NUMBER_INT)) {
 
-                    $date = $_POST["dataStartDate"];
+                $date = $_POST["dataStartDate"];
 
-                    $query = $dbHandler->query("SELECT `dtDateStart`, `dtDateEnd` FROM tblavaible WHERE `dtDateStart` = '$startDate'   AND `dtDateEnd` ='$endDate'");
-                    $rows = $query->fetchAll();
-
-
-
-                    if ($rows  == null) {
-                        try {
-                            $sql = "INSERT INTO tblavaible (dtDateStart, dtDateEnd, fiUser, dtTrue) VALUES (?,?,?,?)";
-                            $stmt = $dbHandler->prepare($sql);
-                            $stmt->execute([$date, $endDate, $sessionID, 1]);
-                            header("Refresh:0");
-                            echo "Vacation was added";
-                        }catch (PDOException $e) {
-                            echo "You already have vacation on the selected date";
-                        }
-
-
-                    }else {
-                        echo "You already have vacation here";
-
-                    }
-
-                }else {
-                    echo "<script>alert('Please select a valid date')</script>";
-                }
-
-
-        }
-        ?>
+                $query = $dbHandler->query("SELECT `dtDateStart`, `dtDateEnd` FROM tblavaible WHERE `dtDateStart` = '$startDate'   AND `dtDateEnd` ='$endDate'");
+                $rows = $query->fetchAll();
 
 
 
-
-<h3>Upload Profile </h3>
-
-
-      <!--  first img should be this one for talents so they can add more images later on to the project  -->
-
-
-    <?php
-    if (isset($_POST["newProfilePic"])) {
-        $sessionID = $_SESSION["id"];
-        $name = $_SESSION["name"];
-
-
-        $newPfrad = "/home/share/e3t/" . $sessionID . "/";
-        $fileSize = (4 * 1024 * 1024);
-
-
-        $config["upload_path"] = $newPfrad;
-
-
-        if (!is_dir($newPfrad)) {
-            $oldMask = umask(0);
-            mkdir($newPfrad, 0777);
-            umask($oldMask);
-        }
-
-
-        if ($_FILES["profileFile"]["error"] == 0) {
-
-            if ($_FILES["profileFile"]["size"] < $fileSize) {
-
-                $acceptedFileTypes = ["image/gif", "image/jpg", "image/jpeg", "image/png"];
-
-                $fileinfo = finfo_open(FILEINFO_MIME_TYPE);
-                $uploadedFileType = finfo_file($fileinfo, $_FILES["profileFile"]["tmp_name"]);
-
-                if (in_array($uploadedFileType, $acceptedFileTypes)) {
-                    if (!file_exists($newPfrad . $_FILES["profileFile"]["name"])) {
-
-                        //move_uploaded_file is a function that checks if the file was uploaded a secure way and if it was it will move it to the designated place. The first parameter checks if it was uploaded using a post mechanism, the second parameter transfers it to the designated file holder. If this function passes, it returns a true. if it does not it returns a false.
-                        if (move_uploaded_file($_FILES["profileFile"]["tmp_name"], $newPfrad . $_FILES["profileFile"]["name"])) {
-                            echo "ok";
-                        } else {
-                            echo "Something went wrong";
-                        }
-                    } else {
+                if ($rows  == null) {
+                    try {
+                        $sql = "INSERT INTO tblavaible (dtDateStart, dtDateEnd, fiUser, dtTrue) VALUES (?,?,?,?)";
+                        $stmt = $dbHandler->prepare($sql);
+                        $stmt->execute([$date, $endDate, $sessionID, 1]);
+                        header("Refresh:0");
+                        echo "Vacation was added";
+                    } catch (PDOException $e) {
+                        echo "You already have vacation on the selected date";
                     }
                 } else {
+                    echo "You already have vacation here";
                 }
             } else {
+                echo "<script>alert('Please select a valid date')</script>";
             }
         }
-    }
-?>
-
-<div class="photoTitle">
+        ?>
+        <div class="photoTitle">
             <h1><b>Photos</b></h1>
         </div>
 
         <div class="photoHolder">
 
             <!--  first img should be this one for talents so they can add more images later on to the project  -->
-            <div class="profileButtons">
-            <form action="#" method="post" enctype="multipart/form-data">
-                <input type="file" name="uploadImg" id="uploadImgFile">
-                <input type="submit" value="Add pictures" name="imgUpload">
+
+            <form action="" method="POST" enctype="multipart/form-data" name="yes">
+
+                <div class="addImg">
+                    <label>
+                        <input type="file" name="uploadImg" onchange="this.form.submit()" style=" display:none">
+                        <img src=<?php echo $stockPhotoLocation; ?> alt="addimg" id="stockphotoAddImg">
+                        <input type="hidden" name="imgUpload" value="imgUpload">
+                        <figcaption>
+                            <p>Add a new image</p>
+                        </figcaption>
+                    </label>
+                </div>
+
             </form>
+
+            <?php
+
+            // checks if there is a directory in that address or not
+            if (is_dir($pictureHolder)) {
+
+                // if there is a directory, scan the names of the files in that directory and put it in a array called $array of images
+                $arrayofImages = scandir($pictureHolder);
+
+                // count the number of pictures in the array
+                // exclude the ones called '.' and '..' cuz those are invisible for the user
+                // push the names of the files with  complete location this time to another array called $files
+                for ($i = 0; $i < count($arrayofImages); $i++) {
+                    if ($arrayofImages[$i] != '.' && $arrayofImages[$i] != '..') {
+
+                        array_push($files, $pictureHolder . $arrayofImages[$i]);
+                    }
+                }
+
+                // sort files by last modified date
+                // orders them by most recently modified on top and last modified on bottom
+                // renaming files does not count as modification apperantly
+
+                usort(
+                    $files,
+                    function ($x, $y) {
+                        return filemtime($y) <=> filemtime($x);
+                    }
+                );
+
+                // echo the html script with file locations
+                foreach ($files as $item) {
+                    echo "<div class='pic'>";
+                    echo "<img src=" . $item . " alt='images' id='images' height='200' width='200' />";
+                    echo "<figcaption> <p>Variable input from </br> user limited to a few words</p> </figcaption>";
+                    echo "</div>";
+                }
+            }
+
+            ?>
+        </div>
+
+        <div class="deletePhotoTitle">
+            <h1><b>Delete a photo</b></h1>
+        </div>
+
+        <div class="deletePhoto">
+            <form action="#" method="post" enctype="multipart/form-data">
+                <select name="deletePic" id="deletePic" value="Delete">
+                    <?php
+                    $arrayofImages = scandir($pictureHolder);
+                    for ($i = 0; $i < count($arrayofImages); $i++) {
+                        if ($arrayofImages[$i] != '.' && $arrayofImages[$i] != '..') {
+                            echo '<option value="' . $arrayofImages[$i] . '">' . $arrayofImages[$i] . '</option>';
+                        }
+                    }
+
+                    ?>
+
+                </select>
+                <input type="submit" value="Delete" name="Delete">
+            </form>
+
         </div>
 
 
-    </div>
-    </div>
-
-    <?php
-
-    //uploading the image
-    if (isset($_POST["imgUpload"])) {
-        $sessionID = $_SESSION["id"];
-        $name = $_SESSION["name"];
 
 
-        $docsFolder = "/home/share/e3t/" . $sessionID . "/images/";
-        $fileSize = (4 * 1024 * 1024);
+        <div class=" documentsTitle">
+            <h1>Documents</h1>
+        </div>
 
+        <div class="documents">
 
-        $config["upload_path"] = $docsFolder;
+            <?php
 
+            // check if documentholder location exists
+            if (is_dir($documentHolder)) {
 
-        if (!is_dir($docsFolder)) {
-            $oldMask = umask(0);
-            mkdir($docsFolder, 0777);
-            umask($oldMask);
-        }
+                // puts the name of the docs into the array $arrayofDocs
+                $arrayofDocs = scandir($documentHolder);
 
+                // count the number of docs in the array (starts at two because of the invisible docs '.' and '..')
+                for ($i = 2; $i < count($arrayofDocs); $i++) {
 
-        if ($_FILES["uploadImg"]["error"] == 0) {
-
-            if ($_FILES["uploadImg"]["size"] < $fileSize) {
-
-                $acceptedFileTypes = ["image/gif", "image/jpg", "image/jpeg", "image/png"];
-
-                $fileinfo = finfo_open(FILEINFO_MIME_TYPE);
-                $uploadedFileType = finfo_file($fileinfo, $_FILES["uploadImg"]["tmp_name"]);
-
-                if (in_array($uploadedFileType, $acceptedFileTypes)) {
-                    if (!file_exists($docsFolder . $_FILES["uploadImg"]["name"])) {
-
-                        //move_uploaded_file is a function that checks if the file was uploaded a secure way and if it was it will move it to the designated place. The first parameter checks if it was uploaded using a post mechanism, the second parameter transfers it to the designated file holder. If this function passes, it returns a true. if it does not it returns a false.
-                        if (move_uploaded_file($_FILES["uploadImg"]["tmp_name"], $docsFolder . $_FILES["uploadImg"]["name"])) {
-                            echo "ok";
-                        } else {
-                            echo "Something went wrong";
-                        }
-                    } else {
-                    }
-                } else {
+                    // html gibberish
+                    echo '<div class="docPics">';
+                    echo "<a href='" . $documentHolder . $arrayofDocs[$i] . "' download><img src='" . $stockDocumentLocation . "/docxstockphoto.png'  height = 250  width = 200 /></a>";
+                    echo '<figcaption>' . $arrayofDocs[$i] . '</figcaption>';
+                    echo '</div>';
                 }
-            } else {
             }
-        }
-    }
 
+            ?>
 
-    //reading the image
-
-    // checks if there is a directory in that address or not
-    if (is_dir($docsFolder)) {
-
-        // if there is a directory, scan the names of the files in that directory and put it in a array called $array of images
-        $arrayofImages = scandir($docsFolder);
-
-        // count the number of pictures in the array
-        // exclude the ones called '.' and '..' cuz those are invisible for the user
-        // push the names of the files with  complete location this time to another array called $files
-        for ($i = 0; $i < count($arrayofImages); $i++) {
-            if ($arrayofImages[$i] != '.' && $arrayofImages[$i] != '..') {
-
-                array_push($files, $docsFolder . $arrayofImages[$i]);
-            }
-        }
-
-        // sort files by last modified date
-        // orders them by most recently modified on top and last modified on bottom
-        // renaming files does not count as modification apperantly
-
-        usort(
-            $files,
-            function ($x, $y) {
-                return filemtime($y) <=> filemtime($x);
-            }
-        );
-
-        // echo the html script with file locations
-        foreach ($files as $item) {
-            echo "<div class='pic'>";
-            echo "<img src=" . $item . " alt='images' id='images' height='200' width='200' />";
-            echo "<figcaption> <p>Variable input from </br> user limited to a few words</p> </figcaption>";
-            echo "</div>";
-        }
-    }
-
-?>
-<h3>add docuemts </h3>
-
-<div class="photoTitle">
             <!--  add doc image on the bottom -->
             <div class="addDoc">
+                <form action="#" method="post" enctype="multipart/form-data">
+                    <label>
+                        <input type="file" name="uploadDoc" onchange="this.form.submit()" id="" style="display:none">
+                        <img src=<?php echo $addDocLocation; ?> alt="" height="200" width="200">
+                        <input type="hidden" name="docUpload" value="docUpload">
+                        <figcaption>
+                            <p>Add a new document</p>
+                        </figcaption>
+                    </label>
+            </div>
+
+        </div>
+        <div class="deleteDocumentTitle">
+            <h1><b>Delete a Document</b></h1>
+        </div>
+
+        <div class="deleteDocument">
             <form action="#" method="post" enctype="multipart/form-data">
-                <input type="file" name="dataUploadDocs" id="uploadDoc">
-                <input type="submit" value="Add Docs" name="dataSendDocs">
+                <select name="deleteDoc" id="deleteDoc" value="Delete">
+                    <?php
+                    $arrayofDocs = scandir($documentHolder);
+                    for ($i = 2; $i < count($arrayofDocs); $i++) {
+                        echo '<option value="' . $arrayofDocs[$i] . '">' . $arrayofDocs[$i] . '</option>';
+                    }
+                    ?>
+                </select>
+                <input type="submit" value="Delete" name="deleteDocSubmit">
             </form>
         </div>
-</div>
-
-    <?php
-     if (isset($_POST["dataSendDocs"])) {
-        $sessionID = $_SESSION["id"];
-        $name = $_SESSION["name"];
 
 
-        $docsFolder = "/home/share/e3t/" . $sessionID . "/docs/";
-        $fileSize = (4 * 1024 * 1024);
+        <?php
+        //Delete Picture part
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["deletePic"])) {
+                $deletePic = $_POST["deletePic"];
+                @(unlink("../img/pictureholder/" . $deletePic . ""));
+            }
 
-
-        $config["upload_path"] = $docsFolder;
-
-
-        if (!is_dir($docsFolder)) {
-            $oldMask = umask(0);
-            mkdir($docsFolder, 0777);
-            umask($oldMask);
-        }
-
-
-        if ($_FILES["dataUploadDocs"]["error"] == 0) {
-
-            if ($_FILES["dataUploadDocs"]["size"] < $fileSize) {
-
-                $acceptedFileTypes = ["image/gif", "image/jpg", "image/jpeg", "image/png"];
-
-                $fileinfo = finfo_open(FILEINFO_MIME_TYPE);
-                $uploadedFileType = finfo_file($fileinfo, $_FILES["dataUploadDocs"]["tmp_name"]);
-
-                if (in_array($uploadedFileType, $acceptedFileTypes)) {
-                    if (!file_exists($docsFolder . $_FILES["dataUploadDocs"]["name"])) {
-
-                        //move_uploaded_file is a function that checks if the file was uploaded a secure way and if it was it will move it to the designated place. The first parameter checks if it was uploaded using a post mechanism, the second parameter transfers it to the designated file holder. If this function passes, it returns a true. if it does not it returns a false.
-                        if (move_uploaded_file($_FILES["dataUploadDocs"]["tmp_name"], $docsFolder . $_FILES["dataUploadDocs"]["name"])) {
-                            echo "ok";
-                        } else {
-                            echo "Something went wrong";
-                        }
-                    } else {
-                    }
-                } else {
-                }
-            } else {
+            if (isset($_POST["deleteDocSubmit"])) {
+                print_r($_POST);
+                $deleteDoc = $_POST["deleteDoc"];
+                @(unlink("../img/documentholder/" . $deleteDoc . ""));
             }
         }
-    }
 
 
-?>
 
-<?php
-include "/var/www/E3T/components/footer.html";
 
-?>
+        //Require files to lessen the amount of code in one page
+        if (isset($_POST["imgUpload"])) {
+            require "../../components/photoAdd.php";
+        }
+
+        if (isset($_POST["docUpload"])) {
+            require "../../components/documentAdd.php";
+        }
+
+        if (isset($_POST["newProfilePic"])) {
+            require "../../components/profileUpload.php";
+        }
+
+        ?>
+
+        <footer>
+            <h1>Placeholder for actuall footer</h1>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
