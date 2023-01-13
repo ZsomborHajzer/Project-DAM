@@ -255,7 +255,7 @@ $sessionID = $_SESSION["id"];
             <!--  first img should be this one for talents so they can add more images later on to the project  -->
             <div class="profileButtons">
             <form action="#" method="post" enctype="multipart/form-data">
-                <input type="file" name="uploadImg" id="profileFile">
+                <input type="file" name="uploadImg" id="uploadImgFile">
                 <input type="submit" value="Add pictures" name="imgUpload">
             </form>
         </div>
@@ -282,7 +282,7 @@ $sessionID = $_SESSION["id"];
         if (!is_dir($picturesFolder)) {
             $oldMask = umask(0);
             mkdir($picturesFolder, 0777);
-            umask($picturesFolder);
+            umask($oldMask);
         }
 
 
