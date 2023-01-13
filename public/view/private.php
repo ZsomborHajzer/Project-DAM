@@ -32,20 +32,20 @@ if (isset($_POST["deletePic"])) {
 */
 //Database connect
 include "/var/www/E3T/components/dbConnect.php";
-/*-
+$sessionID = $_SESSION["id"];
 $arrayofImages = [];
-$newPfrad = "../img/newPfrad/";
-$documentHolder = "../img/documentholder/";
-$profileImgLocations = "../img/profileimg/";
-$stockPhotoLocation = "images/stockphotoholder/addimg.png";
-$addDocLocation = "img/stockphotoholder/adddoc.png";
-$stockDocumentLocation = "img/stockphotoholder/";
+$pictureHolder  = "/home/share/e3t/" . $sessionID . "/images/" ;
+$documentHolder = "/home/share/e3t/" . $sessionID . "/docs/" ;
+$profileImgLocations = "/home/share/e3t/" . $sessionID ;
+$stockPhotoLocation = "/home/share/e3t/stockphotoholder/addimg.png";
+$addDocLocation = "/home/share/e3t/stockphotoholder/adddoc.png";
+$stockDocumentLocation = "/home/share/e3t/stockphotoholder/";
 $files = [];
 $profileFiles = [];
 $fileSize = 4 * 1024 * 1024; //4MB
-*/
+*
 //Session variables
-$sessionID = $_SESSION["id"];
+
 
 ?>
 
@@ -98,8 +98,8 @@ $sessionID = $_SESSION["id"];
                         <div class="profileImage">
                      <img src=<?php
                      $newPfrad = "/home/share/e3t/" . $sessionID."/";
-                        $printedProfile = scandir($newPfrad);
-                        echo $newPfrad . $printedProfile[0];
+                        $printedProfile = scandir($profileImgLocations);
+                        echo $profileImgLocations . $printedProfile[2];
                         ?> alt="" width=200 height=200 />
         </div>
 
@@ -192,8 +192,11 @@ $sessionID = $_SESSION["id"];
 
 
 
-<h3>Upload Profile </h3>
+<div class="photoTitle">
+            <h1><b>Photos</b></h1>
+</div>
 
+<div class="photoHolder">
 
       <!--  first img should be this one for talents so they can add more images later on to the project  -->
 
@@ -245,8 +248,32 @@ $sessionID = $_SESSION["id"];
         }
     }
 ?>
+</div>
+<div class="deletePhotoTitle">
+            <h1><b>Delete a photo</b></h1>
+        </div>
 
+        <div class="deletePhoto">
+            <form action="#" method="post" enctype="multipart/form-data">
+                <select name="deletePic" id="deletePic" value="Delete">
+                    <?php
+                    $arrayofImages = scandir($pictureHolder);
+                    for ($i = 0; $i < count($arrayofImages); $i++) {
+                        if ($arrayofImages[$i] != '.' && $arrayofImages[$i] != '..') {
+                            echo '<option value="' . $arrayofImages[$i] . '">' . $arrayofImages[$i] . '</option>';
+                        }
+                    }
+
+                    ?>
+
+                </select>
+                <input type="submit" value="Delete" name="Delete">
+            </form>
+
+        </div>
 <div class="photoTitle">
+
+
             <h1><b>Photos</b></h1>
         </div>
 
