@@ -91,9 +91,8 @@ $fileSize = 4 * 1024 * 1024; //4MB
 
         });
     </script>
-</head>
 
-<body>
+
 
     <div class="container">
 
@@ -366,13 +365,8 @@ $fileSize = 4 * 1024 * 1024; //4MB
         }
 
         ?>
+<?php
+include "/var/www/E3T/components/footer.html";
 
-        <footer>
-            <h1>Placeholder for actuall footer</h1>
-        </footer>
 
-    </div>
-
-</body>
-
-</html>
+?>
