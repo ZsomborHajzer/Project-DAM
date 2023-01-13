@@ -361,7 +361,7 @@ $fileSize = 4 * 1024 * 1024; //4MB
         }
 
         if (isset($_POST["newProfilePic"])) {
-            require "/var/www/E3T/components/profileUpload.php";
+            include "/var/www/E3T/components/profileUpload.php";
         }
 
         ?>
