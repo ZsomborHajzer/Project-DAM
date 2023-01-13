@@ -1,99 +1,109 @@
-*{
+* {
 	padding: 0;
 	margin: 0;
 }
 
-#container{
+#container {
 	display: grid;
-	grid-template-columns: repeat(6,1fr);
+	grid-template-columns: repeat(6, 1fr);
 	background-color: #E4EAFF;
 }
 
 
-main{
+main {
 	grid-column: 1/7;
-	display:flex;
+	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
 }
 
-#form{
+#form {
 	grid-column: 2/4;
-	display:flex;
+	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	
+
 	background-color: white;
 	padding-left: 5vw;
 	padding-right: 5vw;
-	
+
 	height: 25vw;
 	margin-top: 7vw;
 }
 
-.labels{
+.labels {
 	margin: 0;
 }
 
-.texts{
+.texts {
 	margin-top: 0;
 }
 
-#submit{
+#submit {
 	display: flex;
 	justify-content: center;
 }
 
-#submit2{
+#submit2 {
 	background-color: #6FA8DC;
+	font-size: 1vw;
 }
 
- h2{
-	color:#1162AD;
+h2 {
+	color: #1162AD;
 }
 
-h3{
-	color:#1162AD;
+h3 {
+	color: #1162AD;
 	margin-bottom: 0vw;
 }
 
-#contactInfo{
+#contactInfo {
 	grid-column: 5/7;
-	display:flex;
+	display: flex;
 	flex-direction: column;
 }
 
-.contactBox{
+.contactBox {
 	display: flex;
-	
 	background-color: white;
 	margin-top: 2vw;
 }
 
-.contactPicture{
+.contactPicture {
 	margin: 1.5vw;
 }
 
-.contactPortrait{
+.contactPortrait {
 	width: 5vw;
 }
 
-.contactText{
+.contactText {
 	text-align: center;
-	margin-right: 5vw; 
+	margin-right: 5vw;
 	margin-left: 5vw;
 	margin-top: 1vw;
+	padding-bottom: 1vw;
+}
+
+.contactBoxBottom {
+	display: flex;
+	background-color: white;
+	margin-top: 2vw;
 	margin-bottom: 2vw;
 }
 
-.mail{
+.mail {
 	margin-top: 1vw;
-	margin-bottom:0vw;
+	margin-bottom: 0vw;
 }
 
-.phone{
+.phone {
 	margin-top: 0vw;
-	margin-bottom:0vw;
+	margin-bottom: 0vw;
 }
 
+footer {
+	grid-column: 1/7;
+}

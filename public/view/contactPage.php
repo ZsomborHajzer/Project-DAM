@@ -15,7 +15,7 @@ include "/var/www/E3T/components/header.php";
 			<p class="texts"> <input type="email" name="dataEmail"> </p>
 			<p class="labels"> <label for="dataComment"> Comment </label> </p>
 			<p class="texts"> <textarea name="dataComment"> </textarea> </p>
-			<p id="submit"> <input type="submit" value="send" id="submit2"> </p>
+			<p id="submit"> <input type="submit" value="Send" id="submit2"> </p>
 		</form>
 	</div>
 	
@@ -76,7 +76,7 @@ include "/var/www/E3T/components/header.php";
 				<p class="phone"> +12 345 6789 </p>
 			</div>
 		</div>
-		<div class="contactBox">
+		<div class="contactBoxBottom">
 			<div class="contactPicture">
 				<img src="images/profilePictures/contact4.jpg" class="contactPortrait">
 			</div>
