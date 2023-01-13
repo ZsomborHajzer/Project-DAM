@@ -1,136 +1,142 @@
-body{
-	display: grid;
-	grid-template-columns: repeat(6, 1fr);
-	background-color:#E4EAFF;
+body {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    background-color: #E4EAFF;
 }
-main{
-	grid-column: 2/6;
+
+main {
+    grid-column: 2/6;
 }
 
 #inputSendButton {
-	display: flex;
+    display: flex;
 }
 
-#submitTalentEmail {
-	margin-left: 1vw;
-}
 
-#mainTalentInformation{
-	margin-top: 2vw;
-	background-color: ghostwhite;
-	border-style: solid;
-	border-color: black;
-	border-width: 2px;
-	overflow: scroll;
+#mainTalentInformation {
+    margin-top: 2vw;
+    background-color: ghostwhite;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    overflow: scroll;
 }
 
 #talentProfilePicture {
-	width: 6vw;
-	height: 6vw;
+    width: 6vw;
+    height: 6vw;
 }
 
-#talentName{
-	margin-right: 1vw;
-	margin-left: 0.5vw;
+#talentProfilePictureBox {
+    padding: 1vw;
 }
 
-#talentEmail{
-	margin-right: 1vw;
+#talentName {
+    text-align: center;
+    margin-right: 1vw;
+    margin-left: 0.5vw;
+    width: auto;
+    height: 1vw;
 }
 
-#talentPassword{
-	margin-right: 0.5vw;
-	margin-left: 2vw;
-	padding-top: 0.2vw;
-}
 
-#emailSearch {
-	grid-column: 2/6;
-	width: 100%;
-	height: 5vw;
-	align-self: center;
+#talentEmail {
+    text-align: center;
+    margin-right: 2.5vw;
+    height: 1vw;
+    width: auto;
 }
 
 .talentProfile {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	margin: 1vw;
-	width: 64vw;
-	height: auto;
-	align-self: center;
-	align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 1vw;
+    width: 65vw;
+    height: auto;
+    align-self: center;
+    align-items: stretch;
+    outline-style: ridge;
+    outline-color: black;
 }
 
-#talentInformation{
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	height: auto;
-	width: auto;
+.inactiveProfile {
+    background-color: #b2afaf;
 }
 
-#emailButton{
-	grid-column: 5/6;
-	align-self: center;
+#talentInformation {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: auto;
+    width: auto;
+    margin-right: 1.5vw;
+    align-items: center;
+}
+
+#emailButton {
+    grid-column: 5/6;
+    align-self: center;
 }
 
 .d-none {
-	display: none;
+    display: none;
 }
 
 .d-inline {
-	display: inline-block;
+    display: inline-block;
+    width: 12vw;
 }
 
 #changeEmailButton {
-	background-color: #6FA8DC;
-	padding: 0.5vw;
-	border: none;
+    background-color: #6FA8DC;
+    padding: 0.5vw;
+    border: none;
+    margin-right: 2vw;
 }
 
 #submitEmailSearchBar {
-	align-self: center;
-	margin-right: 2vw;
+    align-self: center;
+    width: auto;
 }
 
 #newEmail {
-	margin: 0.2vw;
-	/*background-color: #6FA8DC;*/
-	/*border: none;*/
-	/*border: 2px pink;*/
-	border-radius: 4px;
+    margin: 0.2vw;
+    /*background-color: #6FA8DC;*/
+    /*border: none;*/
+    /*border: 2px pink;*/
+    border-radius: 4px;
 }
 
 #changeEmailSubmit {
-	margin: 0.2vw;
-	background-color: #6FA8DC;
-	border: none;
-	padding: 0.5vw;
+    margin: 0.2vw;
+    background-color: #6FA8DC;
+    border: none;
+    padding: 0.5vw;
 }
 
 #submitChange {
-	margin-left: 1vw;
-	size: 1vw;
-	align-self: center;
+    margin-left: 1vw;
+    size: 1vw;
+    align-self: center;
 }
 
 #radioSubmitButton {
-	background-color: #6FA8DC;
-	border: none;
-	padding: 0.5vw;
+    background-color: #6FA8DC;
+    border: none;
+    padding: 0.5vw;
 }
 
 #radioButtons {
-	grid-column: 4/5;
-	align-self: center;
-	background-color: #6FA8DC;
-	padding: 0.5vw;
+    align-self: center;
+    background-color: #6FA8DC;
+    padding: 0.5vw;
 }
 
 #inactiveButton {
 
 }
+
 /*#emailSearchLabel{*/
 /*	background-color: cornflowerblue;*/
 /*	height: 1.6vw;*/
@@ -197,16 +203,8 @@ main{
 
 /*	 *!*/
 /*}*/
-#talentEmail{
-	width: 8vw;
-	height: 1vw;
-	/*grid-column:2/2;*/
-}
-#talentPassword{
-	width: 5vw;
-	height: 1vw;
-	grid-column:2/2;
-}
+
+
 /* *!*/
 /*}*/
 /*#talentRating{*/
