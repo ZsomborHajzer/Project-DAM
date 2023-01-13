@@ -99,7 +99,7 @@ $sessionID = $_SESSION["id"];
                      <img src=<?php
                      $newPfrad = "/home/share/e3t/" . $sessionID."/";
                         $printedProfile = scandir($newPfrad);
-                        echo $newPfrad . $printedProfile[2];
+                        echo $newPfrad . $printedProfile[0];
                         ?> alt="" width=200 height=200 />
         </div>
 
@@ -272,16 +272,16 @@ $sessionID = $_SESSION["id"];
         $name = $_SESSION["name"];
 
 
-        $picturesFolder = "/home/share/e3t/" . $sessionID . "/images/";
+        $docsFolder = "/home/share/e3t/" . $sessionID . "/images/";
         $fileSize = (4 * 1024 * 1024);
 
 
-        $config["upload_path"] = $picturesFolder;
+        $config["upload_path"] = $docsFolder;
 
 
-        if (!is_dir($picturesFolder)) {
+        if (!is_dir($docsFolder)) {
             $oldMask = umask(0);
-            mkdir($picturesFolder, 0777);
+            mkdir($docsFolder, 0777);
             umask($oldMask);
         }
 
@@ -296,10 +296,10 @@ $sessionID = $_SESSION["id"];
                 $uploadedFileType = finfo_file($fileinfo, $_FILES["uploadImg"]["tmp_name"]);
 
                 if (in_array($uploadedFileType, $acceptedFileTypes)) {
-                    if (!file_exists($picturesFolder . $_FILES["uploadImg"]["name"])) {
+                    if (!file_exists($docsFolder . $_FILES["uploadImg"]["name"])) {
 
                         //move_uploaded_file is a function that checks if the file was uploaded a secure way and if it was it will move it to the designated place. The first parameter checks if it was uploaded using a post mechanism, the second parameter transfers it to the designated file holder. If this function passes, it returns a true. if it does not it returns a false.
-                        if (move_uploaded_file($_FILES["uploadImg"]["tmp_name"], $picturesFolder . $_FILES["uploadImg"]["name"])) {
+                        if (move_uploaded_file($_FILES["uploadImg"]["tmp_name"], $docsFolder . $_FILES["uploadImg"]["name"])) {
                             echo "ok";
                         } else {
                             echo "Something went wrong";
@@ -317,10 +317,10 @@ $sessionID = $_SESSION["id"];
     //reading the image
 
     // checks if there is a directory in that address or not
-    if (is_dir($picturesFolder)) {
+    if (is_dir($docsFolder)) {
 
         // if there is a directory, scan the names of the files in that directory and put it in a array called $array of images
-        $arrayofImages = scandir($picturesFolder);
+        $arrayofImages = scandir($docsFolder);
 
         // count the number of pictures in the array
         // exclude the ones called '.' and '..' cuz those are invisible for the user
@@ -328,7 +328,7 @@ $sessionID = $_SESSION["id"];
         for ($i = 0; $i < count($arrayofImages); $i++) {
             if ($arrayofImages[$i] != '.' && $arrayofImages[$i] != '..') {
 
-                array_push($files, $picturesFolder . $arrayofImages[$i]);
+                array_push($files, $docsFolder . $arrayofImages[$i]);
             }
         }
 
@@ -354,7 +354,64 @@ $sessionID = $_SESSION["id"];
 
 ?>
 
+
+            <!--  add doc image on the bottom -->
+            <div class="addDoc">
+            <form action="#" method="post" enctype="multipart/form-data">
+                <input type="file" name="dataUploadDocs" id="uploadDoc">
+                <input type="submit" value="Add pictures" name="dataSendDocs">
+            </form>
+        </div>
+
+
     <?php
+     if (isset($_POST["dataSendDocs"])) {
+        $sessionID = $_SESSION["id"];
+        $name = $_SESSION["name"];
+
+
+        $docsFolder = "/home/share/e3t/" . $sessionID . "/docs/";
+        $fileSize = (4 * 1024 * 1024);
+
+
+        $config["upload_path"] = $docsFolder;
+
+
+        if (!is_dir($docsFolder)) {
+            $oldMask = umask(0);
+            mkdir($docsFolder, 0777);
+            umask($oldMask);
+        }
+
+
+        if ($_FILES["dataUploadDocs"]["error"] == 0) {
+
+            if ($_FILES["dataUploadDocs"]["size"] < $fileSize) {
+
+                $acceptedFileTypes = ["image/gif", "image/jpg", "image/jpeg", "image/png"];
+
+                $fileinfo = finfo_open(FILEINFO_MIME_TYPE);
+                $uploadedFileType = finfo_file($fileinfo, $_FILES["dataUploadDocs"]["tmp_name"]);
+
+                if (in_array($uploadedFileType, $acceptedFileTypes)) {
+                    if (!file_exists($docsFolder . $_FILES["dataUploadDocs"]["name"])) {
+
+                        //move_uploaded_file is a function that checks if the file was uploaded a secure way and if it was it will move it to the designated place. The first parameter checks if it was uploaded using a post mechanism, the second parameter transfers it to the designated file holder. If this function passes, it returns a true. if it does not it returns a false.
+                        if (move_uploaded_file($_FILES["dataUploadDocs"]["tmp_name"], $docsFolder . $_FILES["dataUploadDocs"]["name"])) {
+                            echo "ok";
+                        } else {
+                            echo "Something went wrong";
+                        }
+                    } else {
+                    }
+                } else {
+                }
+            } else {
+            }
+        }
+    }
+
+
 
 include "/var/www/E3T/components/footer.html";
 
