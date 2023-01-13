@@ -355,7 +355,7 @@ $sessionID = $_SESSION["id"];
 ?>
 <h3>add docuemts </h3>
 
-
+<div class="photoTitle">
             <!--  add doc image on the bottom -->
             <div class="addDoc">
             <form action="#" method="post" enctype="multipart/form-data">
@@ -363,7 +363,7 @@ $sessionID = $_SESSION["id"];
                 <input type="submit" value="Add Docs" name="dataSendDocs">
             </form>
         </div>
-
+</div>
 
     <?php
      if (isset($_POST["dataSendDocs"])) {
@@ -413,7 +413,9 @@ $sessionID = $_SESSION["id"];
     }
 
 
+?>
 
+<?php
 include "/var/www/E3T/components/footer.html";
 
 ?>
