@@ -18,3 +18,6 @@ services:
         volumes:
             - ./public:/var/www/E3T/public
             - ./components:/var/www/E3T/components
+            - ./public/img/stockphotoholder/addimg.png:/home/share/e3t/addimg.png;
+            - ./public/img/stockphotoholder/adddoc.png:/home/share/e3t/stockphotoholder/adddoc.png;
+            - ./public/img/stockphotoholder/:/home/share/e3t/stockphotoholder/;
