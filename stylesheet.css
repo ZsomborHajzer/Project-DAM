@@ -50,6 +50,7 @@ main{
 
 #submit2{
 	background-color: #6FA8DC;
+	font-size: 1vw;
 }
 
 .contact > h2{
@@ -69,7 +70,6 @@ main{
 
 .contactBox{
 	display: flex;
-	
 	background-color: white;
 	margin-top: 2vw;
 }
@@ -87,6 +87,14 @@ main{
 	margin-right: 5vw; 
 	margin-left: 5vw;
 	margin-top: 1vw;
+	padding-bottom: 1vw;
+}
+
+.contactBoxBottom{
+	display: flex;
+	background-color: white;
+	margin-top: 2vw;
+	margin-bottom: 2vw;
 }
 
 .mail{
@@ -97,6 +105,10 @@ main{
 .phone{
 	margin-top: 0vw;
 	margin-bottom:0vw;
+}
+
+#bottomContactBox{
+	
 }
 
 footer{
