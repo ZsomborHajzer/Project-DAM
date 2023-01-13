@@ -362,7 +362,7 @@ $fileSize = 4 * 1024 * 1024; //4MB
 
         if (isset($_POST["newProfilePic"])) {
             //include "/var/www/E3T/components/profileUpload.php";
-            <?php
+
 
 $sessionID = $_SESSION["id"];
 $name = $_SESSION["name"];
@@ -410,7 +410,6 @@ if ($_FILES["profileFile"]["error"] == 0) {
 }
 
         }
-
         ?>
 <?php
 include "/var/www/E3T/components/footer.html";
