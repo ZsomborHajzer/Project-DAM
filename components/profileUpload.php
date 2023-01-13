@@ -6,7 +6,7 @@
 
         //4mb max filesize
         $fileSize = (4 * 1024 * 1024);
-        $profileImgLocations = "../img/profileimg/";
+        $profileImgLocations ="/home/share/e3t/" . $sessionID;
 
         //Check for error in uploaded file. If == 0 then no error
         if ($_FILES["profileFile"]["error"] == 0) {

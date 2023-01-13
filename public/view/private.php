@@ -338,13 +338,13 @@ $fileSize = 4 * 1024 * 1024; //4MB
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST["deletePic"])) {
                 $deletePic = $_POST["deletePic"];
-                @(unlink("../img/pictureholder/" . $deletePic . ""));
+                @(unlink("/home/share/e3t/" . $sessionID."/images/" . $deletePic . ""));
             }
 
             if (isset($_POST["deleteDocSubmit"])) {
                 print_r($_POST);
                 $deleteDoc = $_POST["deleteDoc"];
-                @(unlink("../img/documentholder/" . $deleteDoc . ""));
+                @(unlink("/home/share/e3t/" . $sessionID."/docs/" . $deleteDoc . ""));
             }
         }
 
@@ -353,15 +353,15 @@ $fileSize = 4 * 1024 * 1024; //4MB
 
         //Require files to lessen the amount of code in one page
         if (isset($_POST["imgUpload"])) {
-            require "../../components/photoAdd.php";
+            require "/var/www/E3T/components/photoAdd.php";
         }
 
         if (isset($_POST["docUpload"])) {
-            require "../../components/documentAdd.php";
+            require "/var/www/E3T/components/documentAdd.php";
         }
 
         if (isset($_POST["newProfilePic"])) {
-            require "../../components/profileUpload.php";
+            require "/var/www/E3T/components/profileUpload.php";
         }
 
         ?>

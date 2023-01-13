@@ -1,7 +1,15 @@
 <?php
 $uploadDoc = "uploadDoc";
-$documentLocation = "../img/documentholder/";
+$documentLocation = "/home/share/e3t/" . $sessionID. "/docs/";
 $fileSize = (4 * 1024 * 1024);
+
+
+if (!is_dir($newPfrad)) {
+    $oldMask = umask(0);
+    mkdir($folderName, 0777);
+    umask($oldMask);
+}
+
 
 if ($_FILES[$uploadDoc]["error"] == 0) {
 
