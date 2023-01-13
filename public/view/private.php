@@ -353,13 +353,14 @@ $sessionID = $_SESSION["id"];
     }
 
 ?>
+<h3>add docuemts </h3>
 
 
             <!--  add doc image on the bottom -->
             <div class="addDoc">
             <form action="#" method="post" enctype="multipart/form-data">
                 <input type="file" name="dataUploadDocs" id="uploadDoc">
-                <input type="submit" value="Add pictures" name="dataSendDocs">
+                <input type="submit" value="Add Docs" name="dataSendDocs">
             </form>
         </div>
 
