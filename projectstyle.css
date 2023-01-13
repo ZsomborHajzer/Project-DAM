@@ -80,21 +80,19 @@ body {
 /*graph bubble*/
 /*-------------------------*/
 
-#graph {
+#serverPicture {
     margin-left: 5vw;
-    background-color: #dee1ec;
-    color: #1162ad;
     grid-column: 1/3;
     border-radius: 3vw;
     padding: 2vw;
-    text-align: center;
     justify-content: center;
     display: flex;
+
 }
 
-#graph > p {
-    text-align: center;
-    align-self: center;
+#serverPicture > img {
+    height: 100%;
+    width: 100%;
 }
 
 #rightText {
