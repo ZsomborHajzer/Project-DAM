@@ -37,6 +37,10 @@ if (isset($_POST["deletePic"])) {
     header("Location: private.php");
 }
 
+if (isset($_POST["deleteDocSubmit"])) {
+    header("Location: private.php");
+}
+
 //Database connect
 
 $sessionID = $_SESSION["id"];
