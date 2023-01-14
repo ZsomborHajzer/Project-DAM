@@ -65,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             while ($row = $stmt->fetch()) {
                 $dbPassWd = $row["dtPassword"];
+                $_SESSION["name"] = $_SESSION["dtFirstName"];
               //  $id = $row["idUser"];
                 $_SESSION["isAdmin"]=$row["dtIsAdmin"];
                 //saves the id and email in session.
@@ -76,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo  '<script>alert("You are logged in")</script>';
          
                 //refreshing
-                header("Location: adminPage.php");
+                header("Location: index.php");
                 
 
             }else{

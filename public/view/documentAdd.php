@@ -1,12 +1,15 @@
 <?php
+session_start();
+$sessionID = $_SESSION["id"];
 $uploadDoc = "uploadDoc";
+
 $documentLocation = "/home/share/e3t/" . $sessionID. "/docs/";
 $fileSize = (4 * 1024 * 1024);
 
-
-if (!is_dir($newPfrad)) {
+$config["upload_path"] = $documentLocation;
+if (!is_dir($documentLocation)) {
     $oldMask = umask(0);
-    mkdir($folderName, 0777);
+    mkdir($documentLocation, 0777);
     umask($oldMask);
 }
 
@@ -26,13 +29,20 @@ if ($_FILES[$uploadDoc]["error"] == 0) {
 
                 //move_uploaded_file is a function that checks if the file was uploaded a secure way and if it was it will move it to the designated place. The first parameter checks if it was uploaded using a post mechanism, the second parameter transfers it to the designated file holder. If this function passes, it returns a true. if it does not it returns a false.
                 if (move_uploaded_file($_FILES[$uploadDoc]["tmp_name"], $documentLocation . $_FILES[$uploadDoc]["name"])) {
+                    header("Location: private.php");
                 } else {
+                    echo "Error";
                 }
             } else {
+                echo "File already exists";
             }
         } else {
+            echo "Wrong file type";
         }
-    } else {
+    } else {echo "Size to big";
     }
 } else {
+    echo "Error";
+
 }
+

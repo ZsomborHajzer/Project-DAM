@@ -140,7 +140,7 @@ include "/var/www/E3T/components/header.php";
                                     echo "<div class= 'g-item'>";
                                     echo "<div class= 'mClass'>";
                                     echo "<img class='g-img' src=" . $row['dtImage'] . ">";
-                                    echo "<a class='g-p'><a href='tpp-public/public/view/public.php?id='"  . $row['idUser'] . "'>" . $row['dtFirstName'] . " " . $row['dtLastName'] . "</a></p>";
+                                    echo "<a class='g-p'><a href='public.php?id='"  . $row['idUser'] . "'>" . $row['dtFirstName'] . " " . $row['dtLastName'] . "</a></p>";
                                     echo "<p class='g-email'>" . $row['dtEmail'] . "</p>";
                                     echo "<p class='g-descr'>" . $row['dtDescription'] . "</p>";
                                     echo "<p class='g-price'>" . $row['dtPrice'] . "€</p>";
