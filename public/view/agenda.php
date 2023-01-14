@@ -23,7 +23,8 @@ if ($nameStmt->rowCount() == 0) {
     header("Location: /");
     die();
 } else {
-    $talentName = $nameStmt[0] . " " . $nameStmt[1];
+    $info = $nameStmt->fetch();
+    $talentName = $info[0] . " " . $info[1];
 }
 
 
@@ -104,8 +105,8 @@ for ($day = 1; $day <= $end_day; $day++) {
             <?php
             $query = $dbHandler->prepare("SELECT dtDate FROM tblBooking WHERE fiUser = :id AND dtDate > :start AND dtDate < :end");
             $query->bindParam("id", $_GET["id"]);
-            $query->bindParam("start", strtotime("first day of this month"));
-            $query->bindParam("end", strtotime("last day of this month"));
+            $query->bindParam("start", date("Y-m-d", strtotime("first day of this month")));
+            $query->bindParam("end", date("Y-m-d", strtotime("last day of this month")));
 
             $query->execute();
             $arrBooked = $query->fetchAll(PDO::FETCH_COLUMN, 0);
@@ -118,8 +119,8 @@ for ($day = 1; $day <= $end_day; $day++) {
 
             $query = $dbHandler->prepare("SELECT dtStartDate, dtEndDate FROM tblAvaible WHERE fiUser = :id AND dtStartDate > :start dtStartDate < :end");
             $query->bindParam("id", $_GET["id"]);
-            $query->bindParam("start", strtotime("first day of this month"));
-            $query->bindParam("end", strtotime("last day of this month"));
+            $query->bindParam("start", date("Y-m-d", strtotime("first day of this month")));
+            $query->bindParam("end", date("Y-m-d", strtotime("last day of this month")));
 
             $query->execute();
             $arrUnavailable = $query->fetchAll();
