@@ -125,9 +125,6 @@ for ($day = 1; $day <= $end_day; $day++) {
                 $start = (int) end($startDay);
                 $end = (int) end($endDay);
 
-                echo $start . '<br />';
-                echo $end . '<br />';
-
                 if ($start < $end) {
                     for ($i = $start; $i <= $end; $i++) {
                         array_push($unavailable, $i);
