@@ -57,7 +57,8 @@ session_start();
              if(isset($_POSTp["action"])){
 
                    session_destroy();
-                   header("Refresh:0, URL=logInPage.php");
+                   header("Refresh: 0");
+                   header("Location: index.php");
              }
              echo "</ul>";
         
@@ -81,7 +82,8 @@ session_start();
              if(isset($_POSTp["action"])){
 
                    session_destroy();
-                   header("Refresh:0, URL=logInPage.php");
+                    header("Refresh: 0");
+                   header("Location: index.php");
              }
              echo "</ul>";
             echo "<li class='active'><a href='index.php'>Home</a></li>";
