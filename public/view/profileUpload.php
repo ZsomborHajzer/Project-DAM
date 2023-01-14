@@ -40,6 +40,7 @@ if ($_FILES["profileFile"]["error"] == 0) {
                         // count the number of pictures in the array
                         // exclude the ones called '.' and '..' cuz those are invisible for the user
                         // push the names of the files with  complete location this time to another array called $files
+                        $profileFiles = [];
                         for ($i = 0; $i < count($arrayofProfiles); $i++) {
                             if ($arrayofProfiles[$i] != '.' && $arrayofProfiles[$i] != '..') {
 
@@ -50,18 +51,18 @@ if ($_FILES["profileFile"]["error"] == 0) {
                         // sort files by last modified date
                         // orders them by most recently modified on top and last modified on bottom
                         // renaming files does not count as modification apperantly
-/*
                         usort(
                             $profileFiles,
                             function ($x, $y) {
                                 return filemtime($y) <=> filemtime($x);
                             }
                         );
-*/
-                        //Sort them with usort by unix timestamp and then later delete the last item in the array. The last item should always be array[1] since there should be max 2 files.
 
+                        //Sort them with usort by unix timestamp and then later delete the last item in the array. The last item should always be array[1] since there should be max 2 files.
                         $filetoDelete = $profileFiles[1];
                         unlink($filetoDelete);
+
+                        header("Location: private.php");
                     }
                 } else {
                     echo "Something went wrong please try again";
@@ -78,5 +79,3 @@ if ($_FILES["profileFile"]["error"] == 0) {
 } else {
     echo "There was an unexpected error try again";
 }
-
-?>

@@ -15,15 +15,14 @@ session_start();
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap" rel="stylesheet">
     <!-- My css -->
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/<?= $cssFile; ?>">
     <!--Font Awesome script-->
     <script src="https://kit.fontawesome.com/08626bfbba.js" crossorigin="anonymous"></script>
-     <!--Font Awesome script-->
-     <script src="https://kit.fontawesome.com/08626bfbba.js" crossorigin="anonymous"></script>
+    <!--Font Awesome script-->
+    <script src="https://kit.fontawesome.com/08626bfbba.js" crossorigin="anonymous"></script>
     <!-- jquery link -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <title><?= $pageName; ?></title>
@@ -36,7 +35,7 @@ session_start();
     if (isset($_SESSION["id"])) {
 
         if ($_SESSION["isAdmin"] == 1) {  //If Admin
-         
+
 
             echo "<nav class='navbar'>";
             echo "<div class='Lholder'>";
@@ -47,9 +46,9 @@ session_start();
             echo "<ul>";
             echo "<li class='active'><a href='index.php'>Home</a></li>";
             echo "<li class='active'><a href='registration.php'>Register</a></li>";
-           // echo "<li><a href='#'>Talent</a></li>";
+            // echo "<li><a href='#'>Talent</a></li>";
             echo "<li><a href='adminPage.php'>Admin Page</a></li>";
-          echo "<li>
+             echo "<li>
                  <form id='logout' action='header.php' method='POST'>
                         <input type='hidden' name='action' value='logout'>
                         <a href='javascript:$('logout').submit()'>Log Out</a>
@@ -74,7 +73,7 @@ session_start();
             echo " <div class='nav-desktop'> ";
             echo "<ul>";
             echo "<li class='active'><a href='index.php'>Home</a></li>";
-            echo "<li><a href='agenda.php'>My Calendar</a></li>";
+            echo "<li><a href='agenda?id=" . $_SESSION["id"] . "'>My Calendar</a></li>";
             echo "<li class='active'><a href='private.php'>My Profile</a></li>";
             echo "</ul>";
             echo "</div>";
