@@ -48,19 +48,9 @@ session_start();
             echo "<li class='active'><a href='registration.php'>Register</a></li>";
             // echo "<li><a href='#'>Talent</a></li>";
             echo "<li><a href='adminPage.php'>Admin Page</a></li>";
-             echo "<li>
-                 <form id='logout' action='logOut.php' method='POST'>
-                        <input type='hidden' name='action' value='logout'>
-                        <a href='javascript:$('logout').submit()'>Log Out</a>
-                    </form>
-                  </li>";
-                  if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["action"] == "logout"){
-
-                        session_destroy();
-                        header("Refresh:1, URL=logInPage.php");
-                  }
+            echo "<ul>";
+            echo "<li><a href='logOut.php'>Log Out</a></li>";
             echo "</ul>";
-        
             echo "</div>";
             echo "</nav>";
         } else if ($_SESSION["isAdmin"] == 0) {    //If Talent
@@ -72,18 +62,7 @@ session_start();
             echo "<button class='fas fa-bars' id='hamburger-btn'></button>";
             echo " <div class='nav-desktop'> ";
             echo "<ul>";
-            echo "<li>
-            <form id='#' action='logOut.php' method='POST'>
-                   <input type='hidden' name='action' value='logout'>
-                   <a href='javascript:$('logout').submit()'>Log Out</a>
-               </form>
-             </li>";
-             if(isset($_POSTp["action"])){
-
-                   session_destroy();
-                   header("Refresh:0, URL=logInPage.php");
-             }
-       echo "</ul>";
+            echo "<li><a href='logOut.php'>Log Out</a></li>";
             echo "<li class='active'><a href='index.php'>Home</a></li>";
             echo "<li><a href='agenda?id=" . $_SESSION["id"] . "'>My Calendar</a></li>";
             echo "<li class='active'><a href='private.php'>My Profile</a></li>";
