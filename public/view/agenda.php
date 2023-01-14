@@ -1,5 +1,7 @@
 <?php
 
+echo (string) date("Y-m-d", strtotime("first day of this month"));
+
 // if we haven't got the id parameter
 if (empty($_GET["id"])) {
     header("Location: /");
@@ -117,7 +119,7 @@ for ($day = 1; $day <= $end_day; $day++) {
             }
 
 
-            $query = $dbHandler->prepare("SELECT dtStartDate, dtEndDate FROM tblAvaible WHERE fiUser = :id AND dtStartDate > :start dtStartDate < :end");
+            $query = $dbHandler->prepare("SELECT dtStartDate, dtEndDate FROM tblAvaible WHERE fiUser = :id AND dtStartDate > :start AND dtStartDate < :end");
             $query->bindParam("id", $_GET["id"]);
             $query->bindParam("start", date("Y-m-d", strtotime("first day of this month")));
             $query->bindParam("end", date("Y-m-d", strtotime("last day of this month")));
@@ -153,7 +155,11 @@ for ($day = 1; $day <= $end_day; $day++) {
                     } else if (in_array($day, $unavailable)) {
                         echo "<td class='unavailable'>$day</td>" . PHP_EOL;
                     } else {
-                        echo "<td class='free'>$day</td>" . PHP_EOL;
+                        if (strlen($day) > 0) {
+                            echo "<td class='free'>$day</td>" . PHP_EOL;
+                        } else {
+                            echo "<td></td>" . PHP_EOL;
+                        }
                     }
                 }
                 echo "</tr>" . PHP_EOL;
