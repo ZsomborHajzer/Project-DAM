@@ -35,15 +35,9 @@ include "/var/www/E3T/components/header.php";
 ?>
 
 <?php
-// $month = 12;
-// $year = 2022;
 
-// $stamp = time();
 $start_day = date('N', strtotime("first day of this month"));
 $end_day = date('t');
-
-// echo date("Y-m-d", strtotime("first day of this month"));
-// echo date("Y-m-d", strtotime("last day of this month"));
 
 $weeks = array();
 $week = array();
