@@ -24,6 +24,7 @@ body {
 
 .profileImage {
     grid-column: 2/3;
+    margin-top: 2vw;
 }
 
 

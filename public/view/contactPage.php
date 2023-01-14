@@ -8,7 +8,7 @@ include "/var/www/E3T/components/header.php";
 <div id="container">
 	<div id="form">
 		<h2> contact us </h2>
-		<form method="POST" action="contact_page_e3t.php">
+		<form method="POST" action="#">
 			<p class="labels"> <label for="dataName"> Name </label> </p>
 			<p class="texts"> <input type="text" name="dataName"> </p>
 			<p class="labels"> <label for="dataEmail"> Email </label> </p>
@@ -43,7 +43,8 @@ include "/var/www/E3T/components/header.php";
 		}
 		
 		if($flag == 0){
-            echo "<p> Hello $dataName, your comment has been sent successfully. Thank you! </p>";
+
+            echo "<script>alert('Message send')</script>";
         }
         else{
             foreach($errors as $error){

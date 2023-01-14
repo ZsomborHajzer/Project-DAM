@@ -7,9 +7,9 @@ include "/var/www/E3T/components/dbConnect.php";
 
 
 /*
-This is the private talent page where seperate talents will have different seperate personal pages
-This is the area where they can upload images of themselfs and their own documnets. They are also able to 
-delete these documents.  Profile Image will aslo be changeable. Styling for this page is not a focus. 
+This is the private talent page where separate talents will have different separate personal pages
+This is the area where they can upload images of themselves and their own documents. They are also able to
+delete these documents.  Profile Image will also be changeable. Styling for this page is not a focus.
 The aim of this page is customization.
 */
 
@@ -32,11 +32,11 @@ if (isset($_POST["docUpload"])) {
 }
 */
 //double refresh is required apperantly at all new file uploads
-/*
+
 if (isset($_POST["deletePic"])) {
     header("Location: private.php");
 }
-*/
+
 //Database connect
 
 $sessionID = $_SESSION["id"];
@@ -76,7 +76,7 @@ $fileSize = 4 * 1024 * 1024; //4MB
 ?>
 
     <script>
-        //jqurey script to not allow select of day before today
+        //jquery script to not allow select of day before today
         $(document).ready(function () {
             $(function () {
                 let dtToday = new Date();
@@ -347,7 +347,7 @@ $fileSize = 4 * 1024 * 1024; //4MB
         </div>
 
         <div class="deleteDocument">
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="#" method="post" enctype="multipart/form-data">
                 <select name="deleteDoc" id="deleteDoc" value="Delete">
                     <?php
                     $arrayofDocs = scandir($documentHolder);
@@ -367,18 +367,19 @@ $fileSize = 4 * 1024 * 1024; //4MB
             if (isset($_POST["deletePic"])) {
                 $deletePic = $_POST["deletePic"];
                 @(unlink("/home/share/e3t/" . $sessionID . "/images/" . $deletePic . ""));
-            }
+                header("Refresh: 0");
 
-            if (isset($_POST["deleteDocSubmit"])) {
-                print_r($_POST);
+            } else if (isset($_POST["deleteDocSubmit"])) {
                 $deleteDoc = $_POST["deleteDoc"];
                 @(unlink("/home/share/e3t/" . $sessionID . "/docs/" . $deleteDoc . ""));
+                header("Refresh: 0");
             }
         }
 
 
 
         ?>
+    </div>
 <?php
 include "/var/www/E3T/components/footer.html";
 
