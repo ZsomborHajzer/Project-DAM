@@ -72,6 +72,18 @@ session_start();
             echo "<button class='fas fa-bars' id='hamburger-btn'></button>";
             echo " <div class='nav-desktop'> ";
             echo "<ul>";
+            echo "<li>
+            <form id='logout' action='header.php' method='POST'>
+                   <input type='hidden' name='action' value='logout'>
+                   <a href='javascript:$('logout').submit()'>Log Out</a>
+               </form>
+             </li>";
+             if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["action"] == "logout"){
+
+                   session_destroy();
+                   header("Refresh:1, URL=logInPage.php");
+             }
+       echo "</ul>";
             echo "<li class='active'><a href='index.php'>Home</a></li>";
             echo "<li><a href='agenda?id=" . $_SESSION["id"] . "'>My Calendar</a></li>";
             echo "<li class='active'><a href='private.php'>My Profile</a></li>";
