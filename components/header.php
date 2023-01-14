@@ -74,8 +74,8 @@ session_start();
             echo "<ul>";
             echo "<li>
             <form id='#' action='header.php' method='POST'>
-                   <input type='hidden' name='action' value='logout'>
-                   <a href='javascript:$('logout').submit()'>Log Out</a>
+                   <input type='submit' name='action' value='logout'>
+                  
                </form>
              </li>";
              if(isset($_POSTp["action"])){
