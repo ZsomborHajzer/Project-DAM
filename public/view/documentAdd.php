@@ -39,6 +39,7 @@ if ($_FILES[$uploadDoc]["error"] == 0) {
         } else {
             echo "Wrong file type";
             echo $uploadedFileType;
+        
 
 
         }
