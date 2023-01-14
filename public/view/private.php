@@ -329,7 +329,7 @@ $fileSize = 4 * 1024 * 1024; //4MB
 
             <!--  add doc image on the bottom -->
             <div class="addDoc">
-                <form action="documentAdd.php" method="post" enctype="multipart/form-data">
+                <form action="#" method="post" enctype="multipart/form-data">
                     <label>
                         <input type="file" name="uploadDoc" onchange="this.form.submit()" id="" style="display:none">
                         <img src="<?php echo $addDocLocation; ?>" alt="" height="200" width="200">
