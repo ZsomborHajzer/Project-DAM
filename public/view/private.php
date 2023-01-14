@@ -342,6 +342,7 @@ $fileSize = 4 * 1024 * 1024; //4MB
                             <p>Add a new document</p>
                         </figcaption>
                     </label>
+                </form>
             </div>
 
 
@@ -351,7 +352,7 @@ $fileSize = 4 * 1024 * 1024; //4MB
         </div>
 
         <div class="deleteDocument">
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form action="private.php" method="post" enctype="multipart/form-data">
                 <select name="deleteDoc" id="deleteDoc" value="Delete">
                     <?php
                     $arrayofDocs = scandir($documentHolder);
