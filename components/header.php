@@ -49,7 +49,7 @@ session_start();
             // echo "<li><a href='#'>Talent</a></li>";
             echo "<li><a href='adminPage.php'>Admin Page</a></li>";
             echo "<li>
-            <form id='#' action='header.php' method='POST'>
+            <form id='logout' action='#' method='POST'>
                    <input type='submit' name='action' value='logout'>
                   
                </form>
@@ -74,7 +74,7 @@ session_start();
             echo " <div class='nav-desktop'> ";
             echo "<ul>";
             echo "<li>
-            <form id='#' action='header.php' method='POST'>
+            <form id='logout2' action='#' method='POST'>
                    <input type='submit' name='action' value='logout'>
                   
                </form>
