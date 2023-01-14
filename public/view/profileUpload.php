@@ -6,7 +6,7 @@ $sessionID = $_SESSION["id"];
 $nameSession = $_SESSION["name"];
 //4mb max filesize
 $fileSize = (4 * 1024 * 1024);
-$profileImgLocations = "/home/share/e3t/" . $sessionID . "/profile/";
+$profileImgLocations = "/home/share/e3t/" . $sessionID . "/profile.jpg";
 
 $config["upload_path"] = $profileImgLocations;
 if (!is_dir($profileImgLocations)) {
@@ -30,7 +30,7 @@ if ($_FILES["profileFile"]["error"] == 0) {
             if (!file_exists($profileImgLocations . $_FILES["profileFile"]["name"])) {
 
                 //if it didnt exist then upload the file into our directory
-                if (move_uploaded_file($_FILES["profileFile"]["tmp_name"], $profileImgLocations . $_FILES["profileFile"]["name"])) {
+                if (move_uploaded_file($_FILES["profileFile"]["tmp_name"], $profileImgLocations)) {
 
                     if (is_dir($profileImgLocations)) {
 
@@ -50,14 +50,13 @@ if ($_FILES["profileFile"]["error"] == 0) {
                         // sort files by last modified date
                         // orders them by most recently modified on top and last modified on bottom
                         // renaming files does not count as modification apperantly
-/*
                         usort(
                             $profileFiles,
                             function ($x, $y) {
                                 return filemtime($y) <=> filemtime($x);
                             }
                         );
-*/
+
                         //Sort them with usort by unix timestamp and then later delete the last item in the array. The last item should always be array[1] since there should be max 2 files.
 
                         $filetoDelete = $profileFiles[1];
@@ -78,5 +77,3 @@ if ($_FILES["profileFile"]["error"] == 0) {
 } else {
     echo "There was an unexpected error try again";
 }
-
-?>
