@@ -48,19 +48,18 @@ session_start();
             echo "<li class='active'><a href='registration.php'>Register</a></li>";
             // echo "<li><a href='#'>Talent</a></li>";
             echo "<li><a href='adminPage.php'>Admin Page</a></li>";
-            echo "<li>
-            <form id='logout' action='#' method='POST'>
-                   <input type='submit' name='action' value='logout'>
-                  
-               </form>
-             </li>";
-             if(isset($_POSTp["action"])){
+             echo "<li>
+                 <form id='logOut.php' action='header.php' method='POST'>
+                        <input type='hidden' name='action' value='logout'>
+                        <a href=''>Log Out</a>
+                    </form>
+                  </li>";
+                  if(isset($_POSTp["action"])){
 
-                   session_destroy();
-                   header("Refresh: 0");
-                   header("Location: index.php");
-             }
-             echo "</ul>";
+                    session_destroy();
+                    header("Refresh:0, URL=logInPage.php");
+              }
+            echo "</ul>";
         
             echo "</div>";
             echo "</nav>";
@@ -74,18 +73,17 @@ session_start();
             echo " <div class='nav-desktop'> ";
             echo "<ul>";
             echo "<li>
-            <form id='logout2' action='#' method='POST'>
-                   <input type='submit' name='action' value='logout'>
+            <form id='#' action='logOut.php' method='POST'>
+                   <input type='hidden' name='action' value='logout'>
                   
                </form>
              </li>";
              if(isset($_POSTp["action"])){
 
                    session_destroy();
-                    header("Refresh: 0");
-                   header("Location: index.php");
+                   header("Refresh:0, URL=logInPage.php");
              }
-             echo "</ul>";
+       echo "</ul>";
             echo "<li class='active'><a href='index.php'>Home</a></li>";
             echo "<li><a href='agenda?id=" . $_SESSION["id"] . "'>My Calendar</a></li>";
             echo "<li class='active'><a href='private.php'>My Profile</a></li>";
