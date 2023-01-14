@@ -1,7 +1,5 @@
 <?php
 
-echo (string) date("Y-m-d", strtotime("first day of this month"));
-
 // if we haven't got the id parameter
 if (empty($_GET["id"])) {
     header("Location: /");
