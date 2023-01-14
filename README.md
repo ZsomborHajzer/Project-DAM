@@ -17,9 +17,11 @@ Project 2 Team A
 
 ## Running
 The website is intended to be run with Ubuntu installed. Proceed to the instruction manual to get started.
+\
 You can also choose to run it on your local machine (as per committing changes, as an example).
 To run the website, you will need to have Docker installed.
 Proceed to the root folder (this one) and run `docker-compose up` on cmd.
+\
 The website will be available on `localhost` and the phpmyadmin on `localhost/phpmyadmin/`.
 
 
