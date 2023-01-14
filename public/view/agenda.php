@@ -1,8 +1,13 @@
 <?php
 
+if (empty($_GET["id"])) {
+    header("Location: /");
+}
+
 $pageName = "E3T-home";
 $cssFile = "calendarStyles.css";
 include "/var/www/E3T/components/header.php";
+// include "/var/www/E3T/components/dbConnect.php";
 
 ?>
 
@@ -51,12 +56,12 @@ for ($day = 1; $day <= $end_day; $day++) {
 }
 
 ?>
-<h1 id="calendarTitle">My Calendar</h1>
+<h1 id="calendarTitle"><?php echo "Event calendar of "; ?></h1>
 <div id="calenderMain">
     <table id="calenderTable">
         <thead>
             <tr>
-                <th colspan=7>My calendar</th>
+                <th colspan=7><?php echo date("F") . ", " . date("Y"); ?></th>
             </tr>
             <tr>
                 <td>Mon</td>

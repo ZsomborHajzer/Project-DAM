@@ -23,17 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd24ce81-38c5-4692-854d-4e7eb9485047" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/dbConnect.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/dbConnect.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/documentAdd.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/view/documentAdd.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/photoAdd.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/view/photoAdd.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/profileUpload.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/view/profileUpload.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/adminPageCss.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/adminPageCss.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/normalize.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/normalize.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/ttpPrivate.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/ttpPrivate.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/ttpPublic.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/ttpPublic.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/view/logInPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/view/logInPage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/view/private.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/view/private.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/view/adminPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/view/adminPage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/view/agenda.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/view/agenda.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +69,7 @@
       <workItem from="1672835518355" duration="9217000" />
       <workItem from="1673263408595" duration="1483000" />
       <workItem from="1673439293056" duration="2010000" />
-      <workItem from="1673646481400" duration="9673000" />
+      <workItem from="1673646481400" duration="9859000" />
     </task>
     <servers />
   </component>
