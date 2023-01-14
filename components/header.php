@@ -73,15 +73,15 @@ session_start();
             echo " <div class='nav-desktop'> ";
             echo "<ul>";
             echo "<li>
-            <form id='logout' action='header.php' method='POST'>
+            <form id='#' action='header.php' method='POST'>
                    <input type='hidden' name='action' value='logout'>
                    <a href='javascript:$('logout').submit()'>Log Out</a>
                </form>
              </li>";
-             if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["action"] == "logout"){
+             if(isset($_POSTp["action"])){
 
                    session_destroy();
-                   header("Refresh:1, URL=logInPage.php");
+                   header("Refresh:0, URL=logInPage.php");
              }
        echo "</ul>";
             echo "<li class='active'><a href='index.php'>Home</a></li>";
