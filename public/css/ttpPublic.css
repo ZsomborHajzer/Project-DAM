@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+
+}
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #E4EAFF;
+
+}
+
+
+.container {
+    grid-template-columns: repeat(6, 1fr);
+    display: grid;
+
+}
+
+
+.profileImage {
+    grid-column: 2/3;
+
+}
+
+
+.talentInfo {
+    grid-column: 3/4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+
+
+.email {
+    display: flex;
+    grid-column: 4/6;
+    justify-content: center;
+    align-items: center;
+}
+
+.email p {
+    margin-right: 20px;
+}
+
+.email h3 {
+    margin-right: 10px;
+}
+
+
+.photoTitle {
+    display: flex;
+    grid-column: 2/7;
+    justify-content: flex-start;
+    margin-top: 60px;
+
+}
+
+
+.pic {
+    border-left: 10px solid;
+    border-right: 10px solid;
+    border-top: 20px solid;
+    border-bottom: 60px solid;
+    border-color: whitesmoke;
+    margin-bottom: 60px;
+    object-fit: cover;
+
+}
+
+
+.addImg {
+    border-left: 10px solid;
+    border-right: 10px solid;
+    border-top: 20px solid;
+    border-bottom: 60px solid;
+    border-color: whitesmoke;
+    margin-bottom: 60px;
+    object-fit: cover;
+    cursor: pointer;
+
+}
+
+
+.addImg:hover {
+    opacity: 0.5;
+
+}
+
+
+.photoHolder {
+    display: flex;
+    grid-column: 2/6;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+
+
+.documentsTitle {
+    display: flex;
+    grid-column: 2/6;
+    justify-content: flex-start;
+
+}
+
+
+.documents {
+    display: flex;
+    grid-column: 2/6;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+
+.docPics {
+    cursor: pointer;
+
+}
+
+
+.docPics:hover {
+    opacity: .5;
+
+}
+
+
+.documents figcaption {
+    background-color: #E4EAFF;
+
+}
+
+
+.pic figcaption {
+    text-align: center;
+    background-color: whitesmoke;
+
+}
+
+
+.docPics figcaption {
+    text-align: center;
+
+}

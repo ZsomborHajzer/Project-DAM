@@ -1,0 +1,229 @@
+
+*{
+	padding: 0;
+	margin: 0;
+
+}
+
+
+.adminPage {
+
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	background-color: #E4EAFF;
+}
+
+main {
+	grid-column: 2/6;
+}
+
+#inputSendButton {
+	display: flex;
+}
+
+
+#mainTalentInformation {
+	margin-top: 2vw;
+	background-color: ghostwhite;
+	border-style: solid;
+	border-color: black;
+	border-width: 2px;
+	overflow: scroll;
+}
+
+#talentProfilePicture {
+	width: 6vw;
+	height: 6vw;
+}
+
+#talentProfilePictureBox {
+	padding: 1vw;
+}
+
+#talentName {
+	text-align: center;
+	margin-right: 1vw;
+	margin-left: 0.5vw;
+	width: auto;
+	height: 1vw;
+}
+
+
+#talentEmail {
+	text-align: center;
+	margin-right: 2.5vw;
+	height: 1vw;
+	width: auto;
+}
+
+.talentProfile {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	margin: 1vw;
+	width: 65vw;
+	height: auto;
+	align-self: center;
+	align-items: stretch;
+	outline-style: ridge;
+	outline-color: black;
+}
+
+.inactiveProfile {
+	background-color: #b2afaf;
+}
+
+#talentInformation {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	height: auto;
+	width: auto;
+	margin-right: 1.5vw;
+	align-items: center;
+}
+
+#emailButton {
+	grid-column: 5/6;
+	align-self: center;
+}
+
+.d-none {
+	display: none;
+}
+
+.d-inline {
+	display: inline-block;
+	width: 12vw;
+}
+
+#changeEmailButton {
+	background-color: #6FA8DC;
+	padding: 0.5vw;
+	border: none;
+	margin-right: 2vw;
+}
+
+#submitEmailSearchBar {
+	align-self: center;
+	width: auto;
+}
+
+#newEmail {
+	margin: 0.2vw;
+	/*background-color: #6FA8DC;*/
+	/*border: none;*/
+	/*border: 2px pink;*/
+	border-radius: 4px;
+}
+
+#changeEmailSubmit {
+	margin: 0.2vw;
+	background-color: #6FA8DC;
+	border: none;
+	padding: 0.5vw;
+}
+
+#submitChange {
+	margin-left: 1vw;
+	size: 1vw;
+	align-self: center;
+}
+
+#radioSubmitButton {
+	background-color: #6FA8DC;
+	border: none;
+	padding: 0.5vw;
+}
+
+#radioButtons {
+	align-self: center;
+	background-color: #6FA8DC;
+	padding: 0.5vw;
+}
+
+#inactiveButton {}
+
+/*#emailSearchLabel{*/
+/*	background-color: cornflowerblue;*/
+/*	height: 1.6vw;*/
+/*	width: 9vw;*/
+/*	text-align: center;*/
+/*	margin-right: 20vw;*/
+/*}*/
+/*#emailSearchLabel,label{*/
+/*	padding-top: 0.5vw;*/
+/*}*/
+/*#talentEmailInput{*/
+/*	background: cornflowerblue;*/
+/*	height: 1.9vw;*/
+/*	width: 9vw;*/
+/*	border-style: none;*/
+/*	margin-right: 20vw;*/
+/*}*/
+/*#submitTalentEmail{*/
+/*	background: cornflowerblue;*/
+/*	height: 2vw;*/
+/*	width: 9.2vw;*/
+/*	border-style: none;*/
+/*}*/
+/*.formBox{*/
+/*	display: flex;*/
+/*	flex-direction: row;*/
+/*	grid-column: 2/6;*/
+/*}*/
+/*.profileBox{*/
+/*	grid-column: 2/6;*/
+/*	width: 100%;*/
+/*	height: 30vw;*/
+/*	background-color: white;*/
+/*}*/
+
+
+/*}*/
+
+/*#activityButtons{*/
+/*	display: flex;*/
+/*	flex-direction: column;*/
+/*	align-items: center;*/
+/*}*/
+/*#inactiveButton{*/
+/*	border: none;*/
+/*	width: 19vw;*/
+/*	height: 5vw;*/
+
+/*	background: #6FA8DC;*/
+/*}*/
+/*#activeButton{*/
+/*	border: none;*/
+/*	width: 19vw;*/
+/*	height: 5vw;*/
+/*	margin-top: 3vw;*/
+
+/*	background: #6FA8DC;*/
+/*}*/
+/*#talentName {*/
+/*	width: 2.5vw;*/
+/*	height: 1vw;*/
+/*	!*grid-column:2/2;*/
+/*	grid-row:1/2;*/
+
+/*	 *!*/
+/*}*/
+
+
+/* *!*/
+/*}*/
+/*#talentRating{*/
+/*	width: 2.5vw;*/
+/*	height: 1vw;*/
+/*!*grid-column:3/3;*/
+
+/* *!*/
+/*}*/
+
+/*!*grid-column:1/2;*/
+/*grid-row:1/2;*/
+
+/* *!*/
+/*}*/

@@ -1,0 +1,43 @@
+*{
+	padding: 0;
+	margin: 0;
+
+}
+
+.register{
+	display: grid;
+	grid-template-columns: repeat(6,1fr);
+	background-color: #E4EAFF;
+}
+
+
+#profileInfo{
+	margin-top: 3vw;
+	margin-bottom: 3vw;
+	grid-column: 3/5;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-items: center;
+
+	background-color: #FFFFFF;
+}
+
+#profileInfo> h1{
+	color: #1162AD;
+	font-size: 35px;
+}
+
+button{
+	margin-left: 50px;
+	padding: 5px;
+	border: 1px solid black;
+	background-color: #6FA8DC;
+	color: #FFFFFF;
+	margin-top: 1.2vw;
+	margin-bottom: 1.2vw;
+}
+
+footer{
+	grid-column: 1/7;
+}

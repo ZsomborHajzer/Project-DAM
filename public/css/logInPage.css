@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: #E4EAFF;
+}
+.loginForm {
+    background: #fff;
+    width: 50vw;
+    margin: 4vw auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
+    padding-bottom: 5vw;
+}
+.loginForm h1 {
+    text-align: center;
+    padding-top: 6vw;
+    font-weight: 400;
+    color: #1162AD;
+}
+.loginForm .content {
+    padding: 5vw;
+
+}
+.loginForm .inputField {
+    padding: 2vw 2vw;
+}
+.loginForm .inputField label {
+    color: #464646;
+    font-weight: 400;
+}
+.loginForm .action {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+}
+.loginForm .action button {
+    width: 50%;
+    border: none;
+    padding: 1vw;
+    font-family: "Roboto Light",sans-serif;
+    cursor: pointer;
+    text-transform: uppercase;
+    background: #6FA8DC;
+    color: #000000;
+    letter-spacing: 0.6px;
+    outline: 0;
+    transition: all .3s;
+    align: center;
+    margin: auto;
+}
+.loginForm .action button:hover {
+    background: #4893d7;
+}
+#inputField1{
+    background: lightgray;
+    border: none;
+    height: 3vw;
+    width: 100%;
+}
+#inputField2{
+    background: lightgray;
+    border: none;
+    height: 3vw;
+    width: 100%;
+
+}

@@ -1,0 +1,23 @@
+version: '3'
+services:
+    web:
+        image: nginx:latest
+        container_name: e3t-nginx
+        entrypoint: ''
+        ports:
+            - "80:80"
+        volumes:
+            - ./nginx-docker.conf:/etc/nginx/nginx.conf
+            - ./public:/var/www/E3T/public
+        depends_on:
+            - php
+    php:
+        image: php:fpm
+        container_name: e3t-php
+        entrypoint: ''
+        volumes:
+            - ./public:/var/www/E3T/public
+            - ./components:/var/www/E3T/components
+            - ./public/img/stockphotoholder/addimg.png:/home/share/e3t/addimg.png;
+            - ./public/img/stockphotoholder/adddoc.png:/home/share/e3t/stockphotoholder/adddoc.png;
+            - ./public/img/stockphotoholder/:/home/share/e3t/stockphotoholder/;
