@@ -14,23 +14,21 @@ The aim of this page is customization.
 */
 
 //Double refresh the page in order to update the profile picture correctly
-/*
+
 if (isset($_POST["newProfilePic"])) {
     header("Location: private.php");
 }
-*/
-/*
+
 //double refresh is required apperantly at all new file uploads
 if (isset($_POST["imgUpload"])) {
     header("Location: private.php");
 }
-*/
-/*
+
 //double refresh is required apperantly at all new file uploads
 if (isset($_POST["docUpload"])) {
     header("Location: private.php");
 }
-*/
+
 //double refresh is required apperantly at all new file uploads
 
 if (isset($_POST["deletePic"])) {
