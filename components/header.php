@@ -48,18 +48,18 @@ session_start();
             echo "<li class='active'><a href='registration.php'>Register</a></li>";
             // echo "<li><a href='#'>Talent</a></li>";
             echo "<li><a href='adminPage.php'>Admin Page</a></li>";
-             echo "<li>
-                 <form id='logout' action='header.php' method='POST'>
-                        <input type='hidden' name='action' value='logout'>
-                        <a href='javascript:$('logout').submit()'>Log Out</a>
-                    </form>
-                  </li>";
-                  if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["action"] == "logout"){
+            echo "<li>
+            <form id='#' action='header.php' method='POST'>
+                   <input type='submit' name='action' value='logout'>
+                  
+               </form>
+             </li>";
+             if(isset($_POSTp["action"])){
 
-                        session_destroy();
-                        header("Refresh:1, URL=logInPage.php");
-                  }
-            echo "</ul>";
+                   session_destroy();
+                   header("Refresh:0, URL=logInPage.php");
+             }
+             echo "</ul>";
         
             echo "</div>";
             echo "</nav>";
@@ -83,7 +83,7 @@ session_start();
                    session_destroy();
                    header("Refresh:0, URL=logInPage.php");
              }
-       echo "</ul>";
+             echo "</ul>";
             echo "<li class='active'><a href='index.php'>Home</a></li>";
             echo "<li><a href='agenda?id=" . $_SESSION["id"] . "'>My Calendar</a></li>";
             echo "<li class='active'><a href='private.php'>My Profile</a></li>";
