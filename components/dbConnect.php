@@ -1,7 +1,7 @@
 <?php
 
 $dsn = "mysql:host=127.0.0.1;dbname=E3T";
-$user = "admin";
+$user = "root";
 $passwd = "!User_12";
 
 try {
