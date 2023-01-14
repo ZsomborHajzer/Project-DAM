@@ -123,7 +123,7 @@ $fileSize = 4 * 1024 * 1024; //4MB
 
     <!-- always echo the first image in the folder "profileimg -->
     <div class="profileImage">
-        <img src="docs/<?php echo $sessionID; ?>/profile/<?php scandir($profileImgLocations)[2]; ?>" alt="profile image" width=200 height=200 />
+        <img src="docs/<?php echo $sessionID; ?>/profile/<?php echo scandir($profileImgLocations)[2]; ?>" alt="profile image" width=200 height=200 />
     </div>
 
     <?php

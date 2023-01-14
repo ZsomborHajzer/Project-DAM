@@ -6,7 +6,7 @@ $sessionID = $_SESSION["id"];
 $nameSession = $_SESSION["name"];
 //4mb max filesize
 $fileSize = (4 * 1024 * 1024);
-$profileImgLocations = "/home/share/e3t/" . $sessionID . "/profile.jpg";
+$profileImgLocations = "/home/share/e3t/" . $sessionID . "/profile/";
 
 $config["upload_path"] = $profileImgLocations;
 if (!is_dir($profileImgLocations)) {
@@ -30,7 +30,7 @@ if ($_FILES["profileFile"]["error"] == 0) {
             if (!file_exists($profileImgLocations . $_FILES["profileFile"]["name"])) {
 
                 //if it didnt exist then upload the file into our directory
-                if (move_uploaded_file($_FILES["profileFile"]["tmp_name"], $profileImgLocations)) {
+                if (move_uploaded_file($_FILES["profileFile"]["tmp_name"], $profileImgLocations . $_FILES["profileFile"]["name"])) {
 
                     if (is_dir($profileImgLocations)) {
 
@@ -40,6 +40,7 @@ if ($_FILES["profileFile"]["error"] == 0) {
                         // count the number of pictures in the array
                         // exclude the ones called '.' and '..' cuz those are invisible for the user
                         // push the names of the files with  complete location this time to another array called $files
+                        $profileFiles = [];
                         for ($i = 0; $i < count($arrayofProfiles); $i++) {
                             if ($arrayofProfiles[$i] != '.' && $arrayofProfiles[$i] != '..') {
 
@@ -58,9 +59,10 @@ if ($_FILES["profileFile"]["error"] == 0) {
                         );
 
                         //Sort them with usort by unix timestamp and then later delete the last item in the array. The last item should always be array[1] since there should be max 2 files.
-
                         $filetoDelete = $profileFiles[1];
                         unlink($filetoDelete);
+
+                        header("Location: private.php");
                     }
                 } else {
                     echo "Something went wrong please try again";
