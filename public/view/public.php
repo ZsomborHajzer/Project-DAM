@@ -4,41 +4,29 @@ There are folders with  with pre uploaded image files so that the webpage is not
 There is a dynamic upload function which is run through a sorting algorithm which makes sure that the newest image is always on top
 There are a lot of placeholders such as name and email and other info that will be accessible from database later on
 */
-
+session_start();
 // variables needed for later
 $arrayofImages = [];
-$pictureHolder = "../img/pictureholder/";
-$documentHolder = "../img/documentholder/";
-$profileImgLocations = "../img/profileimg/";
-$files = [];
-$sessionID = 12; // $_GET["id"];
+$pageName = "E3T-Talents";
+$cssFile = "ttpPrivate.css";
 
-require "../../components/dbConnect.php"
+$stockPhotoLocation = "docs/stockphotoholder/addimg.png";
+$addDocLocation = "docs/stockphotoholder/adddoc.png";
+$stockDocumentLocation = "docs/stockphotoholder/";
+$sessionID =  $_GET["id"];
+$pictureHolder = "/home/share/e3t/" . $sessionID . "/images/";
+$documentHolder = "/home/share/e3t/" . $sessionID . "/docs/";
+
+$files = [];
+
+include "/var/www/E3T/components/header.php";
+include "/var/www/E3T/components/dbConnect.php";
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talent personal page</title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-
-<body>
-    <div class="container">
-
-        <header>
-            <h1>Placeholder for actual header</h1>
-        </header>
 
         <div class="profileImage">
-            <img src="<?php
-                        $printedProfile = scandir($profileImgLocations);
-                        echo $profileImgLocations . $printedProfile[2];
-                        ?>" alt="" width=200 height=200 />
+
+            <img src="<?php echo "/docs/$sessionID/profile.jpg"; ?>" alt="profile picture" width=200 height=200 />
         </div>
 
         <?php
@@ -69,7 +57,7 @@ require "../../components/dbConnect.php"
             <?php
 
 
-            $stmt = $dbHandler->prepare("SELECT * FROM tblavaible  WHERE fiUser = $sessionID");
+            $stmt = $dbHandler->prepare("SELECT * FROM tblAvaible  WHERE fiUser = $sessionID");
 
             $stmt->execute();
             echo "<h3>On vacation during</h3>";
@@ -122,7 +110,8 @@ require "../../components/dbConnect.php"
 
                 foreach ($files as $item) {
                     echo "<div class='pic'>";
-                    echo "<img src=" . $item . " height = 250  width = 200 />";
+                    $path = explode("/", (string) $item);
+                    echo "<img src='docs/" . $sessionID . "/images/" . end($path) . "' alt='images' id='images' height='200' width='200' />";
                     echo "<figcaption> <p>Variable input from </br> user limited to a few words</p> </figcaption>";
                     echo "</div>";
                 }
@@ -150,10 +139,12 @@ require "../../components/dbConnect.php"
                 for ($i = 2; $i < count($arrayofDocs); $i++) {
 
                     // html gibberish
-                    echo "<div class='docPics'>";
-                    echo "<a href=' ../img/documentholder/doc1.docx' download><img src='../img/stockphotoholder/docxstockphoto.png'  height = 250  width = 200 /></a>";
-                    echo "<figcaption>" . $arrayofDocs[$i] . "</figcaption>";
-                    echo "</div>";
+                    echo '<div class="docPics">';
+                    $path = explode("/", (string) $arrayofDocs[$i]);
+
+                    echo "<a href='/docs/$sessionID/docs/" . end($path) . "' download><img src='" . $stockDocumentLocation . "/docxstockphoto.png'  height = 250  width = 200 /></a>";
+                    echo '<figcaption>' . $arrayofDocs[$i] . '</figcaption>';
+                    echo '</div>';
                 }
             }
 
@@ -161,12 +152,8 @@ require "../../components/dbConnect.php"
 
         </div>
 
-        <footer>
-            <h1>Placeholder for actuall footer</h1>
-        </footer>
+<?php
+include "/var/www/E3T/components/footer.html";
 
-    </div>
 
-</body>
-
-</html>
+?>
